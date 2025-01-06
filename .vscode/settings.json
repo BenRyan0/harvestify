@@ -1,0 +1,20 @@
+{
+    "restoreTerminals.terminals": [ 
+      {
+        "splitTerminals": [
+          {
+            "name": "Client",
+            "commands": ["", "npm run start"]
+          },
+          {
+            "name": "Client",
+            "commands": ["", ""]
+          }
+        ]
+      },
+
+    ],
+    "cSpell.words": [
+      "Reciever"
+    ]
+}
