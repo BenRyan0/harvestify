@@ -26,6 +26,10 @@ import { FaExclamation } from "react-icons/fa";
 import { BiSolidDiscount } from "react-icons/bi";
 
 const Shipping = () => {
+
+    //   const {
+    //         userInfo
+    //     } = useSelector(state => state.auth);
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: process.env.REACT_APP_API_KEY,
@@ -88,6 +92,12 @@ const Shipping = () => {
 
     const [code, setCode] = useState({
         vcode : ''
+    })
+
+    useEffect(()=>{
+        if(!userInfo){
+            navigate('/login')
+        }
     })
 
     const [voucher, setVoucher] = useState({})
