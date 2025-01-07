@@ -716,12 +716,11 @@ const Shipping = () => {
                                                         
                                                             </div>
                                                             <div className="w-full flex justify-between gap-3">
-                                                        
-                                                                {(checkboxState.sellerDelivery || checkboxState.traderPickup) && (
+                                                            {(checkboxState.sellerDelivery || checkboxState.traderPickup) && (
                                                                     <button
                                                                         onClick={ConfirmDeal}
                                                                         disabled={!isStateComplete && !shippingPrice}  // Only disable if form is incomplete
-                                                                        className={`bg-primaryDark px-7 py-2 w-4/12 rounded-md font-bold text-white ${
+                                                                        className={`bg-primaryDark px-7 py-2 w-full rounded-md font-bold text-white  block md-lg:hidden ${
                                                                             !isStateComplete ? 'opacity-50 cursor-not-allowed' : ''
                                                                         }`}
                                                                     >
@@ -819,6 +818,20 @@ const Shipping = () => {
 
         
                                                             <button onClick={handleCancel}  className='bg-red-500  py-2 rounded-md font-bold text-white w-2/12 md-lg:w-full'>CANCEL</button>    
+                                                            </div>
+                                                            <div className="w-full md-lg:flex justify-between gap-3 hidden md-lg:block">
+                                                            {(checkboxState.sellerDelivery || checkboxState.traderPickup) && (
+                                                                    <button
+                                                                        onClick={ConfirmDeal}
+                                                                        disabled={!isStateComplete && !shippingPrice}  // Only disable if form is incomplete
+                                                                        className={`bg-primaryDark px-7 py-2 w-full rounded-md font-bold text-white ${
+                                                                            !isStateComplete ? 'opacity-50 cursor-not-allowed' : ''
+                                                                        }`}
+                                                                    >
+                                                                        CONFIRM
+                                                                        
+                                                                    </button>
+                                                                )}
                                                             </div>
                                               
                                       
