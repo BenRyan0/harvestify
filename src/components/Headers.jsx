@@ -14,6 +14,7 @@ import { AiFillShopping } from "react-icons/ai";
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoMailOutline } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
+import { MdInstallMobile } from "react-icons/md";
 
 
 // import for translation
@@ -295,8 +296,14 @@ const Headers = () => {
                              </ul>
                           
                     </div>
-                    <div className="absolute bottom-0 bg-green-600">
-                         <InstallPWAButton/>
+                    <div className="absolute bottom-0 left-0 right-0">
+                        <div className="w-full flex justify-center items-center">
+                            <div className=" px-2 py-1 rounded-sm text-slate-500 my-1 flex flex-row gap-1 items-center text-center font-bold text-sm">
+                                 <InstallPWAButton/> <MdInstallMobile className='mb-1' />
+                            </div>
+                           
+                        </div>
+                         
                     </div>
             </div>
         </div>
