@@ -33,7 +33,7 @@ const Shipping = () => {
       })
      
    
-      const [isSecondDiscountApplied, setIsSecondDiscountApplied] = useState(true);
+      const [isSecondDiscountApplied, setIsSecondDiscountApplied] = useState(false);
       const inputref = useRef(null)
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -331,7 +331,7 @@ const Shipping = () => {
   return (
     <div>
     <Headers/>
-         <section className=' w-[85%] mx-auto h-[350px] mt-6 bg-cover bg-no-repeat relative bg-left' style={{ backgroundImage: "url('/images/banner/card.jpg')" }}>
+         <section className=' w-[85%] mx-auto h-[350px] mt-6 bg-cover bg-no-repeat relative bg-left md-lg:hidden' style={{ backgroundImage: "url('/images/banner/card.jpg')" }}>
             <div className="absolute left-0 top-0 w-full h-full bg-[#03872D] bg-opamunCity-40">
                 <div className="w-[85%] md:w-[80%] sm:w-[90%] lg:w-[90%] h-full mx-auto">
                     <div className="flex flex-col justify-center gap-1 items-center h-full w-full text-center text-white">
@@ -531,8 +531,8 @@ const Shipping = () => {
                                                   
                                                             <div className="w-full flex flex-wrap justify-between p-2">
                                                                 <div className="flex justify-between sm:w-full gap-2 w-full md:flex-col flex-row ">
-                                                                    <div className="flex gap-2 justify-start items-start w-full">
-                                                                        <img className='w-[250px] h-full rounded-md ' src={listings[0].listingInfo.images[0]} alt="listing" />
+                                                                    <div className="flex gap-2 justify-start items-start w-full md-lg:flex-col">
+                                                                        <img className='w-[250px] md:w-full h-full rounded-md' src={listings[0].listingInfo.images[0]} alt="listing" />
                                                                         <div className="pr-1 w-full">
                                                                             <h2 className='text-lg font-semibold border-b-2 w-full'>{listings[0].listingInfo.name}</h2>
                                                                             <div className="flex flex-col justify-start items-start gap-2 text-sm mt-1">
@@ -729,7 +729,7 @@ const Shipping = () => {
                                                                         
                                                                     </button>
                                                                 )}
-                                                                <div className="bg-green-600 px-4 text-center w-6/12 rounded-md text-slate-100 font-semibold flex justify-center items-center">
+                                                                <div className="bg-green-600 px-4 text-center w-6/12 md-lg:w-full rounded-md text-slate-100 font-semibold flex justify-center items-center">
                                                                      {/* <span className=''>SHIPPING FREE: {formatNumber(shippingPrice)}</span> */}
                                                                      <span className=''>
                                                                     
@@ -818,7 +818,7 @@ const Shipping = () => {
 
 
         
-                                                            <button onClick={handleCancel}  className='bg-red-500  py-2 rounded-md font-bold text-white w-2/12'>CANCEL</button>    
+                                                            <button onClick={handleCancel}  className='bg-red-500  py-2 rounded-md font-bold text-white w-2/12 md-lg:w-full'>CANCEL</button>    
                                                             </div>
                                               
                                       

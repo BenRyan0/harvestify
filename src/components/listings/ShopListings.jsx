@@ -135,7 +135,7 @@ const ShopListings = ({listings}) => {
 },[successMessage, errorMessage])
 
 const formatNumber = (num) => {
-  return new Intl.NumberFormat('en-US').format(num);
+  return new Intl.NumberFormat('en-US').format(Math.floor(num));
 };
 
 
