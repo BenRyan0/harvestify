@@ -243,9 +243,9 @@ const Headers = () => {
                                     <span className='text-xs'>{userInfo.name}</span>
                                 </Link> : 
                                <div className="flex items-center justify-center gap-4 relative text-xs">
-                               <span>Signup</span>
+                              <Link to='/signup'>Signup</Link>
                                <span className="relative flex items-center before:absolute before:h-[18px] before:w-[1px] before:bg-[#afafaf] before:-left-[10px] before:content-['']">
-                                <button onClick={handleRedirect}>Login</button>
+                               <Link to='/login'>Log in</Link>
                                </span>
                              </div>
                              
@@ -267,7 +267,7 @@ const Headers = () => {
                                     <Link className={`py-2 block ${pathname === '/sellcrops' ? 'text-primary':'text-slate-600'}`}>Sell Crops</Link>
                                 </li> */}
                                 <li>
-                                     <Link to='/about-us' className={`py-2 block ${pathname === '/aboutUs' ? 'text-primary':'text-slate-600'}`}>About u asds</Link>
+                                     <Link to='/about-us' className={`py-2 block ${pathname === '/aboutUs' ? 'text-primary':'text-slate-600'}`}>About us</Link>
                                 </li>
                             </ul>
                             <div className="relative bottom-0 flex gap-3 justify-start items-center">
