@@ -264,7 +264,7 @@ const SearchListings = () => {
                                     </div>
                                 </div>
                                 <div className="pb-8">
-                                    <ShopListings listings={listings} styles={styles}/>
+                                    <ShopListings listing={listings} styles={styles}/>
                                     {/* <ShopListings listing={paginatedListings()} styles={styles} /> */}
 
                                 </div>

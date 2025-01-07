@@ -190,7 +190,7 @@ const Headers = () => {
                                     <Link className={`p-2 block ${pathname === '/prices' ? 'text-primary':'text-slate-600'}`}>Prices</Link>
                                 </li> */}
                                 <li>
-                                    <Link to='/about-us' className={`p-2 block ${pathname === '/aboutUs' ? 'text-primary':'text-slate-600'}`}>About us</Link>
+                                    <Link to='/about-us' className={`p-2 block ${pathname === '/aboutUs' ? 'text-primary':'text-slate-600'}`}>About us </Link>
                                 </li>
                             </ul>
                             <div className="flex md-lg:hidden justify-center items-center gap-5">
@@ -235,12 +235,7 @@ const Headers = () => {
                         </Link>
                         <div className="flex justify-start items-center gap-10">
                             <div className="relative group flex items-center justify-center gap-1 text-sm text-slate-800 cursor-pointer  after:absolute after:h-[18px] after:w-[1px] after:bg-[#afafaf] after:-right-[16px]">
-                                    <img className='h-8' src="/images/UsFlag_english.png" alt="" />
-                                    <span><FaCaretDown /></span>
-                                    <ul className='absolute invisible transition-all to-12 rounded-sm duration-600 text-white p-2 w-[100px] flex flex-col gap-3 group-hover:visible group-hover:top-9 group-hover:bg-slate-600 group-hover:rounded-md z-10'>
-                                        <li>Tagalog</li>
-                                        <li>Bisaya</li>
-                                    </ul>
+                            <LanguageDropdown/>
                             </div>
                             {
                                 userInfo ? <Link className='flex items-center justify-center gap-3' to='dashboard'>
@@ -256,12 +251,13 @@ const Headers = () => {
                              
                             }
                         </div>
+                        {/* MOBILE VIEW NAVS */}
                         <ul className='flex flex-col justify-start items-start gap-3 text-md font-bold uppercase'>
                                 <li>
                                     <Link to='/' className={`py-2 block ${pathname === '/' ? 'text-primary':'text-slate-600 '}`}>Home</Link>
                                 </li>
                                 <li>
-                                    <Link to='/clusters-listing' className={`py-2 block ${pathname === '/clusters-listing' ? 'text-primary':'text-slate-600'}`}>Clusters</Link>
+                                    <Link to='/clusters' className={`py-2 block ${pathname === '/clusters' ? 'text-primary':'text-slate-600'}`}>Clusters</Link>
                                 </li>
                                 <li>
                                     <Link to='/listings' className={`py-2 block ${pathname === '/listings' ? 'text-primary':'text-slate-600'}`}>Listings</Link>
@@ -271,7 +267,7 @@ const Headers = () => {
                                     <Link className={`py-2 block ${pathname === '/sellcrops' ? 'text-primary':'text-slate-600'}`}>Sell Crops</Link>
                                 </li> */}
                                 <li>
-                                    <Link className={`py-2 block ${pathname === '/prices' ? 'text-primary':'text-slate-600'}`}>Prices</Link>
+                                     <Link to='/about-us' className={`py-2 block ${pathname === '/aboutUs' ? 'text-primary':'text-slate-600'}`}>About u asds</Link>
                                 </li>
                             </ul>
                             <div className="relative bottom-0 flex gap-3 justify-start items-center">
@@ -294,7 +290,7 @@ const Headers = () => {
                                     <span><IoMailOutline size='20px'/></span>
                                     <span>harvestifyph@gmail.com</span>
                                 </li>
-                                <span className='text-xs'>Your ultimate farmers Market made digital</span>
+                                <span className='text-xs'>{t("slogan")}</span>
                              </ul>
                           
                     </div>
@@ -324,7 +320,8 @@ const Headers = () => {
                                         return(
                                             <li key={i} className='flex justify-start items-center gap-2 px-[24px] py-[6px] hover:text-primary hover:bg-slate-100'>
                                                 <img src={c.image} className='w-[30px] h-[30px] rounded-full overflow-hidden' alt="" />
-                                                <Link to={`/listings?category=${c.name}`} className='text-sm block font-semibold '>{c.name}</Link>
+                                                <Link to={`/listings/search?category=${c.name}&&value=${""}`} className='text-sm block font-semibold '>{c.name}</Link>
+                                                {/* <Link to={`/listings?category=${c.name}`} className='text-sm block font-semibold '>{c.name}</Link> */}
                                             </li>
                                         )
                                     })

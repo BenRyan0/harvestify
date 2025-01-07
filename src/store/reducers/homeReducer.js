@@ -84,11 +84,14 @@ export const query_listings = createAsyncThunk(
 
         // Set searchValue to an empty string if it's not provided
         const searchValue = query.searchValue || "";
+        const category = query.category || "";
+
+        console.log("searchVal " + searchValue)
 
         try {
             const { data } = await api.get(`/home/query-listings`, {
                 params: {
-                    category: query.category,
+                    category: category,
                     rating: query.rating,
                     lowPrice: query.lowPrice,
                     highPrice: query.highPrice,
@@ -102,6 +105,8 @@ export const query_listings = createAsyncThunk(
                     searchValue: searchValue,  // Using the default empty string if searchValue is undefined or null
                 },
             });
+            
+            console.log( data)
           
             return fulfillWithValue(data);
         } catch (error) {
