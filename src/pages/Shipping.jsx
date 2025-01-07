@@ -416,8 +416,8 @@ const Shipping = () => {
                                                 </div>
                                             )}
                                      </div>
-                                     <div className="w-full  flex gap-2">
-                                        <div className="flex flex-col gap-1 mb-2 w-6/12 pt-1">
+                                     <div className="w-full  flex gap-2 md-lg:flex-col flex-row">
+                                        <div className="flex flex-col gap-1 mb-2 w-6/12 md-lg:w-full pt-1">
                                             <label htmlFor="locationInfo.name">Street/Landmark</label>
                                             <input 
                                                 onChange={inputHandler} 
@@ -429,7 +429,7 @@ const Shipping = () => {
                                                 id="additionalLocationInfo" 
                                             />
                                         </div>
-                                        <div className="flex flex-col gap-1 mb-2 w-6/12 pt-1">
+                                        <div className="flex flex-col gap-1 mb-2 w-6/12 md-lg:w-full pt-1">
                                             <label htmlFor="locationInfo.name">Phone Number</label>
                                             <input 
                                                 onChange={inputHandler} 
