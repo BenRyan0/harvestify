@@ -28,6 +28,7 @@ import LanguageDropdown from './LanguageModule/LanguageDropdown';
 
 
 // import { LazyLoadImage } from 'react-lazy-load-image-component';
+import InstallPWAButton from './PWA/InstallPWAButton ';
 
 const Headers = () => {
     const navigate = useNavigate()
@@ -295,7 +296,7 @@ const Headers = () => {
                           
                     </div>
                     <div className="absolute bottom-0 bg-green-600">
-                     
+                         <InstallPWAButton/>
                     </div>
             </div>
         </div>
