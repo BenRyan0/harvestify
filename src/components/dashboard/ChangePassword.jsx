@@ -2,7 +2,7 @@ import React from 'react'
 
 const ChangePassword = () => {
   return (
-    <div className='p-4 bg-white w-[40%]'>
+    <div className='p-4 bg-white w-[40%] md-lg:w-full'>
       <h2 className='text-base font-bold text-slate-600 pb-2'>Change Password</h2>
       <form action="">
         <div className="flex flex-col gap-1 mb-2">

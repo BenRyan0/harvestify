@@ -238,7 +238,7 @@ const Headers = () => {
                             <LanguageDropdown/>
                             </div>
                             {
-                                userInfo ? <Link className='flex items-center justify-center gap-3' to='dashboard'>
+                                userInfo ? <Link className='flex items-center justify-center gap-3' to='/dashboard'>
                                     <span><FaUserCircle /></span>
                                     <span className='text-xs'>{userInfo.name}</span>
                                 </Link> : 
