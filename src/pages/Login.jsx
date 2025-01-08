@@ -89,7 +89,7 @@ const Login = () => {
                             <div className="mt-6 pt-2 w-full text-center flex flex-row justify-between border-t-2">
                                 {/* <p className='text-sm text-slate-600 -mb-2 pb-1'></p> */}
                                 {/* <span className='text-sm font-semibold text-primaryDark'><Link to="/register">Farmer Login</Link></span> */}
-                                <span className='text-sm font-semibold text-primaryDark'><a href="/login">Farmer Login</a></span>
+                                <span className='text-sm font-semibold text-primaryDark'><a href="https://harvestify-dashboard.vercel.app/login">Farmer Login</a></span>
                                 <span className='text-sm font-semibold text-primaryDark'><a href="https://harvestify-dashboard.vercel.app/register">Become a Seller/Farmer</a></span>
                             </div>
                             {/* <div className="mt-6 w-full text-center">
