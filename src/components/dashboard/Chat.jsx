@@ -38,6 +38,7 @@ const Chat = () => {
   // console.log("_________________ >")
   console.log(sellerId)
   console.log(userInfo.id)
+  const userID = userInfo.id
 
   useEffect(()=>{
     if(sellerId){
@@ -45,9 +46,14 @@ const Chat = () => {
         sellerId : sellerId || "",
         userId : userInfo.id,
       }))
+    }else{
+      dispatch(add_friend({
+        sellerId : sellerId || "",
+        userId : userInfo.id,
+      }))
     }
-  },[sellerId])
-
+  },[sellerId,userID])
+ 
   const sendMessage =()=>{
     if(text){
       dispatch(send_message({

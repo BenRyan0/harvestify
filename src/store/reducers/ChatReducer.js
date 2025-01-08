@@ -31,6 +31,19 @@ export const send_message = createAsyncThunk(
     }
   }
 );
+export const get_trader_message = createAsyncThunk(
+  "auth/get_trader_message",
+  async (traderId, {fulfillWithValue, rejectWithValue}) => {
+    try {
+      const { data } = await api.post(`/chat/trader/get-trader-message/${traderId}`);
+      // console.log("________________________________________________ >")
+      // console.log(data);
+      return fulfillWithValue(data);
+    } catch (error) {
+      return rejectWithValue(error.response.data)
+    }
+  }
+);
 
 
 
