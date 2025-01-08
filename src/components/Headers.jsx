@@ -141,7 +141,7 @@ const Headers = () => {
                                     <span className='text-xs'>{userInfo.name}</span>
                                 </Link> : 
                                <div className="flex items-center justify-center gap-4 relative text-xs">
-                               <Link to='https://harvestify-dashboard.vercel.app/registerr'>Sign up</Link>
+                               <Link to='https://harvestify-dashboard.vercel.app/register'>Sign up</Link>
                                <span className="relative flex items-center before:absolute before:h-[18px] before:w-[1px] before:bg-[#afafaf] before:-left-[10px] before:content-['']">
                                {/* <button onClick={handleRedirect}>Login</button> */}
                                <Link to='/login'>Log in</Link>
