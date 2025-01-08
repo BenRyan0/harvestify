@@ -129,7 +129,7 @@ const Headers = () => {
 
 
                             <div className="border-l border-slate-600 h-[18px] text-center flex justify-center items-center pl-5">
-                                <Link onClick={handleRedirect} className='text-xs'>Start Selling</Link>
+                                <Link to={'https://harvestify-dashboard.vercel.app/register'} className='text-xs'>Start Selling</Link>
                             </div>
                           
                             <div className="relative group flex items-center justify-center gap-1 text-sm text-slate-800 cursor-pointer before:absolute before:h-[18px] before:w-[1px] before:bg-[#afafaf] before:-left-[16px] after:absolute after:h-[18px] after:w-[1px] after:bg-[#afafaf] after:-right-[16px]">
