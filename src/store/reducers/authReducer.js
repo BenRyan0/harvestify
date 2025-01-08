@@ -31,13 +31,33 @@ export const trader_login = createAsyncThunk(
 );
 
 const decodedToken = (token) =>{
-  if(token){
-    const userInfo = jwtDecode(token)
-    return userInfo
-  }else{
-    return ''
+  if (!token) {
+    return ""; // No token, return an empty role
+  }
+
+  try {
+    const userinfo = jwtDecode(token);
+    const expireTime = new Date(userinfo.exp * 1000);
+
+    if (new Date() > expireTime) {
+      localStorage.removeItem("traderToken");
+      return ""; // Token expired, clear the role
+    } else {
+      return userinfo.role;
+    }
+  } catch (error) {
+    console.error("Error decoding token:", error);
+    return ""; // If decoding fails, return an empty role
   }
 }
+// const decodedToken = (token) =>{
+//   if(token){
+//     const userInfo = jwtDecode(token)
+//     return userInfo
+//   }else{
+//     return ''
+//   }
+// }
 
 export const authReducer = createSlice({
   name: "auth",
@@ -46,7 +66,8 @@ export const authReducer = createSlice({
     userInfo:decodedToken(localStorage.getItem('traderToken')),
     errorMessage: "",
     successMessage: "",
-    redirect: 0
+    redirect: 0,
+    token: localStorage.getItem("traderToken")
   },
   reducers: {
     messageClear: (state, _) => {
@@ -94,7 +115,8 @@ export const authReducer = createSlice({
       state.loader= false;
         state.successMessage = payload.payload.message;
         state.redirect = payload.payload.redirect;
-        state.userInfo = user
+        state.userInfo = user;
+        state.token = payload.payload.token;
       });
 
    
