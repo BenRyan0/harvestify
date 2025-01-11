@@ -43,7 +43,7 @@ const decodedToken = (token) =>{
       localStorage.removeItem("traderToken");
       return ""; // Token expired, clear the role
     } else {
-      return userinfo.role;
+      return userinfo;
     }
   } catch (error) {
     console.error("Error decoding token:", error);
@@ -112,6 +112,8 @@ export const authReducer = createSlice({
       });
     builder.addCase(trader_login.fulfilled, (state, payload) => {
       const user = decodedToken(payload.payload.token)
+      console.log("TOKEN___________")
+      console.log(user)
       state.loader= false;
         state.successMessage = payload.payload.message;
         state.redirect = payload.payload.redirect;

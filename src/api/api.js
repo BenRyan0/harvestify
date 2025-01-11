@@ -4,7 +4,7 @@ const local = "http://localhost:5000";
 const production1 = "https://harvestify-api.onrender.com";
 
 let api_url = ''
-let mode = 'pro1'
+let mode = 'pro'
 
 
 if(mode === 'pro'){
