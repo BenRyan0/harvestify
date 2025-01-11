@@ -104,7 +104,7 @@ function sendTestNotification(registration) {
   if (Notification.permission === 'granted') {
     registration.showNotification('Test Notification', {
       body: 'This is a test notification from your PWA!',
-      icon: '/icon.png', // Replace with your app icon path
+      icon: '/logo512.png', // Replace with your app icon path
       tag: 'test-notification'
     });
   }

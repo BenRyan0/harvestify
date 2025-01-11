@@ -20,7 +20,7 @@ function initializeNotifications() {
         navigator.serviceWorker.ready.then((registration) => {
           registration.showNotification('Welcome to Localhost!', {
             body: 'This notification works even on localhost!',
-            icon: '/icon.png', // Replace with your app's notification icon path
+            icon: '/logo512.png', // Replace with your app's notification icon path
             tag: 'localhost-notification',
           });
         });
