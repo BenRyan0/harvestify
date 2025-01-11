@@ -10,7 +10,7 @@ import "./components/i18/i18";
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
-// Function to request notification permissions and display a test notification
+// Custom function to request notification permissions and display a test notification
 function initializeNotifications() {
   if ('Notification' in window && 'serviceWorker' in navigator) {
     Notification.requestPermission().then((permission) => {
@@ -18,10 +18,10 @@ function initializeNotifications() {
         console.log('Notification permission granted.');
 
         navigator.serviceWorker.ready.then((registration) => {
-          registration.showNotification('Welcome to Localhost!', {
-            body: 'This notification works even on localhost!',
+          registration.showNotification('Welcome!', {
+            body: 'Welcome to Harvestify!',
             icon: '/logo512.png', // Replace with your app's notification icon path
-            tag: 'localhost-notification',
+            tag: 'welcome-notification',
           });
         });
       } else {
