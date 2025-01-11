@@ -105,7 +105,7 @@ function sendTestNotification(registration) {
     registration.showNotification('Notification Granted', {
       body: "We'll keep you up to date!",
       icon: '/logo512.png', // Replace with your app icon path
-      tag: 'test-notification'
+      tag: 'notification-request'
     });
   }
 }
