@@ -87,7 +87,7 @@ const Shipping = () => {
     const {userInfo} = useSelector(state=>state.auth)
     const {loader, successMessage, errorMessage,shippingPrice, distance, valid,
         discountType,
-        value} = useSelector(state => state.deal)
+        value,v_id,vcode} = useSelector(state => state.deal)
 
 
     const [code, setCode] = useState({
@@ -213,6 +213,60 @@ const Shipping = () => {
         return totalPriceWDiscount;
     };
     
+    // const ConfirmDeal = () => {
+    //     // Check if form is complete when Seller Delivery is selected
+    //     if (isStateComplete) {
+    //         // If traderPickup is selected, set shippingInfo to an empty object
+    //         const shippingInfo = checkboxState.traderPickup ? {
+    //             phone: userInfo.phone,
+    //             name: userInfo.name,
+    //             email: userInfo.email,
+    //             shippingMethod: "traderPickup"
+    //         } : state;
+    //         const shippingChoice = checkboxState.traderPickup ? "traderPickup" : "sellerDelivery";
+    
+    //         let voucher = {
+    //             valid,
+    //             discountType,
+    //             value
+    //         };
+    
+    //         let finalPrice = applyVoucher(listings[0].listingInfo, voucher);
+    
+    //         console.log("Final price:", finalPrice);
+    
+    //         if (checkboxState.traderPickup) {
+    //             dispatch(place_deal({
+    //                 price: finalPrice,
+    //                 listing: listings[0],
+    //                 listing_: listings[0].listingInfo._id,
+    //                 shipping_fee: 0,
+    //                 shippingInfo: shippingInfo,  // Empty if traderPickup is selected
+    //                 shippingMethod: shippingChoice,
+    //                 userId: userInfo.id,
+    //                 mapsLink: listings[0].listingInfo.mapsLink,
+    //                 navigate,
+    //                 distance: 0
+    //             }));
+    //         } else {
+    //             dispatch(place_deal({
+    //                 price: finalPrice,
+    //                 listing: listings[0],
+    //                 listing_: listings[0].listingInfo._id,
+    //                 shipping_fee: shippingPrice,
+    //                 shippingInfo: shippingInfo,  // Empty if traderPickup is selected
+    //                 shippingMethod: shippingChoice,
+    //                 userId: userInfo.id,
+    //                 mapsLink: listings[0].listingInfo.mapsLink,
+    //                 navigate,
+    //                 distance: distance
+    //             }));
+    //         }
+    //     } else {
+    //         console.log("Please complete all fields before confirming.");
+    //     }
+    // };
+    
     const ConfirmDeal = () => {
         // Check if form is complete when Seller Delivery is selected
         if (isStateComplete) {
@@ -226,14 +280,23 @@ const Shipping = () => {
             const shippingChoice = checkboxState.traderPickup ? "traderPickup" : "sellerDelivery";
     
             let voucher = {
+                v_id,
                 valid,
                 discountType,
-                value
+                value,
+                code : vcode
             };
     
+            // Apply the first voucher
             let finalPrice = applyVoucher(listings[0].listingInfo, voucher);
     
-            console.log("Final price:", finalPrice);
+            // If the second discount is applied, apply it to the final price
+            if (isSecondDiscountApplied) {
+                finalPrice = applySecondVoucher(finalPrice, valid, discountType, value);
+            }
+    
+            console.log("Final price after second discount:", finalPrice);
+            console.log(voucher)
     
             if (checkboxState.traderPickup) {
                 dispatch(place_deal({
@@ -246,7 +309,8 @@ const Shipping = () => {
                     userId: userInfo.id,
                     mapsLink: listings[0].listingInfo.mapsLink,
                     navigate,
-                    distance: 0
+                    distance: 0,
+                    voucher: isSecondDiscountApplied ? voucher : null // Add voucher if second discount applied
                 }));
             } else {
                 dispatch(place_deal({
@@ -259,14 +323,14 @@ const Shipping = () => {
                     userId: userInfo.id,
                     mapsLink: listings[0].listingInfo.mapsLink,
                     navigate,
-                    distance: distance
+                    distance: distance,
+                    voucher: isSecondDiscountApplied ? voucher : null // Add voucher if second discount applied
                 }));
             }
         } else {
             console.log("Please complete all fields before confirming.");
         }
     };
-    
     
     
   

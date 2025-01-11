@@ -13,7 +13,7 @@ import api from "../../api/api";
 
 export const place_deal = createAsyncThunk(
   "deals/place_deal",
-  async ({ price, listing, shipping_fee, shippingInfo, userId, navigate, items,listing_,shippingMethod,mapsLink,distance }, { fulfillWithValue, rejectWithValue }) => {
+  async ({ price, listing, shipping_fee, shippingInfo, userId, navigate, items,listing_,shippingMethod,mapsLink,distance, voucher }, { fulfillWithValue, rejectWithValue }) => {
     try {
       const { data } = await api.post("/home/deal/place-deal", {
         price, 
@@ -25,7 +25,8 @@ export const place_deal = createAsyncThunk(
         userId, 
         items,
         mapsLink,
-        distance
+        distance,
+        voucher
       });
 
       // console.log(data);
@@ -140,6 +141,8 @@ export const dealReducer = createSlice({
     valid : false,
     value: '',
     discountType : '',
+    v_id : '',
+    vcode : '',
 
     // message: 'Voucher is valid',
       //   valid : true,
@@ -181,6 +184,8 @@ export const dealReducer = createSlice({
       state.valid = payload.payload.valid; // Access payload directly
       state.discountType = payload.payload.discountType; // Access payload directly
       state.value = payload.payload.value; // Access payload directly
+      state.v_id = payload.payload.v_id; // Access payload directly
+      state.vcode = payload.payload.code; // Access payload directly
 
       // message: 'Voucher is valid',
       //   valid : true,
@@ -188,6 +193,9 @@ export const dealReducer = createSlice({
       //   value: voucher.value
      
       
+    });
+    builder.addCase(submit_voucher_code.rejected, (state, payload ) => {
+  state.errorMessage = payload.payload.error
     });
   },
 });
