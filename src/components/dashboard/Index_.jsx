@@ -121,11 +121,11 @@ const Index_ = () => {
                                         o.listing[0].discount? 
                                         <div className="flex">
                                         <span className='font-normal pr-[1px]'>&#8369;</span>
-                                        {formatNumber(o.price)}
-                                        <div className="bg-green-300 px-1 py-[1px] flex justify-center items-center rounded-sm ml-1">
+                                        {formatNumber(o.price + o.shipping_fee)}
+                                        {/* <div className="bg-green-300 px-1 py-[1px] flex justify-center items-center rounded-sm ml-1">
                                             -{o.listing[0].discount}
                                             <span><BiSolidDiscount /></span>
-                                        </div>
+                                        </div> */}
                                     </div> : 
                                      <div className="flex">
                                      <span className='font-normal pr-[1px]'>&#8369;</span>

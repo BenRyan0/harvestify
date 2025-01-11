@@ -6,14 +6,32 @@ import App from "./App";
 import { Provider } from "react-redux";
 import { Toaster } from "react-hot-toast";
 import store from "./store/index";
-import "./components/i18/i18"
+import "./components/i18/i18";
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
+// Function to request notification permissions and display a test notification
+function initializeNotifications() {
+  if ('Notification' in window && 'serviceWorker' in navigator) {
+    Notification.requestPermission().then((permission) => {
+      if (permission === 'granted') {
+        console.log('Notification permission granted.');
 
-
-
-
+        navigator.serviceWorker.ready.then((registration) => {
+          registration.showNotification('Welcome to Localhost!', {
+            body: 'This notification works even on localhost!',
+            icon: '/icon.png', // Replace with your app's notification icon path
+            tag: 'localhost-notification',
+          });
+        });
+      } else {
+        console.warn('Notification permission denied.');
+      }
+    });
+  } else {
+    console.warn('Notifications are not supported in this browser.');
+  }
+}
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -31,10 +49,14 @@ root.render(
   </Provider>
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://cra.link/PWA
-serviceWorkerRegistration.register();
+// Register the service worker
+serviceWorkerRegistration.register({
+  onSuccess: () => initializeNotifications(),
+  onUpdate: () => {
+    console.log('Service worker updated.');
+    initializeNotifications();
+  },
+});
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

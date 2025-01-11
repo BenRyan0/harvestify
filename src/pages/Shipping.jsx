@@ -130,7 +130,8 @@ const Shipping = () => {
         phone: '',
         additionalLocationInfo : '',
         locationInfo : '',
-        mapsLink : ''
+        mapsLink : '',
+        name: ''
     })
    
     
@@ -451,6 +452,22 @@ const Shipping = () => {
                                                 id="phone" 
                                             />
                                         </div>
+
+                                     </div>
+                                     <div className="w-full  flex gap-2">
+                                        <div className="flex flex-col gap-1 mb-2 w-full pt-1">
+                                            <label htmlFor="locationInfo.name">Reciever Name</label>
+                                            <input 
+                                                onChange={inputHandler} 
+                                                value={state.name} 
+                                                className='w-full bg-transparent px-4 py-2 focus:border-accent outline-none bg-[#283046] border-2 border-slate-700 rounded-md text-slate-600' 
+                                                type="text" 
+                                                name="name" 
+                                                placeholder="Reciever Name" 
+                                                id="name" 
+                                            />
+                                        </div>
+                                       
 
                                      </div>
                                      <div className="w-full  flex gap-2">
