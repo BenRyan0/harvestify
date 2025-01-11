@@ -102,8 +102,8 @@ function requestNotificationPermission() {
 
 function sendTestNotification(registration) {
   if (Notification.permission === 'granted') {
-    registration.showNotification('Test Notification', {
-      body: 'This is a test notification from your PWA!',
+    registration.showNotification('Notification Granted', {
+      body: "We'll keep you up to date!",
       icon: '/logo512.png', // Replace with your app icon path
       tag: 'test-notification'
     });
