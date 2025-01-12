@@ -10,28 +10,33 @@ import "./components/i18/i18";
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
+
 function initializeNotifications() {
   if ('Notification' in window && 'serviceWorker' in navigator) {
-    Notification.requestPermission().then((permission) => {
-      console.log('Notification permission:', permission);
-
-      if (permission === 'granted') {
-        navigator.serviceWorker.ready.then((registration) => {
-          registration.showNotification('Welcome!', {
-            body: 'This is your test notification!',
-            icon: '/icon.png', // Replace with your app icon path
-            tag: 'welcome-notification',
+    if (Notification.permission === 'default') {
+      Notification.requestPermission().then((permission) => {
+        if (permission === 'granted') {
+          console.log('Notification permission granted.');
+          navigator.serviceWorker.ready.then((registration) => {
+            registration.showNotification('Welcome!', {
+              body: 'Notifications are working!',
+              icon: '/logo512.png', // Replace with your icon path
+              tag: 'test-notification',
+            });
           });
-          console.log('Notification displayed via service worker.');
-        }).catch((err) => {
-          console.error('Error accessing service worker:', err);
-        });
-      } else {
-        console.warn('Notification permission denied.');
-      }
-    });
+        } else {
+          console.warn('Notification permission denied.');
+        }
+      }).catch((error) => {
+        console.error('Error requesting notification permission:', error);
+      });
+    } else if (Notification.permission === 'granted') {
+      console.log('Notification permission already granted.');
+    } else if (Notification.permission === 'denied') {
+      console.warn('Notification permission was previously denied.');
+    }
   } else {
-    console.warn('Notifications or service workers are not supported.');
+    console.warn('Notifications are not supported in this browser.');
   }
 }
 
