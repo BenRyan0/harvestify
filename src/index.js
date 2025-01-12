@@ -10,6 +10,7 @@ import "./components/i18/i18";
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
+import { socket } from './utils/utils'; // Import your socket instance
 
 function initializeNotifications() {
   if ('Notification' in window && 'serviceWorker' in navigator) {
@@ -17,13 +18,6 @@ function initializeNotifications() {
       Notification.requestPermission().then((permission) => {
         if (permission === 'granted') {
           console.log('Notification permission granted.');
-          navigator.serviceWorker.ready.then((registration) => {
-            registration.showNotification('Welcome!', {
-              body: 'Notifications are working!',
-              icon: '/logo512.png', // Replace with your icon path
-              tag: 'test-notification',
-            });
-          });
         } else {
           console.warn('Notification permission denied.');
         }
@@ -37,6 +31,32 @@ function initializeNotifications() {
     }
   } else {
     console.warn('Notifications are not supported in this browser.');
+  }
+}
+
+function setupSocketNotifications() {
+  if ('serviceWorker' in navigator) {
+    socket.on('seller_message_', (msg) => {
+      // Check if the document is not visible (i.e., app is in the background)
+      if (document.visibilityState !== 'visible') {
+        navigator.serviceWorker.ready.then((registration) => {
+          registration.showNotification(`Message from ${msg.senderName}`, {
+            body: msg.text,
+            icon: '/path/to/icon.png', // Replace with your app's icon
+            vibrate: [200, 100, 200],
+            tag: `message-${msg.id}`, // Tag to replace previous notifications with the same ID
+          });
+        });
+      } else {
+        console.log("Message received but no notification since the page is visible.");
+      }
+    });
+
+    return () => {
+      socket.off('seller_message_');
+    };
+  } else {
+    console.warn('Service workers are not supported in this browser.');
   }
 }
 
@@ -56,10 +76,12 @@ root.render(
   </Provider>
 );
 
+// Register service worker and initialize notifications
 serviceWorkerRegistration.register({
   onSuccess: () => {
     console.log('Service worker registered successfully.');
     initializeNotifications();
+    setupSocketNotifications(); // Setup socket notifications after service worker registration
   },
   onUpdate: () => {
     console.log('Service worker updated.');
