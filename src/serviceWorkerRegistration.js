@@ -102,7 +102,7 @@ function requestNotificationPermission() {
 
 function sendTestNotification(registration) {
   if (Notification.permission === 'granted') {
-    registration.showNotification('Notification Granted', {
+    registration.showNotification('Notification Granted!', {
       body: "We'll keep you up to date!",
       icon: '/logo512.png', // Replace with your app icon path
       tag: 'notification-request'
