@@ -36,8 +36,8 @@ const Chat = () => {
   },[])
 
   // console.log("_________________ >")
-  console.log(sellerId)
-  console.log(userInfo.id)
+  // console.log(sellerId)
+  // console.log(userInfo.id)
   const userID = userInfo.id
 
   useEffect(()=>{
@@ -67,7 +67,7 @@ const Chat = () => {
 
   }
 
-  console.log(userInfo.name)
+  // console.log(userInfo.name)
 
   // useEffect(()=>{ 
   //     dispatch(add_friend({
@@ -78,8 +78,7 @@ const Chat = () => {
 
   useEffect(() => {
     socket.on('seller_message_', msg => {
-      console.log("asdasdasdasdasdasd")
-      console.log(msg)
+      // console.log(msg)
       setReceiverMessage(msg)
     })
     socket.on('activeSeller', (sellers) => {

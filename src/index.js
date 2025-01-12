@@ -10,53 +10,26 @@ import "./components/i18/i18";
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
-import { socket } from './utils/utils'; // Import your socket instance
-
+// Custom function to request notification permissions and display a test notification
 function initializeNotifications() {
   if ('Notification' in window && 'serviceWorker' in navigator) {
-    if (Notification.permission === 'default') {
-      Notification.requestPermission().then((permission) => {
-        if (permission === 'granted') {
-          console.log('Notification permission granted.');
-        } else {
-          console.warn('Notification permission denied.');
-        }
-      }).catch((error) => {
-        console.error('Error requesting notification permission:', error);
-      });
-    } else if (Notification.permission === 'granted') {
-      console.log('Notification permission already granted.');
-    } else if (Notification.permission === 'denied') {
-      console.warn('Notification permission was previously denied.');
-    }
-  } else {
-    console.warn('Notifications are not supported in this browser.');
-  }
-}
+    Notification.requestPermission().then((permission) => {
+      if (permission === 'granted') {
+        console.log('Notification permission granted.');
 
-function setupSocketNotifications() {
-  if ('serviceWorker' in navigator) {
-    socket.on('seller_message_', (msg) => {
-      // Check if the document is not visible (i.e., app is in the background)
-      if (document.visibilityState !== 'visible') {
         navigator.serviceWorker.ready.then((registration) => {
-          registration.showNotification(`Message from ${msg.senderName}`, {
-            body: msg.text,
-            icon: '/path/to/icon.png', // Replace with your app's icon
-            vibrate: [200, 100, 200],
-            tag: `message-${msg.id}`, // Tag to replace previous notifications with the same ID
+          registration.showNotification('Welcome!', {
+            body: 'Welcome to Harvestify!',
+            icon: '/logo512.png', // Replace with your app's notification icon path
+            tag: 'welcome-notification',
           });
         });
       } else {
-        console.log("Message received but no notification since the page is visible.");
+        console.warn('Notification permission denied.');
       }
     });
-
-    return () => {
-      socket.off('seller_message_');
-    };
   } else {
-    console.warn('Service workers are not supported in this browser.');
+    console.warn('Notifications are not supported in this browser.');
   }
 }
 
@@ -76,17 +49,16 @@ root.render(
   </Provider>
 );
 
-// Register service worker and initialize notifications
+// Register the service worker
 serviceWorkerRegistration.register({
-  onSuccess: () => {
-    console.log('Service worker registered successfully.');
-    initializeNotifications();
-    setupSocketNotifications(); // Setup socket notifications after service worker registration
-  },
+  onSuccess: () => initializeNotifications(),
   onUpdate: () => {
     console.log('Service worker updated.');
     initializeNotifications();
   },
 });
 
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
