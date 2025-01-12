@@ -116,7 +116,8 @@ export const get_deal = createAsyncThunk(
   'deals/get_deal',
   async (dealId, { rejectWithValue, fulfillWithValue }) => {
     try {
-      const { data } = await api.get(`/home/trader/get-deal/${dealId}`);   
+      const { data } = await api.get(`/home/trader/get-deal/${dealId}`);  
+      console.log("DEAL__________________________ >") 
       console.log(data) 
       return fulfillWithValue(data); // Correctly return the API data
     } catch (error) {

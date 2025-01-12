@@ -39,8 +39,9 @@ const Index_ = () => {
 
 
     const formatNumber = (num) => {
-        return new Intl.NumberFormat('en-US').format(num);
+        return new Intl.NumberFormat('en-US').format(Math.floor(num));
       };
+      
       
   return (
     <div>
@@ -85,22 +86,23 @@ const Index_ = () => {
             <h2 className='text-base font-semibold text-slate-600 uppercase'>RECENT ORDERS</h2>
             <div className="pt-4">
                 <div className="relative overflow-x-auto">
-                    <table className='w-full text-sm text-left text-gray-500 '>
+                    <table className='w-full text-sm text-left text-gray-500'>
                         <thead className='text-xs text-gray-700 uppercase bg-gray-50'>
                             <tr>
-                                <th scope='col' className='px-6 py-3'>LISTING NAME</th>
+                                <th scope='col' className='px-6 py-3'>LISTING</th>
                                 <th scope='col' className='px-6 py-3'>PRICE</th>
-                                <th scope='col' className='px-6 py-3'>TOTAL PRICE</th>
+                                <th scope='col' className='px-6 py-3'>TOTAL</th>
+                                <th scope='col' className='px-6 py-3'>SHIPMENT</th>
                                 <th scope='col' className='px-6 py-3'>payment</th>
-                                <th scope='col' className='px-6 py-3'>DEAL STATUS</th>
-                                <th scope='col' className='px-6 py-3 w-3/12'>Action</th>
+                                <th scope='col' className='px-6 py-3'>STATUS</th>
+                                <th scope='col' className='px-6 py-3'>Action</th>
                             
                             </tr>
                         </thead>
                         <tbody>
                             {
                                 recentOrders.map((o,i) => 
-                                    <tr className='bg-white border-b'>
+                                    <tr className='bg-white border-b '>
                                 <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>{o.listing[0].name}</td>
                                 <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap flex gap-1'>
                                     <div className="flex">
@@ -134,6 +136,16 @@ const Index_ = () => {
                                  </div>
                                    }
                                 </td>
+                                <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>
+                                    {
+                                        o.shippingMethod === "traderPickup" ? 'Self Pickup' : 
+                                        <div className="">
+                                            <span className='font-semibold text-primaryDark'>&#8369; </span>
+                                            {formatNumber(o.shipping_fee)}
+                            
+                                        </div>
+                                    }
+                                </td>
                                 <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>{o.paymentStatus}</td>
                                 <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>{o.shipPickUpStatus}</td>
                                 <td scope='row' className='px-6 py-4 flex justify-start'>
@@ -147,7 +159,8 @@ const Index_ = () => {
                                 o.shipPickUpStatus === "complete" ? '' :
                                 o.shipPickUpStatus === "inTransit" ? '' :
                                 o.shipPickUpStatus === "cancelled" ? '' :
-                                'false'
+                                o.shipPickUpStatus === "rejected" ? '' :
+                                '...'
                             }
 
                                 </td>

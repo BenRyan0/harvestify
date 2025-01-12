@@ -772,7 +772,7 @@ const Shipping = () => {
                                                                                 </div>
                                                                             </div>                                                                         */}
                                                                             <button onClick={submitCode} className="absolute right-2 bottom-2 bg-primaryDark px-3 rounded-md text-slate-100 flex justify-center items-center gap-1">
-                                                                               <span className='font-bold'>APPLY </span> <BiSolidDiscount size={30} />
+                                                                               <span className='font-bold'>Check </span> <BiSolidDiscount size={30} />
                                                                             </button>
                                                                         </div>
                                                                         <div className="pt-2">

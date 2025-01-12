@@ -54,6 +54,8 @@ const Login = () => {
 
         }
     },[successMessage, errorMessage])
+
+    const hide = true;
   return (
     <div className="">
          {
@@ -61,9 +63,10 @@ const Login = () => {
                 <FadeLoader/>
             </div>
         }
-        <Headers/>
+        <Headers hideSBar={hide} hideCBar={hide}/>
+        {/* <Headers hideSearchBar={}/> */}
             <div className="bg-slate-200 mt-4">
-                <div className="w-full justify-center items-center p-10">
+                <div className="w-full justify-center items-center py-10">
                     <div className="grid lg:grid-cols-1 grid-cols-2 md:w-[90%] w-[60%] mx-auto bg-white rounded-md justify-center items-center">
                         <div className="px-8 py-8">
                             <h2 className='text-center w-full text-xl text-slate-600 font-black'>LOGIN</h2>

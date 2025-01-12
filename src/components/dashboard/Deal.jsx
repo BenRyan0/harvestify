@@ -28,7 +28,7 @@ const Deal = () => {
 
     // </div>
             <div className='bg-white p-5'>
-            <h2 className='text-slate-600 font-semibold'>#{myDeal._id} , <span className='pl-1'>{myDeal.date}</span></h2>
+            <h2 className='text-slate-600 font-semibold'>Deal ID: {myDeal._id} , <span className='pl-1'>{myDeal.date}</span></h2>
             <div className='grid grid-cols-2 gap-3'>
                 <div className='flex flex-col gap-1'>
                     <h2 className='text-slate-600 font-semibold'>Deliver to: {myDeal.shippingInfo?.name}</h2>
