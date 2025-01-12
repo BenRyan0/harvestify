@@ -78,8 +78,6 @@ const Chat = () => {
 
   useEffect(() => {
     socket.on('seller_message_', msg => {
-      console.log("asdasdasdasdasdasd")
-      console.log(msg)
       setReceiverMessage(msg)
     })
     socket.on('activeSeller', (sellers) => {
@@ -98,18 +96,14 @@ console.log(activeSeller)
 
 
 
-
 useEffect(() => {
   console.log(receiverMessage)
   if (receiverMessage) {
       if (sellerId === receiverMessage.senderId && userInfo.id === receiverMessage.receiverId) {
           dispatch(updateMessage(receiverMessage))
-          toast.success(`${receiverMessage.senderName} sent a message`);
-          showNotification(receiverMessage.senderName, receiverMessage.text);
       } else {
-        toast.success(`${receiverMessage.senderName} sent a message`);
-        showNotification(receiverMessage.senderName, receiverMessage.text);
-        dispatch(messageClear());
+          toast.success(receiverMessage.senderName + " " + "sent a message")
+          dispatch(messageClear())
       }
   }
 }, [receiverMessage])
@@ -122,22 +116,6 @@ useEffect(() => {
 
 const [show, setShow] = useState(false)
 
-
-  // Trigger browser notifications
-  const showNotification = (senderName, message) => {
-    if (Notification.permission === 'granted') {
-      new Notification(`Message from ${senderName}`, {
-        body: message,
-        icon: '/path/to/icon.png', // Replace with the path to your icon
-      });
-    } else if (Notification.permission === 'default') {
-      Notification.requestPermission().then(permission => {
-        if (permission === 'granted') {
-          showNotification(senderName, message);
-        }
-      });
-    }
-  };
   return (
     <div className='bg-white p-3 rounded-md'>
       <div className="w-full flex relative">

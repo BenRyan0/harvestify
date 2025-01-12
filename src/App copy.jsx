@@ -34,9 +34,6 @@ import { GoogleMap, useJsApiLoader } from '@react-google-maps/api'
 import React from 'react';
 
 
-import { socket } from './utils/utils'; // Your socket instance
-
-
 // import Wishlist from './components/dashboard/Wishlist';
 
 
@@ -56,39 +53,6 @@ function App() {
   useEffect(()=>{
     dispatch(get_categories())
   },[])
-
-
-  useEffect(() => {
-    // Listen for messages globally
-    socket.on('seller_message_', (msg) => {
-      // Check if the user is not on the chat page
-      if (document.visibilityState !== 'visible') {
-        showNotification(msg.senderName, msg.text);
-      } else {
-        console.log("Message received but no notification since the page is visible.");
-      }
-    });
-
-    return () => {
-      socket.off('seller_message_'); // Clean up listener
-    };
-  }, []);
-
-  // Function to trigger notifications
-  const showNotification = (senderName, message) => {
-    if (Notification.permission === 'granted') {
-      new Notification(`Message from ${senderName}`, {
-        body: message,
-        icon: '/path/to/icon.png', // Replace with your app's icon
-      });
-    } else if (Notification.permission === 'default') {
-      Notification.requestPermission().then((permission) => {
-        if (permission === 'granted') {
-          showNotification(senderName, message);
-        }
-      });
-    }
-  };
 
   return (
    <BrowserRouter>
