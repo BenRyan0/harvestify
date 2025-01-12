@@ -105,10 +105,10 @@ useEffect(() => {
       if (sellerId === receiverMessage.senderId && userInfo.id === receiverMessage.receiverId) {
           dispatch(updateMessage(receiverMessage))
           toast.success(`${receiverMessage.senderName} sent a message`);
-          showNotification(receiverMessage.senderName, receiverMessage.text);
+          
       } else {
         toast.success(`${receiverMessage.senderName} sent a message`);
-        showNotification(receiverMessage.senderName, receiverMessage.text);
+      
         dispatch(messageClear());
       }
   }
@@ -123,21 +123,6 @@ useEffect(() => {
 const [show, setShow] = useState(false)
 
 
-  // Trigger browser notifications
-  const showNotification = (senderName, message) => {
-    if (Notification.permission === 'granted') {
-      new Notification(`Message from ${senderName}`, {
-        body: message,
-        icon: '/path/to/icon.png', // Replace with the path to your icon
-      });
-    } else if (Notification.permission === 'default') {
-      Notification.requestPermission().then(permission => {
-        if (permission === 'granted') {
-          showNotification(senderName, message);
-        }
-      });
-    }
-  };
   return (
     <div className='bg-white p-3 rounded-md'>
       <div className="w-full flex relative">
