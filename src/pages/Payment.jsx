@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import Headers from '../components/Headers';
 import Footer from '../components/Footer';
 import Stripe from '../components/Stripe';
-import { useLocation } from 'react-router-dom';
-import InitialPaymentCalc from '../components/PaymentConfirmation/InitialPaymentCalc';
 import { place_deal } from './../store/reducers/dealReducer';
+import InitialPaymentCalc from '../components/PaymentConfirmation/InitialPaymentCalc';
+
+import { useLocation } from 'react-router-dom';
 import { IoMdImages } from "react-icons/io";
 import { useDispatch } from 'react-redux';
 

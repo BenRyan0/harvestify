@@ -131,7 +131,8 @@ const Shipping = () => {
         additionalLocationInfo : '',
         locationInfo : '',
         mapsLink : '',
-        name: ''
+        name: '',
+        id:userInfo.id
     })
    
     
@@ -272,6 +273,7 @@ const Shipping = () => {
         if (isStateComplete) {
             // If traderPickup is selected, set shippingInfo to an empty object
             const shippingInfo = checkboxState.traderPickup ? {
+                id: userInfo.id,
                 phone: userInfo.phone,
                 name: userInfo.name,
                 email: userInfo.email,

@@ -30,6 +30,8 @@ const FeaturedListings = ({listings}) => {
   const navigate =useNavigate()
   const dispatch = useDispatch();
 
+  const [isExpanded, setIsExpanded] = useState(false);
+
   const handleAddCard = (id) => {
     if (userInfo) {
       dispatch(add_to_card({  // Ensure  `add_card` here refers to the action creator, not the function name
@@ -144,13 +146,12 @@ const FeaturedListings = ({listings}) => {
 
 const formatNumber = (num) => {
   return new Intl.NumberFormat('en-US').format(Math.floor(num));
+};  
+
+const getFirstTwoSentences = (text) => {
+  const sentences = text.match(/[^.!?]*[.!?]/g) || [text]; // Split by sentence-ending punctuation
+  return sentences.slice(0, 2).join(' ');
 };
-
-
-
-
-  
-
 // Get the current date (now)
 const now = new Date();
   return (
@@ -349,9 +350,18 @@ const now = new Date();
 
              
 
-              <div className="flex justify-center gap-1 py-3 items-center text-center text-sm h-[50px]">
+              {/* <div className="flex justify-center gap-1 py-3 items-center text-center text-sm h-[50px]">
                 <p>{p.description}</p>
+              </div> */}
+              <div className="flex justify-center gap-1 py-1 items-center text-center text-sm h-[90px] flex-col">    
+                <p>{getFirstTwoSentences(p.description)}</p>
+                {p.description.split(/[^.!?]*[.!?]/g).length > 2 && (
+                  <Link to={`/listing/details/${p.slug}`} style={{ color: 'blue', textDecoration: 'underline' }}>
+                    Read more
+                  </Link>
+                )}
               </div>
+
               <div className="flex justify-start gap-0 py-1 items-start flex-col border-y-2 ">
                 <label htmlFor="" className='text-xs font-bold'>Harvest Schedule:</label>
                  <div className="flex justify-between w-full items-center">

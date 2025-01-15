@@ -29,6 +29,7 @@ import ChangePassword from './components/dashboard/ChangePassword';
 import Deals from './components/dashboard/Deals';
 import Wishlist from './components/dashboard/Wishlist';
 import Deal from './components/dashboard/Deal';
+import DealProgress from './components/dashboard/DealProgress';
 import Chat from './components/dashboard/Chat';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api'
 import React from 'react';
@@ -94,6 +95,7 @@ function App() {
                <Route path='' element={<Index/>}/> 
                <Route path='my-orders' element={<Deals/>}/> 
                <Route path='deal/details/:dealId' element={<Deal/>}/> 
+               <Route path='deal/detail/:dealId' element={<DealProgress/>}/> 
                <Route path='my-wishlist' element={<Wishlist/>}/> 
                <Route path='change-password' element={<ChangePassword/>}/> 
 
