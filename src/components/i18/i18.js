@@ -24,7 +24,7 @@ i18n.use(LanguageDetector).use(initReactI18next).init({
         tl:{
             translation:{
                 greeting :"Tagalog Greeting",
-                slogan: "Ang iyong pinakamagandang pamilihan ng mga magsasaka!",
+                slogan: "ANG IYONG PINAKA-MAGANDANG PAMILIHAN SA MAGSASAKA!",
                 languageLabel: "Tagalog"
             },
 

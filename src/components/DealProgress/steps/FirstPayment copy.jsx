@@ -4,15 +4,10 @@ import { StepperContext } from '../../../contexts/StepperContext';
 import { Link, useLocation } from 'react-router-dom';
 import { IoMdImages } from "react-icons/io";
 import { useDispatch, useSelector } from 'react-redux';
-import { paymentAdd ,messageClear} from '../../../store/reducers/transactionReducer';
-import { BsImage } from 'react-icons/bs';
-import { FaChevronLeft } from "react-icons/fa";
-import toast from 'react-hot-toast';
-
+import { paymentAdd } from '../../../store/reducers/transactionReducer';
 
 const FirstPayment = () => {
   const dispatch = useDispatch()
-  const [imageShow, setImage] = useState('')
   const { transactionData, setTransactionData } = useContext(StepperContext);
   const { currentStep, setCurrentStep } = useContext(StepperContext);
   const { currentTransaction, setCurrentTransaction } = useContext(StepperContext);
@@ -21,41 +16,15 @@ const FirstPayment = () => {
 
 
   const {myDeal} = useSelector((state) => state.deal);
-    const { transaction, errorMessage, successMessage, currentTransactions } = useSelector(
-        (state) => state.transaction
-      );
 
 
   const [state, setState] = useState({
-    paymentType: "Deposit",
-    transactionId: '',
+    paymentType : "Deposit",
+    transactionId : currentTransaction._id,
     message: '',
     image: null, // Store the selected image here
   });
-  
-  useEffect(() => {
-    if (currentTransaction && currentTransaction._id) {
-      setState((prevState) => ({
-        ...prevState,
-        transactionId: currentTransaction._id,
-      }));
-    }
-  }, [currentTransaction]);
-  
- 
 
-  const imageHandler= (e)=>{
-    let files = e.target.files
-    console.log(files)
-    if(files.length>0){
-        setImage(URL.createObjectURL(files[0]))
-        setState({
-            ...state,
-            image: files[0]
-        })
-
-    }
-}
   const add_image = (e) => {    
     if (e.target.files.length > 0) {
       const formData = new FormData();
@@ -84,15 +53,6 @@ const FirstPayment = () => {
   const add_payment = (e)=>{
     e.preventDefault()
     dispatch(paymentAdd(state))
-    if (errorMessage) {
-          toast.error(errorMessage);
-          dispatch(messageClear());
-          window.location.reload(); // Refresh the page
-        } else {
-          toast.success(successMessage);
-          dispatch(messageClear());
-          window.location.reload(); // Refresh the page
-        }
    }
 
    console.log("------------------> CURRENT")
@@ -107,13 +67,6 @@ const FirstPayment = () => {
 
    console.log("state")
    console.log(state)
-
-   const rollBackStep = () =>{
-    setCurrentStep(1)
-    // dispatch(
-    //   add_transaction({traderId: userInfo.id, sellerId: userInfo.id, listingId: userInfo.id, listingName: userInfo.id, listingPrice: userInfo.id, depositAmount: userInfo.id})
-    // )
-  }
   return (
     <section className='bg-[#eeeeee] w-full p-2'>
         <div className="w-full">
@@ -123,35 +76,53 @@ const FirstPayment = () => {
                   <div className="flex lg:flex-col-reverse gap-2 flex-row lg:justify-center ">
                     <div className="w-7/12 lg:w-full">
                       <div className="flex justify-center items-center gap-2">
-                      <form onSubmit={add_payment} className='w-full'>
-                      
-                     
-                      <div className="">
-                          <label htmlFor="image" className='flex justify-center items-center flex-col h-[238px] cursor-pointer border border-dashed hover:border-accent w-full border-text_color'>
-                              {
-                                  imageShow ? <img className='w-ful h-full bg-red-600 object-fill' src={imageShow} alt="" required/> : <>
-                                      <span><BsImage size='40px'/></span>
-                                     <span className='font-semibold'>Select an Image</span>
-                                  </>
-                              }
-                              
+                        <form className='w-full' onSubmit={add_payment}>
+                          {/* Conditionally render the label or image based on the state */}
+                          <label htmlFor="img" className={`flex justify-center items-center flex-col h-[250px]  cursor-pointer border-2 border-dashed hover:border-accent/40 border-text_color relative ${state.image ? 'bg-transparent' : 'bg-slate-500'}`}>
+                            {
+                              state.image ? (
+                                <img src={state.image} alt="Selected" className="w-full h-full object-cover" />
+                              ) : (
+                                <>
+                                  <span><IoMdImages size='40px' /></span>
+                                  <span>Select An Image</span>
+                                </>
+                              )
+                            }
+                            {
+                              loader && <div className="bg-slate-500 absolute left-0 top-0 w-full h-full opacity-70 flex justify-center items-center z-20">
+                                <span>
+                                  {/* <FadeLoader /> */}
+                                </span>
+                              </div>
+                            }
                           </label>
-                      </div>
-                      <input onChange={imageHandler} className='hidden' type="file" name='image' id='image' />
+
+                          <input onChange={add_image} type="file" className='hidden w-full h-full object-cover' name="img" id="img" />
 
 
-                      <div className="w-full mt-3">
+
+                          <div className="w-full mt-3">
                               <label htmlFor="name">Message</label>
                               <textarea onChange={inputHandle} value={state.message} className='w-full h-[129px] px-4 py-2 focus:border-accent border-2 outline-none bg-transparent border-slate-700 rounded-md text-slate-800' type="text" placeholder='Listing Description'  name='message' id='message'></textarea>
                           </div>
-               
-                      <button disabled={loader ? true : false} className='bg-primaryDark w-full hover:shadow-[#6ED601]/10 hover:shadow-lg text-white rounded-md px-7 py-2 mb-3 font-bold mt-5'>
-                          {
-                                //  loader ? <PropagateLoader color='#fff'cssOverride = {overRideStyle}/> :'Add Category'
-                                 loader ? 'loading...' :'Add Category'
-                          }
-                      </button>
-                   </form>
+
+                          <button disabled={loader ? true : false} className='flex justify-center items-center bg-primaryDark  w-[50%] hover:shadow-[#6ED601]/10 hover:shadow-lg text-white rounded-md px-7 py-2 mb-3 font-bold mt-5'>
+                                        {
+                                              loader ? 
+                                              'loading...':'Submit Proof'
+                                              //  <ClipLoader
+                                              //    color="#ffffff"
+                                              //    cssOverride={{
+                                              //      display: 'flex',
+                                              //      justifyContent: 'center',
+                                              //      alignItems: "center",
+                                              //    }}
+                                              //    size={20}
+                                              //  /> :'Add Listing'
+                                        }
+                                    </button>
+                        </form>
                       </div>
                     </div>
 
@@ -187,10 +158,6 @@ const FirstPayment = () => {
                   <p className='text-sm'></p>
                 </Link>
                 }
-
-                <div className="w-full pt-10 relative">
-                  <button onClick={rollBackStep} className='absolute left-2 bottom-0 bg-primaryDark px-3 py-1 rounded-md text-slate-100 font-bold flex justify-center items-center'> <FaChevronLeft /> BACK</button>
-                </div>
                 
                
               </div>

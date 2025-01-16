@@ -149,13 +149,30 @@ const Index_ = () => {
                                 <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>{o.paymentStatus}</td>
                                 <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>{o.shipPickUpStatus}</td>
                                 <td scope='row' className='px-6 py-4 flex justify-start'>
-                                <Link to={`/dashboard/deal/detail/${o._id}`}>
+                                {/* <Link to={`/dashboard/deal/detail/${o._id}`}>
                                         <span className='bg-green-100 hover:bg-green-400 text-green-800 hover:text-slate-100 text-sm font-bold mr-2 px-3 py-[5px] rounded-md flex justify-center items-center gap-1 transition-all duration-300'>Progress <span><FaRegEye size={17}/></span></span>
-                                    </Link>
+                                    </Link> */}
                                     <Link to={`/dashboard/deal/details/${o._id}`}>
                                         <span className='bg-green-100 hover:bg-green-400 text-green-800 hover:text-slate-100 text-sm font-bold mr-2 px-3 py-[5px] rounded-md flex justify-center items-center gap-1 transition-all duration-300'>view <span><FaRegEye size={17}/></span></span>
                                     </Link>
 
+                            {
+                                o.shipPickUpStatus === "confirmed" ? 
+                                <Link to={`/dashboard/deal/detail/${o._id}`}>
+                                <span className='bg-green-100 hover:bg-green-400 text-green-800 hover:text-slate-100 text-sm font-bold mr-2 px-3 py-[5px] rounded-md flex justify-center items-center gap-1 transition-all duration-300'>Progress <span><FaRegEye size={17}/></span></span>
+                            </Link> :
+                                o.shipPickUpStatus === "received" ? 
+                                <Link to={`/dashboard/deal/detail/${o._id}`}>
+                                <span className='bg-green-100 hover:bg-green-400 text-green-800 hover:text-slate-100 text-sm font-bold mr-2 px-3 py-[5px] rounded-md flex justify-center items-center gap-1 transition-all duration-300'>Progress <span><FaRegEye size={17}/></span></span>
+                            </Link> :
+                                o.shipPickUpStatus === "pending" ? '' :
+                                o.shipPickUpStatus === "complete" ? '' :
+                                o.shipPickUpStatus === "inTransit" ? '' :
+                                o.shipPickUpStatus === "cancelled" ? '' :
+                                o.shipPickUpStatus === "rejected" ? '' :
+                                '...'
+                            }
+{/* 
                             {
                                 o.shipPickUpStatus === "confirmed" ?  <span onClick={()=>redirect(o)} className='bg-green-100 text-green-800 text-sm font-bold mr-2 px-5 py-[5px] rounded-md cursor-pointer'>Pay Now</span> :
                                 o.shipPickUpStatus === "pending" ? '' :
@@ -164,7 +181,7 @@ const Index_ = () => {
                                 o.shipPickUpStatus === "cancelled" ? '' :
                                 o.shipPickUpStatus === "rejected" ? '' :
                                 '...'
-                            }
+                            } */}
 
                                 </td>
                                 <td>

@@ -19,6 +19,68 @@ export const get_transaction_by_deal = createAsyncThunk(
     }
   )
   
+
+  export const paymentAdd = createAsyncThunk(
+    "transaction/paymentAdd",
+    async ({ message, image,transactionId,paymentType }, { rejectWithValue, fulfillWithValue}) => {
+      try {
+        console.log("message " + message)
+        console.log("transactionId " + transactionId)
+        console.log("image " + image)
+        const formData = new FormData();
+        formData.append("message", message);
+        formData.append("image", image);
+        formData.append("transactionId",transactionId);
+        formData.append("paymentType",paymentType);
+  
+        const { data } = await api.post("/trader/final-payment-add", formData);
+        console.log(data)
+        return fulfillWithValue(data);
+      } catch (error) {
+        return rejectWithValue(error.response.data);
+      }
+    }
+  );
+  
+  export const paymentAdd2 = createAsyncThunk(
+    "transaction/paymentAdd",
+    async ({ message, image,transactionId,paymentType }, { rejectWithValue, fulfillWithValue}) => {
+      try {
+        console.log("message " + message)
+        console.log("transactionId " + transactionId)
+        console.log("image " + image)
+        const formData = new FormData();
+        formData.append("message", message);
+        formData.append("image", image);
+        formData.append("transactionId",transactionId);
+        formData.append("paymentType",paymentType);
+  
+        const { data } = await api.post("/trader/payment-add", formData);
+        console.log(data)
+        return fulfillWithValue(data);
+      } catch (error) {
+        return rejectWithValue(error.response.data);
+      }
+    }
+  );
+  
+
+  export const trader_handoff_confirm = createAsyncThunk(
+    'transaction/trader_handoff_confirm',
+    async (transactionId, { rejectWithValue, fulfillWithValue, getState }) => {
+        console.log("transactionId ---------------->", transactionId); // Check transactionId value
+        try {
+            // Send transactionId as part of the body in an object
+            const { data } = await api.post(`/trader/trader-handoff-confirm`, { transactionId });
+            console.log("Transaction successful:", data);
+            return fulfillWithValue(data);
+        } catch (error) {
+            console.error("Transaction failed:", error.response.data);
+            return rejectWithValue(error.response.data);
+        }
+    }
+);
+
 // export const get_transaction_by_deal = createAsyncThunk(
 //     'transaction/get_transaction_by_deal',
 //     async (dealId, { rejectWithValue, fulfillWithValue, getState}) => {
@@ -283,7 +345,9 @@ export const transactionReducer = createSlice({
         vouchers: [],
         totalVouchers: 0,
         transaction: {},
-        currentTransactions: {}
+        proof: {},
+        currentTransactions: {},
+        DeliveryHandoffProof : {}
         
     },
     reducers:{
@@ -299,8 +363,20 @@ export const transactionReducer = createSlice({
         builder.addCase(get_transaction_by_deal.fulfilled, (state, payload) => {
             state.loader = false;
             state.currentTransactions = payload.payload.transactions;
+            state.DeliveryHandoffProof = payload.payload.DeliveryHandoffProofs[0];
            
             
+        });
+
+
+        builder.addCase(paymentAdd.rejected, (state, payload) => {
+            state.loader = false;
+            state.errorMessage = payload.payload.error;        
+        });
+        builder.addCase(paymentAdd.fulfilled, (state, payload) => {
+            state.loader = false;
+            state.successMessage = payload.payload.message;        
+            state.proof = payload.payload.proof;        
         });
         
         

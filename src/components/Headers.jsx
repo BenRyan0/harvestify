@@ -74,9 +74,7 @@ const Headers = ({hideSBar,hideCBar}) => {
     }
 
     const logo = "/images/Harvestify_logo_full.png"
-    const handleRedirect = () => {
-        window.location.href = 'http://localhost:3000/register';
-      };
+
 
   return (
     <div className='w-full bg-white'>
@@ -89,37 +87,12 @@ const Headers = ({hideSBar,hideCBar}) => {
                             <span><HiOutlineMail /></span>
                             <span>harvestifyph@gmail.com</span>
                         </li>
-                        <span className='text-xs'>{t("slogan")}</span>
+                        <span className='text-xs italic capitalize'>{t("slogan")}</span>
                         {/* <span className='text-xs'>Your ultimate farmers market!</span> */}
                     </ul>
                     <div>
                         <div className="flex justify-center items-center gap-10">
-                            <div className="flex gap-3 justify-center items-center">
-                            <div className="group flex relative">
-                                <span className=""><a href="/"><FaFacebookSquare /></a></span>
-                                <span className="group-hover:opacity-100 transition-opacity bg-gray-400 px-1 text-[10px] text-gray-100 rounded-sm absolute  left-[50px] w-[100px] text-center
-                                -translate-x-1/2 translate-y-1.5 opacity-0 m-4 mx-auto ">Share to facebook</span>
-                            </div>
-                            <div className="group flex relative">
-                                <span className=""><a href="/"> <a href="/"><RiTwitterXFill /></a></a></span>
-                                <span className="group-hover:opacity-100 transition-opacity bg-gray-400 px-1 text-[10px] text-gray-100 rounded-sm absolute left-[50px] w-[100px] text-center 
-                                -translate-x-1/2 translate-y-1.5 opacity-0 m-4 mx-auto ">Share to X</span>
-                            </div>
-                            <div className="group flex relative">
-                                <span className=""> <a href="/"><FaSquareInstagram /></a></span>
-                                <span className="group-hover:opacity-100 transition-opacity bg-gray-400 px-1 text-[10px] text-gray-100 rounded-sm absolute left-[50px] w-[100px] text-center
-                                -translate-x-1/2 translate-y-1.5 opacity-0 m-4 mx-auto">Share to X</span>
-                            </div>
-                            <div className="group flex relative">
-                                <span className="">  <a href="/"><FaLinkedin /></a></span>
-                                <span className="group-hover:opacity-100 transition-opacity bg-gray-400 px-1 text-[10px] text-gray-100 rounded-sm absolute left-[50px] w-[100px] text-center
-                                -translate-x-1/2 translate-y-1.5 opacity-0 m-4 mx-auto">Share to Linked</span>
-                            </div>
-                                {/* <a href="/"><FaFacebookSquare /></a>
-                                <a href="/"><RiTwitterXFill /></a>
-                                <a href="/"><FaSquareInstagram /></a>
-                                <a href="/"><FaLinkedin /></a> */}
-                            </div>
+                           
 
 
                             <div className="border-l border-slate-600 h-[18px] text-center flex justify-center items-center pl-5">
@@ -172,13 +145,13 @@ const Headers = ({hideSBar,hideCBar}) => {
                                     <Link to='/' className={`p-2 block ${pathname === '/' ? 'text-primary':'text-slate-600 '}`}>Home</Link>
                                 </li>
                                 <li>
-                                    <Link to='/clusters' className={`p-2 block ${pathname === '/clusters' ? 'text-primary':'text-slate-600'}`}>Clusters</Link>
+                                    <Link to='/listings' className={`p-2 block ${pathname === '/listings' ? 'text-primary':'text-slate-600'}`}>Products</Link>
+                                </li>
+                                <li>
+                                    <Link to='/clusters' className={`p-2 block ${pathname === '/clusters' ? 'text-primary':'text-slate-600'}`}>Sellers</Link>
                                     {/* <Link to='/clusters-listing' className={`p-2 block ${pathname === '/clusters-listing' ? 'text-primary':'text-slate-600'}`}>Clusters</Link> */}
                                 </li>
                               
-                                <li>
-                                    <Link to='/listings' className={`p-2 block ${pathname === '/listings' ? 'text-primary':'text-slate-600'}`}>Listings</Link>
-                                </li>
                                 {/* <li>
                                     <Link className={`p-2 block ${pathname === '/sellcrops' ? 'text-primary':'text-slate-600'}`}>Sell Crops</Link>
                                 </li> */}
@@ -252,11 +225,12 @@ const Headers = ({hideSBar,hideCBar}) => {
                                 <li>
                                     <Link to='/' className={`py-2 block ${pathname === '/' ? 'text-primary':'text-slate-600 '}`}>Home</Link>
                                 </li>
+                            
                                 <li>
-                                    <Link to='/clusters' className={`py-2 block ${pathname === '/clusters' ? 'text-primary':'text-slate-600'}`}>Clusters</Link>
+                                    <Link to='/listings' className={`py-2 block ${pathname === '/listings' ? 'text-primary':'text-slate-600'}`}>PRODUCTS</Link>
                                 </li>
                                 <li>
-                                    <Link to='/listings' className={`py-2 block ${pathname === '/listings' ? 'text-primary':'text-slate-600'}`}>Listings</Link>
+                                    <Link to='/clusters' className={`py-2 block ${pathname === '/clusters' ? 'text-primary':'text-slate-600'}`}>Sellers</Link>
                                 </li>
                                
                                 {/* <li>

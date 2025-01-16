@@ -58,7 +58,7 @@ return (
       >
           {
                categories.map((c, i)=>
-               <Link className='h-[185px] md-lg:h-[100px] border block rounded-md'
+               <Link className='h-[120px] md-lg:h-[80px] border block rounded-md'
                  key={i} to='#'>
                   <div className="w-full h-full relative">
                     <img className='h-full w-full rounded-md' src={c.image} alt="category images" />

@@ -9,10 +9,11 @@ import SecondConfirmation from '../DealProgress/steps/SecondConfirmation';
 import SecondPayment from '../DealProgress/steps/SecondPayment';
 import Complete from '../DealProgress/steps/Complete';
 import { StepperContext } from '../../contexts/StepperContext';
-import { useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { get_deal } from '../../store/reducers/dealReducer';
-import {get_transaction_by_deal  } from '../../store/reducers/transactionReducer';
+import {get_transaction_by_deal,messageClear  } from '../../store/reducers/transactionReducer';
+import toast from 'react-hot-toast';
 
 
 
@@ -21,6 +22,7 @@ const DealProgress = () => {
     
     const { dealId } = useParams();
     const dispatch = useDispatch();
+    const navigate = useNavigate()
     const [loading, setLoading] = useState(true);
     const [currentStep, setCurrentStep] = useState(1)
     const [userData, setUserData] = useState([])
@@ -35,10 +37,10 @@ const DealProgress = () => {
     const steps = [
         "Review", // Buyer selects the product and sees the price and deposit required.
         "Proof_Upload", // Buyer pays the deposit via an external method and uploads the proof of payment.
-        "Confirmation", // Seller reviews and confirms the deposit proof.
+        // "Confirmation", // Seller reviews and confirms the deposit proof.
         "Delivery/Receipt", // The product is delivered to the buyer.
         "Upload_Proof", // Buyer pays the remaining balance and uploads the proof of payment.
-        "Confirmation", // Seller reviews and confirms the final payment proof.
+        // "Confirmation", // Seller reviews and confirms the final payment proof.
         "Complete" // The transaction is marked as complete by the seller.
     ];
 
@@ -73,6 +75,22 @@ const DealProgress = () => {
         setCurrentTransaction(currentTransactions[0])
       }, [currentTransactions]);
     
+      useEffect(()=>{
+        if(errorMessage){
+            toast.error(errorMessage)
+            dispatch(messageClear())
+            // navigate('/')
+        }else{
+            toast.success(successMessage)
+            dispatch(messageClear())
+            // setState({
+            //     name:'',
+            //     image : ''
+            // })
+            // setImage('')
+            // navigate('/')
+        }
+        },[successMessage, errorMessage])
     
 
     const displaySteps = (step)=>{
@@ -81,15 +99,15 @@ const DealProgress = () => {
                 return <Review/>
             case 2:
                 return <FirstPayment/>
+            // case 3:
+                // return <FirstConfirmation/>
             case 3:
-                return <FirstConfirmation/>
-            case 4:
                 return <DeliveryReceipt/>
-            case 5:
+            case 4:
                 return <SecondPayment/>
-            case 6:
-                return <SecondConfirmation/>
-            case 7:
+            // case 5:
+                // return <SecondConfirmation/>
+            case 5:
                 return <Complete/>
             default:
         }

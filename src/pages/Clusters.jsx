@@ -114,7 +114,7 @@ const Clusters = () => {
     <>
          <Headers/>
          {/* <section className=' w-[85%] mx-auto h-[350px] mt-6 bg-cover bg-no-repeat relative bg-left' > */}
-         <section className=' w-[85%] mx-auto h-[350px] mt-6 bg-cover bg-no-repeat relative bg-left md-lg:hidden' style={{ backgroundImage: "url('/images/banner/1.jpg')" }}>
+         <section className=' w-[85%] mx-auto h-[250px] mt-6 bg-cover bg-no-repeat relative bg-left md-lg:hidden' style={{ backgroundImage: "url('/images/banner/1.jpg')" }}>
             <div className="absolute left-0 top-0 w-full h-full bg-[#03872D] bg-opacity-40">
                <div className="w-[85%] md:w-[80%] sm:w-[90%] lg:w-[90%] h-full mx-auto">
                     <div className="flex flex-col justify-center gap-1 items-center h-full w-full text-center text-white">
@@ -148,7 +148,7 @@ const Clusters = () => {
                         </div>
                          {/* Price Range Filter */}
                             <div className="p-2 flex flex-col gap-5">
-                                <h2 className="text-2xl font-bold mb-3 text-slate-600">Price</h2>
+                                <h2 className="text-xl font-bold mb-3 text-slate-600">Price</h2>
                                 <Range
                                 step={1}
                                 min={priceRange.low}
@@ -180,7 +180,7 @@ const Clusters = () => {
 
                             {/* Yield Range Filter */}
                             <div className="p-2 flex flex-col gap-5">
-                                <h2 className="text-2xl font-bold mb-3 text-slate-600">Expected Yield ({sortYieldUnit})</h2>
+                                <h2 className="text-xl font-bold mb-3 text-slate-600">Expected Yield ({sortYieldUnit})</h2>
                                 <Range
                                 step={1}
                                 min={yieldRange.low}

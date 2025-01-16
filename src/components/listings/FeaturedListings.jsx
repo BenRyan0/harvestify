@@ -21,6 +21,9 @@ import toast,{Toaster} from 'react-hot-toast'
 import { IoTicketSharp } from "react-icons/io5";
 import { TbCurrencyPeso } from "react-icons/tb";
 import { FaCircleCheck } from "react-icons/fa6";
+import 'react-tooltip/dist/react-tooltip.css'
+import { Tooltip } from 'react-tooltip'
+
 
 
 const FeaturedListings = ({listings}) => {
@@ -158,7 +161,7 @@ const now = new Date();
     <div className='w-[85%] flex flex-wrap mx-auto '>
       <div className="w-full">
         <div className="text-center flex justify-center items-center flex-col text-2xl text-slate-600 font-bold relative pb-[45px]">
-          <h2>Recent Listings</h2>
+          <h2>Featured Products</h2>
           <div className="w-[100px] h-[4px] bg-[#1EE35D] mt-3"></div>
 
         </div>
@@ -223,36 +226,85 @@ const now = new Date();
               </div>    */}
              
               {/* <div className="flex justify-center items-center absolute text-white w-[38px] h-[38px] rounded-full bg-red-500 font-semibold text-xs left-2 top-2">asd</div> */}
-              <img className='sm:w-full w-full h-[240px] rounded-md object-cover' src={p.images[0]} alt="listing_image" />
-              <ul className='flex transition-all duration-700 -bottom-10 justify-center items-center gap-2 absolute w-full group-hover:bottom-3'>
-                <li onClick={() => add_wishlist(p)} className='w-[35px] h-[35px] m-1 cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#1EE35D] hover:text-white hover:rotate-[720deg] transition-all'>
-                  <FaHeart size='13px' />
-                </li>
-                <Link to={`/listing/details/${p.slug}`} className='w-[35px] h-[35px] m-1 cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#1EE35D] hover:text-white hover:rotate-[720deg] transition-all'>
-                  <FaEye />
-                </Link>
-                <li onClick={() => handleAddCard(p._id)} className='w-[35px] h-[35px] m-1 cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#1EE35D] hover:text-white hover:rotate-[720deg] transition-all' >
-                 <PiStackPlusFill />
-                </li>
-                <li onClick={() => redirect_(p)} className='w-[35px] h-[35px] m-1 cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#1EE35D] hover:text-white hover:rotate-[720deg] transition-all' >
-                  <FaHandshake />
-                </li>
-              </ul>
+              <Link to={`/listing/details/${p.slug}`}>
+                <img className='sm:w-full w-full h-[240px] rounded-md object-cover' src={p.images[0]} alt="listing_image" />
+              </Link>
+              <ul className="flex transition-all duration-700 -bottom-10 justify-center items-center gap-2 absolute w-full group-hover:bottom-3">
+                    {/* Wishlist Tooltip */}
+                    <li
+                      onClick={() => add_wishlist(p)}
+                      className="w-[35px] h-[35px] m-1 cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#1EE35D] hover:text-white hover:rotate-[720deg] transition-all"
+                      data-tooltip-id="wishlist-tooltip"
+                      data-tooltip-content="Add to Wishlist"
+                    >
+                      <FaHeart size="13px" />
+                    </li>
+
+                    {/* View Details Tooltip */}
+                    <Link
+                      to={`/listing/details/${p.slug}`}
+                      className="w-[35px] h-[35px] m-1 cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#1EE35D] hover:text-white hover:rotate-[720deg] transition-all"
+                      data-tooltip-id="details-tooltip"
+                      data-tooltip-content="View Details"
+                    >
+                      <FaEye />
+                    </Link>
+
+                    {/* Add to Cart Tooltip */}
+                    <li
+                      onClick={() => handleAddCard(p._id)}
+                      className="w-[35px] h-[35px] m-1 cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#1EE35D] hover:text-white hover:rotate-[720deg] transition-all"
+                      data-tooltip-id="cart-tooltip"
+                      data-tooltip-content="Add to Cart"
+                    >
+                      <PiStackPlusFill />
+                    </li>
+
+                    {/* Negotiate Tooltip */}
+                    <li
+                      onClick={() => redirect_(p)}
+                      className="w-[35px] h-[35px] m-1 cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#1EE35D] hover:text-white hover:rotate-[720deg] transition-all"
+                      data-tooltip-id="negotiate-tooltip"
+                      data-tooltip-content="Take Deal"
+                    >
+                      <FaHandshake />
+                    </li>
+
+                    {/* Tooltip Components */}
+                    <Tooltip id="wishlist-tooltip" className="!bg-primaryDark !text-white !rounded-lg !px-3 !py-2 !text-sm shadow-lg font-semibold" />
+                    <Tooltip id="details-tooltip" className="!bg-primaryDark !text-white !rounded-lg !px-3 !py-2 !text-sm shadow-lg font-semibold" />
+                    <Tooltip id="cart-tooltip" className="!bg-primaryDark !text-white !rounded-lg !px-3 !py-2 !text-sm shadow-lg font-semibold" />
+                    <Tooltip id="negotiate-tooltip" className="!bg-primaryDark !text-white !rounded-lg !px-3 !py-2 !text-sm shadow-lg font-semibold" />
+                  </ul>
             </div>
             <div className="py-3 text-slate-600 px-2">
               <div className="flex justify-between">
                 <h2 className='' id='listing_name'>{p.name}</h2>
                 <div className="flex gap-3 text-xl">
-                  {/* <h2>Shipping/Delivery: </h2> */}
-                  {
-                    p.sellerDelivery? <span><FaTruckLoading /></span> : "" 
-                  }
-                  {
-                    p.traderPickup?  <span><FaTruck /></span> : ""
-                  }
-                  
-                 
-                </div>
+                      {/* Seller Delivery Tooltip */}
+                      {p.sellerDelivery && (
+                        <span data-tooltip-id="seller-delivery" data-tooltip-content="Seller Delivery">
+                          <FaTruckLoading />
+                        </span>
+                      )}
+
+                      {/* Trader Pickup Tooltip */}
+                      {p.traderPickup && (
+                        <span data-tooltip-id="trader-pickup" data-tooltip-content="Trader Pickup">
+                          <FaTruck />
+                        </span>
+                      )}
+
+                      {/* Customized Tooltips */}
+                      <Tooltip
+                        id="seller-delivery"
+                        className="!bg-primaryDark !text-white !rounded-lg !px-3 !py-2 !text-sm shadow-lg font-semibold"
+                      />
+                      <Tooltip
+                        id="trader-pickup"
+                        className="!bg-primaryDark !text-white !rounded-lg !px-3 !py-2 !text-sm shadow-lg font-semibold"
+                      />
+                    </div>
               </div>
 
               <div className="flex justify-between flex-row items-center gap-[2pxz] text-sm">
@@ -329,10 +381,14 @@ const now = new Date();
               <div className="flex gap-1">
                 {
                   p.sellerId.profileImage? 
-                  <img className='h-[50px] bg-primaryDark/50 rounded-full' src={p.sellerId.profileImage} alt="" />
+                  <Link to={`/clusters/cluster-details/${p.sellerId._id}`} className='h-[50px] w-[60px]'>
+                  <img className='h-full border-2 border-primaryDark bg-primaryDark/50 rounded-full' src={p.sellerId.profileImage} alt="" />
+                  </Link>
                   : <img className='h-[50px]  rounded-full' src="/images/Assests/user_profile.png" alt="" />
 
                 }
+
+               
                 <div className="w-full">
                   <div className="flex justify-between ">
                     <h1 className='text-sm font-semibold'>{p.clusterName}</h1>
@@ -363,11 +419,11 @@ const now = new Date();
               </div>
 
               <div className="flex justify-start gap-0 py-1 items-start flex-col border-y-2 ">
-                <label htmlFor="" className='text-xs font-bold'>Harvest Schedule:</label>
-                 <div className="flex justify-between w-full items-center">
-                      <span className='text-[11px]'>{dateFormat((p.harvestStartDate), "mmmm dS, yyyy")} </span>
+                <label htmlFor="" className='text-[15px] font-bold'>Harvest Schedule:</label>
+                 <div className="flex justify-between w-full items-center text-[15px] font-bold px-3">
+                      <span className=''>{dateFormat((p.harvestStartDate), "mmmm dS, yyyy")} </span>
                       <span>-</span>
-                      <span className='text-[11px]'>{dateFormat((p.harvestEndDate), "mmmm dS, yyyy")} </span>
+                      <span className=''>{dateFormat((p.harvestEndDate), "mmmm dS, yyyy")} </span>
                  </div>
               </div>
               <div className="flex justify-center gap-1 py-1 items-end">
