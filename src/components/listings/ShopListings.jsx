@@ -23,6 +23,7 @@ import { TbCurrencyPeso } from "react-icons/tb";
 import 'react-tooltip/dist/react-tooltip.css'
 import { Tooltip } from 'react-tooltip'
 import { FaCircleCheck } from "react-icons/fa6";
+import { RiMessage3Fill } from "react-icons/ri";
 
 
 const ShopListings = ({listings,styles}) => {
@@ -209,19 +210,19 @@ const now = new Date();
               </Link>
               <ul className="flex transition-all duration-700 -bottom-10 justify-center items-center gap-2 absolute w-full group-hover:bottom-3">
                     {/* Wishlist Tooltip */}
-                    <li
-                      onClick={() => add_wishlist(p)}
-                      className="w-[35px] h-[35px] m-1 cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#1EE35D] hover:text-white hover:rotate-[720deg] transition-all"
+                  <Link
+                       to={`/dashboard/chat/${p.sellerId._id}`}
+                      className="w-[35px] h-[35px] m-1 cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#1EE35D] text-[#178448] hover:text-white hover:rotate-[720deg] transition-all"
                       data-tooltip-id="wishlist-tooltip"
-                      data-tooltip-content="Add to Wishlist"
-                   >
-                      <FaHeart size="13px" />
-                   </li>
+                      data-tooltip-content="Message Seller"
+                    >
+                      <RiMessage3Fill />
+                    </Link>
 
                     {/* View Details Tooltip */}
                     <Link
                       to={`/listing/details/${p.slug}`}
-                      className="w-[35px] h-[35px] m-1 cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#1EE35D] hover:text-white hover:rotate-[720deg] transition-all"
+                      className="w-[35px] h-[35px] m-1 cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#1EE35D] text-[#178448] hover:text-white hover:rotate-[720deg] transition-all"
                      data-tooltip-id="details-tooltip"
                       data-tooltip-content="View Details"
                     >
@@ -231,7 +232,7 @@ const now = new Date();
                     {/* Add to Cart Tooltip */}
                     <li
                      onClick={() => handleAddCard(p._id)}
-                     className="w-[35px] h-[35px] m-1 cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#1EE35D] hover:text-white hover:rotate-[720deg] transition-all"
+                     className="w-[35px] h-[35px] m-1 cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#1EE35D] text-[#178448] hover:text-white hover:rotate-[720deg] transition-all"
                       data-tooltip-id="cart-tooltip"
                      data-tooltip-content="Add to Cart"
                    >
@@ -241,7 +242,7 @@ const now = new Date();
                     {/* Negotiate Tooltip */}
                     <li
                       onClick={() => redirect_(p)}
-                      className="w-[35px] h-[35px] m-1 cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#1EE35D] hover:text-white hover:rotate-[720deg] transition-all"
+                      className="w-[35px] h-[35px] m-1 cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#1EE35D] text-[#178448] hover:text-white hover:rotate-[720deg] transition-all"
                       data-tooltip-id="negotiate-tooltip"
                       data-tooltip-content="Take Deal"
                     >

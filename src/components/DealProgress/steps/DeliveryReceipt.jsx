@@ -8,6 +8,7 @@ import { paymentAdd ,messageClear,trader_handoff_confirm} from '../../../store/r
 import { BsImage } from 'react-icons/bs';
 import { FaChevronLeft } from "react-icons/fa";
 import toast from 'react-hot-toast';
+import { MdFullscreen } from "react-icons/md";
 
 const DeliveryReceipt = () => {
     const dispatch = useDispatch()
@@ -15,6 +16,7 @@ const DeliveryReceipt = () => {
     const { transactionData, setTransactionData } = useContext(StepperContext);
     const { currentStep, setCurrentStep } = useContext(StepperContext);
     const { currentTransaction, setCurrentTransaction } = useContext(StepperContext);
+    const [isFullscreen, setIsFullscreen] = useState(false); // Track fullscreen state
     
     const loader = false;
   
@@ -40,19 +42,41 @@ const DeliveryReceipt = () => {
                 window.location.reload(); // Refresh the page
               }
         }
+        const toggleFullscreen = () => {
+          setIsFullscreen((prevState) => !prevState);
+      };
+      
   return (
     <div>
       {DeliveryHandoffProof?
-        <div className="w-full flex gap-2 flex-col">
-          <img src={DeliveryHandoffProof.imageUrl} alt="" />
-          <div className="w-full">
-            <button onClick={traderConfirm} className='px-6 bg-primaryDark py-2 rounded-md font-bold text-slate-100'>I now Have the Listing</button>
-          </div>
+        <div className="w-full flex gap-2 flex-col bg-primary/80 rounded-md py-4 justify-center items-center">
+           <div className="relative">
+                    <img
+                        className={`cursor-pointer ${
+                            isFullscreen ? 'fixed top-0 left-0 w-full h-full object-contain bg-black z-[999999999999999999]' : 'w-[300px]'
+                        }`}
+                        src={DeliveryHandoffProof.imageUrl}
+                        alt="Proof of Handoff"
+                        onClick={toggleFullscreen}
+                    />
+                    <div className="absolute bottom-2 right-2 left-0 text-[#283046] flex justify-center items-center">
+                        <label htmlFor="">Click Image For Fullscreen View</label>
+                        <MdFullscreen color='#283046' size={25}/>
+                    </div>
+                </div>
+
+                <div className="w-full justify-center flex">
+             <button onClick={traderConfirm} className='w-[300px] bg-primaryDark py-2 rounded-md font-bold text-slate-100 uppercase'>I now Have the Listing</button>
+              </div>
         </div>
         :
-        <div className="">False</div>
+         <div className='w-full text-center text-primaryDark py-10 flex justify-center items-center gap-2'>
+                <h2 className='font-bold text-xl uppercase'>Seller Has not Uploaded of a proof of Product Handoff Yet</h2>
+                {/* <MdOutlinePendingActions size={20}/> */}
+          </div>
       }
     </div>
+  
   )
 }
 

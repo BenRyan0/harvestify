@@ -73,26 +73,48 @@ const SecondPayment = () => {
     }
   };
 
-  const inputHandle = (e)=>{
+  const inputHandle =  (e)=>{
     setState({
         ...state,
         [e.target.name] : e.target.value
 
     })
 }
-  const add_payment_2 = (e)=>{
+  const add_payment_2 = async(e)=>{
     e.preventDefault()
-    dispatch(paymentAdd2(state))
-    if (errorMessage) {
-          toast.error(errorMessage);
-          dispatch(messageClear());
-          window.location.reload(); // Refresh the page
-        } else {
-          toast.success(successMessage);
-          dispatch(messageClear());
-          window.location.reload(); // Refresh the page
-        }
+    try {
+      // Dispatch the action and wait for it to complete
+      await dispatch(paymentAdd(state)).unwrap(); // .unwrap() ensures you handle the promise correctly (if using Redux Toolkit)
+      
+      // Check for success or error messages
+      if (errorMessage) {
+        toast.error(errorMessage);
+        dispatch(messageClear());
+      } else {
+        toast.success(successMessage);
+        dispatch(messageClear());
+      }
+    } catch (err) {
+      // Catch any unexpected errors
+      toast.error("An unexpected error occurred!");
+    } finally {
+      // Refresh or reset the form
+      window.location.reload(); // Alternatively, reset state manually if preferred
+    }
    }
+  // const add_payment_2 = (e)=>{
+  //   e.preventDefault()
+  //   dispatch(paymentAdd2(state))
+  //   if (errorMessage) {
+  //         toast.error(errorMessage);
+  //         dispatch(messageClear());
+  //         window.location.reload(); // Refresh the page
+  //       } else {
+  //         toast.success(successMessage);
+  //         dispatch(messageClear());
+  //         window.location.reload(); // Refresh the page
+  //       }
+  //  }
 
    console.log("------------------> CURRENT")
    console.log(currentTransaction)
@@ -114,7 +136,7 @@ const SecondPayment = () => {
     // )
   }
   return (
-    <section className='bg-[#eeeeee] w-full p-2'>
+    <section className='bg-transparent w-full p-4 rounded-md'>
             <div className="w-full">
               {
                 currentTransaction ? 
@@ -126,11 +148,11 @@ const SecondPayment = () => {
                           
                          
                           <div className="">
-                              <label htmlFor="image" className='flex justify-center items-center flex-col h-[238px] cursor-pointer border border-dashed hover:border-accent w-full border-text_color'>
+                              <label htmlFor="image" className='flex justify-center items-center flex-col h-[238px] text-slate-600 cursor-pointer border-2 border-dashed hover:border-accent w-full border-slate-700 rounded-md'>
                                   {
-                                      imageShow ? <img className='w-ful h-full bg-red-600 object-fill' src={imageShow} alt="" required/> : <>
+                                      imageShow ? <img className='w-ful h-full object-fill' src={imageShow} alt="" required/> : <>
                                           <span><BsImage size='40px'/></span>
-                                         <span className='font-semibold'>Select an Image</span>
+                                         <span className='font-semibold'>Upload Payment Proof</span>
                                       </>
                                   }
                                   
@@ -139,15 +161,15 @@ const SecondPayment = () => {
                           <input onChange={imageHandler} className='hidden' type="file" name='image' id='image' />
     
     
-                          <div className="w-full mt-3">
-                                  <label htmlFor="name">Message</label>
-                                  <textarea onChange={inputHandle} value={state.message} className='w-full h-[129px] px-4 py-2 focus:border-accent border-2 outline-none bg-transparent border-slate-700 rounded-md text-slate-800' type="text" placeholder='Listing Description'  name='message' id='message'></textarea>
+                          <div className="w-full mt-3 text-slate-600">
+                                  <label className='font-bold' htmlFor="name">Message</label>
+                                  <textarea onChange={inputHandle} value={state.message} className='w-full h-[129px] px-4 py-2 focus:border-accent border-2 outline-none bg-transparent border-slate-700 rounded-md text-slate-800' type="text" placeholder='Message'  name='message' id='message'></textarea>
                               </div>
                    
-                          <button disabled={loader ? true : false} className='bg-primaryDark w-full hover:shadow-[#6ED601]/10 hover:shadow-lg text-white rounded-md px-7 py-2 mb-3 font-bold mt-5'>
+                          <button disabled={loader ? true : false} className='bg-primary w-full hover:shadow-[#6ED601]/10 hover:shadow-lg text-white rounded-md px-7 py-2 mb-3 font-bold mt-5'>
                               {
                                     //  loader ? <PropagateLoader color='#fff'cssOverride = {overRideStyle}/> :'Add Category'
-                                     loader ? 'loading...' :'Add Category'
+                                     loader ? 'loading...' :'UPLOAD PAYMENT PROOF'
                               }
                           </button>
                        </form>
@@ -156,9 +178,9 @@ const SecondPayment = () => {
     
                         <div className="w-5/12 lg:w-full ">
                           <div className="pl-2 md:pl-0 md:mb-0">
-                            <div className="bg-white shadow p-5 text-slate-600 flex flex-col gap-3">
-                              <h2 className='font-bold text-lg uppercase'>Initial Payment Summary</h2>
-                              <div className="flex items-center font-semibold px-5">
+                            <div className="bg-white rounded-md shadow-md p-5 text-slate-600 flex flex-col gap-3">
+                              <h2 className='font-extrabold text-lg uppercase'>Final Payment</h2>
+                              <div className="flex items-center font-semibold px-1">
                                 <span>Final Amount: <span className='font-bold text-base h-full pr-[1px]'>&#8369;</span>{formatNumber(currentTransaction.listingPrice - currentTransaction.depositAmount )}</span>
                                 {/* <span>Total Amount: { currentTransaction.depositAmount}</span> */}
                               </div>

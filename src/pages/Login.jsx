@@ -102,7 +102,7 @@ const Login = () => {
                             </div>
                         </div>
                         <div className="w-full h-full py-4 pr-4 lg:hidden block">
-                            <img className='w-full h-full rounded border-2 border-slate-300' src="http://localhost:3001/images/Login_Register.jpg" alt="" />
+                            <img className='w-full h-full rounded border-2 border-slate-300' src="/images/Login_Register.jpg" alt="" />
                         </div>
                     </div>
                 </div>

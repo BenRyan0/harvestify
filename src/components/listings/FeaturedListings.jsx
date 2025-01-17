@@ -23,6 +23,7 @@ import { TbCurrencyPeso } from "react-icons/tb";
 import { FaCircleCheck } from "react-icons/fa6";
 import 'react-tooltip/dist/react-tooltip.css'
 import { Tooltip } from 'react-tooltip'
+import { RiMessage3Fill } from "react-icons/ri";
 
 
 
@@ -231,19 +232,19 @@ const now = new Date();
               </Link>
               <ul className="flex transition-all duration-700 -bottom-10 justify-center items-center gap-2 absolute w-full group-hover:bottom-3">
                     {/* Wishlist Tooltip */}
-                    <li
-                      onClick={() => add_wishlist(p)}
-                      className="w-[35px] h-[35px] m-1 cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#1EE35D] hover:text-white hover:rotate-[720deg] transition-all"
+                    <Link
+                       to={`/dashboard/chat/${p.sellerId._id}`}
+                      className="w-[35px] h-[35px] m-1 cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#1EE35D] text-[#178448] hover:text-white hover:rotate-[720deg] transition-all"
                       data-tooltip-id="wishlist-tooltip"
-                      data-tooltip-content="Add to Wishlist"
+                      data-tooltip-content="Message Seller"
                     >
-                      <FaHeart size="13px" />
-                    </li>
+                      <RiMessage3Fill />
+                    </Link>
 
                     {/* View Details Tooltip */}
                     <Link
                       to={`/listing/details/${p.slug}`}
-                      className="w-[35px] h-[35px] m-1 cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#1EE35D] hover:text-white hover:rotate-[720deg] transition-all"
+                      className="w-[35px] h-[35px] m-1 cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#1EE35D] text-[#178448] hover:text-white hover:rotate-[720deg] transition-all"
                       data-tooltip-id="details-tooltip"
                       data-tooltip-content="View Details"
                     >
@@ -253,7 +254,7 @@ const now = new Date();
                     {/* Add to Cart Tooltip */}
                     <li
                       onClick={() => handleAddCard(p._id)}
-                      className="w-[35px] h-[35px] m-1 cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#1EE35D] hover:text-white hover:rotate-[720deg] transition-all"
+                      className="w-[35px] h-[35px] m-1 cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#1EE35D] text-[#178448] hover:text-white hover:rotate-[720deg] transition-all"
                       data-tooltip-id="cart-tooltip"
                       data-tooltip-content="Add to Cart"
                     >
@@ -263,7 +264,7 @@ const now = new Date();
                     {/* Negotiate Tooltip */}
                     <li
                       onClick={() => redirect_(p)}
-                      className="w-[35px] h-[35px] m-1 cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#1EE35D] hover:text-white hover:rotate-[720deg] transition-all"
+                      className="w-[35px] h-[35px] m-1 cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#1EE35D] text-[#178448] hover:text-white hover:rotate-[720deg] transition-all"
                       data-tooltip-id="negotiate-tooltip"
                       data-tooltip-content="Take Deal"
                     >
@@ -307,7 +308,7 @@ const now = new Date();
                     </div>
               </div>
 
-              <div className="flex justify-between flex-row items-center gap-[2pxz] text-sm">
+              {/* <div className="flex justify-between flex-row items-center gap-[2pxz] text-sm bg-red-600">
                 <div className="flex justify-end items-center flex-row">
                   <div className="">
                     <span className='font-bold text-base'>&#8369;</span>
@@ -315,30 +316,6 @@ const now = new Date();
                     <span className='text-base font-bold'>/{p.unit}</span>
                   </div>
                 
-                  {/* {p.discount > 0 ? (
-                       <div className="flex justify-center items-center">
-                           <span className=''><TbCurrencyPeso size={19} /></span>
-                           <h2 className="text-lg text-primary pr-1">
-                               {formatNumber(p.totalPrice - Math.floor((p.totalPrice * p.discount) / 100))}
-                           </h2>
-                           <p className="line-through">{formatNumber(p.totalPrice)}</p>
-                           <p className="flex items-center text-xs text-gray-500 bg-primary/50 mx-1 px-1"> -{p.discount}% 
-                           <IoTicketSharp  className='ml-[1px]'/></p>
-                       </div>
-                   ) : p.discount === 0 ? (
-                       <div className="flex items-center">
-                           <span className=''><TbCurrencyPeso size={19} /></span>
-                           <h2 className="text-primaryDark text-lg">{formatNumber(p.totalPrice)}</h2>
-                       </div>
-                      
-                   ) : (
-                       <div className="flex items-center">
-                           <span className=''><TbCurrencyPeso size={19} /></span>
-                           <h2 className="text-primaryDark text-lg">{formatNumber(p.totalPrice)}</h2>
-                       </div>
-                  )} */}
-                  
-
                   <div className="pl-1">
                     <span className='font-extrabold'>&#64;</span>
                     <span className='text-base font-bold'>{p.expectedHarvestYield}</span>
@@ -371,13 +348,46 @@ const now = new Date();
                        </div>
                   )}
                 </div>
-                {/* <div className="text-base font-bold text-primaryDark ">
-                   <span className='pr-1'>&#8369;</span> 
-                   <span className='flex-wrap'>{formatNumber(p.totalPrice)}</span>
-                </div> */}
+
                
 
-              </div>
+              </div> */}
+              <div className="flex justify-between flex-row items-center gap-[2px] text-sm flex-wrap">
+                  <div className="flex justify-end items-center flex-row flex-wrap">
+                    <div>
+                      <span className='font-bold text-base'>&#8369;</span>
+                      <span className='text-base font-bold'>{formatNumber(p.price)}</span>
+                      <span className='text-base font-bold'>/{p.unit}</span>
+                    </div>
+
+                    <div className="pl-1">
+                      <span className='font-extrabold'>&#64;</span>
+                      <span className='text-base font-bold'>{p.expectedHarvestYield}</span>
+                      <span className='text-base font-bold'>{p.yieldUnit}</span>
+                    </div>
+                  </div>
+
+                  <div className="text-base font-bold text-primaryDark">
+                    {p.discount > 0 ? (
+                      <div className="flex justify-center items-center">
+                        <span><TbCurrencyPeso size={19} /></span>
+                        <h2 className="text-lg text-primaryDark pr-1">
+                          {formatNumber(p.totalPrice - Math.floor((p.totalPrice * p.discount) / 100))}
+                        </h2>
+                        <p className="line-through text-slate-500">{formatNumber(p.totalPrice)}</p>
+                        <p className="flex items-center text-xs text-gray-500 bg-primary/50 mx-1 px-1"> -{p.discount}% 
+                          <IoTicketSharp className='ml-[1px]' />
+                        </p>
+                      </div>
+                    ) : (
+                      <div className="flex items-center">
+                        <span><TbCurrencyPeso size={19} /></span>
+                        <h2 className="text-primaryDark text-lg">{formatNumber(p.totalPrice)}</h2>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
               <div className="flex gap-1">
                 {
                   p.sellerId.profileImage? 
@@ -396,10 +406,15 @@ const now = new Date();
                       <Ratings ratings={p.sellerId.rating} />
                     </div>
                   </div>
+                 {
+                  userInfo? 
                   <div className="flex gap-1 items-center">
-                    <span><FaPhone /></span>
-                    <span className='text-sm'>{p.sellerId.phoneNumber}</span>
-                  </div>
+                  <span><FaPhone /></span>
+                  <span className='text-sm'>{p.sellerId.phoneNumber}</span>
+                </div>
+                  :
+                  <div className=""></div>
+                 }
 
                 </div>
               </div>

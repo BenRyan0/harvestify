@@ -136,8 +136,8 @@ const Clusters = () => {
                     <button onClick={()=>setFilter(!filter)} className='text-center w-full py-2 px-3 bg-accent text-white font-semibold'>Filter Listings</button>
                 </div>
                 <div className="w-full flex flex-wrap">
-                    <div className={`w-4/12 md-lg:w-4/12 md:w-full pr-8 ${filter ? 'md:h-0 md:overflow-hidden md:mb-6' : 'md:h-auto md:overflow-auto md:mb-0'}`}>
-                        <h2 className='text-xl font-bold mb-3 text-slate-600'>Category</h2>
+                    <div className={`w-3/12 md-lg:w-3/12 md:w-full pr-8 ${filter ? 'md:h-0 md:overflow-hidden md:mb-6' : 'md:h-auto md:overflow-auto md:mb-0'}`}>
+                        <h2 className='text-xl font-bold mb-3 text-slate-600'>Categories</h2>
                         <div className='py-2'>
                             {
                                 categories.map((c,i)=> <div className='flex justify-start items-center gap-2 py-1' key={i}>
@@ -266,7 +266,7 @@ const Clusters = () => {
                             <Listings title = "Latest Listings" listings={latestListings}/>
                         </div>
                     </div>
-                    <div className="w-8/12 md-lg:w-8/12 md:w-full">
+                    <div className="w-9/12 md-lg:w-9/12 md:w-full">
                         <div className="pl-8 md:pl-0">
                                 <div className="py-4 mb-10 px-3 rounded-md flex justify-between items-center text-center border">
                                       <h2 className='visible md:invisible text-lg font-semibold text-slate-600 text-center '>{totalListing} listings</h2>                                

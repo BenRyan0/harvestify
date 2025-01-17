@@ -37,10 +37,10 @@ const DealProgress = () => {
     const steps = [
         "Review", // Buyer selects the product and sees the price and deposit required.
         "Proof_Upload", // Buyer pays the deposit via an external method and uploads the proof of payment.
-        // "Confirmation", // Seller reviews and confirms the deposit proof.
+        "Confirmation", // Seller reviews and confirms the deposit proof.
         "Delivery/Receipt", // The product is delivered to the buyer.
         "Upload_Proof", // Buyer pays the remaining balance and uploads the proof of payment.
-        // "Confirmation", // Seller reviews and confirms the final payment proof.
+        "Confirmation", // Seller reviews and confirms the final payment proof.
         "Complete" // The transaction is marked as complete by the seller.
     ];
 
@@ -99,15 +99,15 @@ const DealProgress = () => {
                 return <Review/>
             case 2:
                 return <FirstPayment/>
-            // case 3:
-                // return <FirstConfirmation/>
             case 3:
-                return <DeliveryReceipt/>
+                return <FirstConfirmation/>
             case 4:
-                return <SecondPayment/>
-            // case 5:
-                // return <SecondConfirmation/>
+                return <DeliveryReceipt/>
             case 5:
+                return <SecondPayment/>
+            case 6:
+                return <SecondConfirmation/>
+            case 7:
                 return <Complete/>
             default:
         }

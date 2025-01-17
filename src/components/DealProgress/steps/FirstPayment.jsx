@@ -81,19 +81,43 @@ const FirstPayment = () => {
 
     })
 }
-  const add_payment = (e)=>{
-    e.preventDefault()
-    dispatch(paymentAdd(state))
-    if (errorMessage) {
-          toast.error(errorMessage);
-          dispatch(messageClear());
-          window.location.reload(); // Refresh the page
-        } else {
-          toast.success(successMessage);
-          dispatch(messageClear());
-          window.location.reload(); // Refresh the page
-        }
-   }
+  // const add_payment = (e)=>{
+  //   e.preventDefault()
+  //   dispatch(paymentAdd(state))
+  //   if (errorMessage) {
+  //         toast.error(errorMessage);
+  //         dispatch(messageClear());
+  //         window.location.reload(); // Refresh the page
+  //       } else {
+  //         toast.success(successMessage);
+  //         dispatch(messageClear());
+  //         window.location.reload(); // Refresh the page
+  //       }
+  //  }
+  const add_payment = async (e) => {
+    e.preventDefault();
+  
+    try {
+      // Dispatch the action and wait for it to complete
+      await dispatch(paymentAdd(state)).unwrap(); // .unwrap() ensures you handle the promise correctly (if using Redux Toolkit)
+      
+      // Check for success or error messages
+      if (errorMessage) {
+        toast.error(errorMessage);
+        dispatch(messageClear());
+      } else {
+        toast.success(successMessage);
+        dispatch(messageClear());
+      }
+    } catch (err) {
+      // Catch any unexpected errors
+      toast.error("An unexpected error occurred!");
+    } finally {
+      // Refresh or reset the form
+      window.location.reload(); // Alternatively, reset state manually if preferred
+    }
+  };
+  
 
    console.log("------------------> CURRENT")
    console.log(currentTransaction)
@@ -148,7 +172,7 @@ const FirstPayment = () => {
                       <button disabled={loader ? true : false} className='bg-primaryDark w-full hover:shadow-[#6ED601]/10 hover:shadow-lg text-white rounded-md px-7 py-2 mb-3 font-bold mt-5'>
                           {
                                 //  loader ? <PropagateLoader color='#fff'cssOverride = {overRideStyle}/> :'Add Category'
-                                 loader ? 'loading...' :'Add Category'
+                                 loader ? 'loading...' :'SUBMIT PROOF'
                           }
                       </button>
                    </form>

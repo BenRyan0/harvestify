@@ -136,7 +136,7 @@ const Card = () => {
                     {
                         card_listings.length > 0 || unAvailableListings.length > 0 ?
                             <div className="flex flex-wrap">
-                                <div className="w-[80%] md-lg:w-full">
+                                <div className="w-full md-lg:w-full">
                                     <div className="pr-3 md-lg:pr-0">
                                         <div className="flex flex-col gap-3">
                                             <div className="flex flex-row items-center gap-1 p-4 shadow-sm border-[1px] rounded bg-white">
@@ -300,51 +300,17 @@ const Card = () => {
                                         </div>
                                     </div> 
                                 </div>
-                                <div className="w-[20%] md-lg:w-full">
-                                    <div className="pl-3 md-lg:pl-0 md-lg:mt-5">
-                                        {
-                                            card_listings.length > 0 &&
-                                            <div className="bg-white p-3 text-slate-600 flex flex-col gap-3">
-                                                <h2 className='text-xl font-bold'>Deals Summary</h2>
-                                                <div className="flex justify-between items-center">
-                                                    <span>{buy_listing_item} listings</span>
-                                                    <div className="flex gap-1">
-                                                        <span className='font-bold'>&#8369;</span>
-                                                        <h1>{formatNumber(price)}</h1>
-                                                    </div>
-                                                </div>
-                                                <div className="flex justify-between items-center">
-                                                    <span>Shipping Fee</span>
-                                                    <div className="flex gap-1">
-                                                        <span className='font-bold'>&#8369;</span>
-                                                        <h1>{formatNumber(totalShippingFee)}</h1>
-                                                        {/* <h1>{shipping_fee}</h1> */}
-                                                    </div>
-                                                </div>
-                                               
-                                                <div className="flex justify-between items-center">
-                                                    <span>Total</span>
-                                                    <div className="flex gap-1">
-                                                        <span className='font-bold'>&#8369;</span>
-                                                        {/* <h1>{price}</h1> */}
-                                                        <h1>{formatNumber(price + totalShippingFee)} </h1>
-                                                    </div>
-                                                </div>
-                                             
-                                                    <button onClick={redirect} className="px-5 py-2 bg-primary rounded-md text-white font-semibold ">Proceed to Checkout {buy_listing_item}</button>
-                                             
-                                            </div>
-                                        }
-                                    </div>
-                                </div>
+                              
                             </div>
                             :
                             <div className="w-full flex justify-center items-center gap-2 flex-col">
                                 <div className="flex justify-center items-center gap-2">
-                                    <span><FaHandshake size={45} /></span>
+                                    <span><FaHandshake color='#04A738' size={45} /></span>
                                     <h2 className='text-2xl font-semibold text-slate-600'>You have no listings yet!</h2>
                                 </div>
-                                <Link to='/clusters' className="bg-primary px-8 py-1 text-white rounded-md">SHOP NOW</Link>
+                                <Link to='/listings' >
+                                        <button className="bg-primary px-8 text-white rounded-md py-2 font-bold">SHOP NOW</button>
+                                </Link>
                             </div>
                     }
                 </div>

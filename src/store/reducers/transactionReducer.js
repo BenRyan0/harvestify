@@ -33,7 +33,10 @@ export const get_transaction_by_deal = createAsyncThunk(
         formData.append("transactionId",transactionId);
         formData.append("paymentType",paymentType);
   
-        const { data } = await api.post("/trader/final-payment-add", formData);
+        const { data } = await api.post("/trader/payment-add", formData);
+        // const { data } = await api.post("/trader/final-payment-add", formData);
+
+        console.log("----------------------------------- PAYMENT ADD")
         console.log(data)
         return fulfillWithValue(data);
       } catch (error) {
@@ -43,7 +46,7 @@ export const get_transaction_by_deal = createAsyncThunk(
   );
   
   export const paymentAdd2 = createAsyncThunk(
-    "transaction/paymentAdd",
+    "transaction/paymentAdd2",
     async ({ message, image,transactionId,paymentType }, { rejectWithValue, fulfillWithValue}) => {
       try {
         console.log("message " + message)
@@ -54,8 +57,9 @@ export const get_transaction_by_deal = createAsyncThunk(
         formData.append("image", image);
         formData.append("transactionId",transactionId);
         formData.append("paymentType",paymentType);
-  
-        const { data } = await api.post("/trader/payment-add", formData);
+        const { data } = await api.post("/trader/final-payment-add", formData);
+    
+        // const { data } = await api.post("/trader/payment-add", formData);
         console.log(data)
         return fulfillWithValue(data);
       } catch (error) {
@@ -376,7 +380,8 @@ export const transactionReducer = createSlice({
         builder.addCase(paymentAdd.fulfilled, (state, payload) => {
             state.loader = false;
             state.successMessage = payload.payload.message;        
-            state.proof = payload.payload.proof;        
+            state.proof = payload.payload.proof;      
+            state.currentTransactions = payload.payload.updatedTransaction;  
         });
         
         
