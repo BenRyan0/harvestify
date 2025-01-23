@@ -47,14 +47,14 @@ const Dashboard = () => {
                                     <span className='text-xl'><MdDashboard /></span>
                                     <Link to='/dashboard' className='block'>Dashboard</Link>
                                 </li>
-                                <li onClick={()=>setFilterShow(!filterShow)} className='flex justify-start items-center gap-2 py-2 px-2 hover:bg-primary/80 hover:text-white rounded-md transition-all duration-300  active:shadow-lg'>
+                                {/* <li onClick={()=>setFilterShow(!filterShow)} className='flex justify-start items-center gap-2 py-2 px-2 hover:bg-primary/80 hover:text-white rounded-md transition-all duration-300  active:shadow-lg'>
                                     <span className='text-xl'><PiFarmFill /></span>
                                     <Link to='/dashboard/my-orders' className='block'>My Orders</Link>
-                                </li>
-                                <li onClick={()=>setFilterShow(!filterShow)} className='flex justify-start items-center gap-2 py-2 px-2 hover:bg-primary/80 hover:text-white rounded-md transition-all duration-300 active:shadow-lg'>
+                                </li> */}
+                                {/* <li onClick={()=>setFilterShow(!filterShow)} className='flex justify-start items-center gap-2 py-2 px-2 hover:bg-primary/80 hover:text-white rounded-md transition-all duration-300 active:shadow-lg'>
                                     <span className='text-xl'><FaRegHeart /></span>
                                     <Link to='/dashboard/my-wishlist' className='block'>Wishlist</Link>
-                                </li>
+                                </li> */}
                                 <li onClick={()=>setFilterShow(!filterShow)} className='flex justify-start items-center gap-2 py-2 px-2 hover:bg-primary/80 hover:text-white rounded-md transition-all duration-300 active:shadow-lg'>
                                     <span className='text-xl'><MdOutlineMessage /></span>
                                     <Link to='/dashboard/chat' className='block'>Chat</Link>

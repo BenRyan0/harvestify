@@ -54,7 +54,7 @@ const CategoryClusters = () => {
          <Headers/>
 
          {/* <section className=' w-[85%] mx-auto h-[350px] mt-6 bg-cover bg-no-repeat relative bg-left' > */}
-         <section className=' w-[85%] mx-auto h-[350px] mt-6 bg-cover bg-no-repeat relative bg-left md-lg:hidden' style={{ backgroundImage: "url('/images/banner/1.jpg')" }}>
+         <section className=' w-[85%] mx-auto h-[150px] mt-6 bg-cover bg-no-repeat relative bg-left md-lg:hidden' style={{ backgroundImage: "url('/images/banner/1.jpg')" }}>
             <div className="absolute left-0 top-0 w-full h-full bg-[#03872D] bg-opacity-40">
                <div className="w-[85%] md:w-[80%] sm:w-[90%] lg:w-[90%] h-full mx-auto">
                     <div className="flex flex-col justify-center gap-1 items-center h-full w-full text-center text-white">

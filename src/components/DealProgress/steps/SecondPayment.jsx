@@ -84,7 +84,7 @@ const SecondPayment = () => {
     e.preventDefault()
     try {
       // Dispatch the action and wait for it to complete
-      await dispatch(paymentAdd(state)).unwrap(); // .unwrap() ensures you handle the promise correctly (if using Redux Toolkit)
+      await dispatch(paymentAdd2(state)).unwrap(); // .unwrap() ensures you handle the promise correctly (if using Redux Toolkit)
       
       // Check for success or error messages
       if (errorMessage) {

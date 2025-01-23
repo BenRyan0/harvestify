@@ -1,32 +1,4 @@
-// import React from 'react'
 
-// const changeLanguage = (code) => {
-//     console.log(`Language changed to: ${code}`);
-// }
-// const languages = [
-//     { code: "en", lang: "English" },
-//     { code: "tl", lang: "Tagalog" },
-//     { code: "bs", lang: "Bisaya" },
-//     { code: "md", lang: "Mandaya" },
-// ];
-
-// const LanguageDropdown = () => {
-    
-//     return (
-//         <div className='bg-red-500 text-red-600'>
-//             {languages.map((language) => (
-//                 <button 
-//                     key={language.code} 
-//                     onClick={() => changeLanguage(language.code)}
-//                 >
-//                     {language.lang}
-//                 </button>
-//             ))}
-//         </div>
-//     )
-// }
-
-// export default LanguageDropdown
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -38,7 +10,7 @@ const LanguageDropdown = () => {
         { code: "en", lang: "English" },
         { code: "tl", lang: "Tagalog" },
         { code: "bs", lang: "Bisaya" },
-        { code: "md", lang: "Mandaya" },
+      
     ];
 
     const toggleDropdown = () => {

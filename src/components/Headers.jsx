@@ -44,8 +44,7 @@ const Headers = ({hideSBar,hideCBar}) => {
     const {pathname} = useLocation()
     const [showSidebar,setShowSidebar]  = useState(true)
     const [categoryShow,setCategoryShow ] = useState(true)
-    const user = false
-    const wishlist = 10;
+  
     // const categories = [
     //     "Crops",
     //     "Livestock",
@@ -96,7 +95,7 @@ const Headers = ({hideSBar,hideCBar}) => {
 
 
                             <div className="border-l border-slate-600 h-[18px] text-center flex justify-center items-center pl-5">
-                                <Link to={'https://harvestify-dashboard.vercel.app/register'} className='text-xs'>Start Selling</Link>
+                                <Link to={'https://harvestify-dashboard.vercel.app/register'} className='text-xs'>{t("startSelling")}</Link>
                             </div>
                           
                             <div className="relative group flex items-center justify-center gap-1 text-sm text-slate-800 cursor-pointer before:absolute before:h-[18px] before:w-[1px] before:bg-[#afafaf] before:-left-[16px] after:absolute after:h-[18px] after:w-[1px] after:bg-[#afafaf] after:-right-[16px]">
@@ -123,10 +122,10 @@ const Headers = ({hideSBar,hideCBar}) => {
         </div>
         <div className="bg-white">
             <div className="w-[85%] lg:w-[90%] mx-auto">
-                <div className="h-[100px] md-lg:h-[120px] flex justify-between items-center flex-wrap">
+                <div className="h-[90px] md-lg:h-[120px] flex justify-between items-center flex-wrap">
                     <div className="md-lg:w-full w-3/12 md-lg:pt-4">
                         <div className="flex md-lg:justify-between justify-center items-center">
-                             <Link to='/'> <img className='w-[300px] md-lg:w-[200px]' src={logo} alt="logo" /></Link>
+                             <Link to='/'> <img className='w-[250px] md-lg:w-[200px]' src={logo} alt="logo" /></Link>
                             <div className="flex justify-center items-center text-center w-[30px] h-[30px] bg-white text-slate-600 border-0 border-slate-600 rounded-sm
                             cursor-pointer lg:hidden md-lg:flex xl:hidden hidden transition-all duration-300 " onClick={()=>setShowSidebar(false)}>
                                 <span className={`${showSidebar ? 'block': 'hidden'}`}><FaList size='25px' color='#03872D'/></span>
@@ -145,33 +144,27 @@ const Headers = ({hideSBar,hideCBar}) => {
                                     <Link to='/' className={`p-2 block ${pathname === '/' ? 'text-primary':'text-slate-600 '}`}>Home</Link>
                                 </li>
                                 <li>
-                                    <Link to='/listings' className={`p-2 block ${pathname === '/listings' ? 'text-primary':'text-slate-600'}`}>Products</Link>
+                                    <Link to='/listings' className={`p-2 block ${pathname === '/listings' ? 'text-primary':'text-slate-600'}`}>{t("products")}</Link>
                                 </li>
                                 <li>
-                                    <Link to='/clusters' className={`p-2 block ${pathname === '/clusters' ? 'text-primary':'text-slate-600'}`}>Sellers</Link>
+                                    <Link to='/clusters' className={`p-2 block ${pathname === '/clusters' ? 'text-primary':'text-slate-600'}`}>{t("sellers")}</Link>
                                     {/* <Link to='/clusters-listing' className={`p-2 block ${pathname === '/clusters-listing' ? 'text-primary':'text-slate-600'}`}>Clusters</Link> */}
                                 </li>
                               
                                 {/* <li>
-                                    <Link className={`p-2 block ${pathname === '/sellcrops' ? 'text-primary':'text-slate-600'}`}>Sell Crops</Link>
-                                </li> */}
-                                {/* <li>
-                                    <Link className={`p-2 block ${pathname === '/prices' ? 'text-primary':'text-slate-600'}`}>Prices</Link>
-                                </li> */}
-                                <li>
                                     <Link to='/about-us' className={`p-2 block ${pathname === '/aboutUs' ? 'text-primary':'text-slate-600'}`}>About us </Link>
-                                </li>
+                                </li> */}
                             </ul>
                             <div className="flex md-lg:hidden justify-center items-center gap-5">
                                 <div className="flex justify-center gap-5 ">
-                                    <div className="relative flex justify-center items-center cursor-pointer w-[40px] h-[40px] rounded-full bg-[#e2e2e2]/50">
+                                    {/* <div className="relative flex justify-center items-center cursor-pointer w-[40px] h-[40px] rounded-full bg-[#e2e2e2]/50">
                                         <span className='font-bold text-primary'><FaHeart size='13px'/></span>
                                         <div className='w-[27px] h-[27px] absolute border-2 border-[#e2e2e2] bg-primary rounded-full text-white flex justify-center items-center -top-[5px] -right-[8px] text-xs'>
                                             {
                                                 wishlist
                                             }
                                         </div>
-                                    </div>
+                                    </div> */}
                                     <div onClick={redirect_card_page} className="relative flex justify-center items-center cursor-pointer w-[40px] h-[40px] rounded-full bg-[#e2e2e2]/50">
                                     <span className='text-bold text-primary'><AiFillShopping size='14px'/></span>
                                       {
@@ -227,25 +220,23 @@ const Headers = ({hideSBar,hideCBar}) => {
                                 </li>
                             
                                 <li>
-                                    <Link to='/listings' className={`py-2 block ${pathname === '/listings' ? 'text-primary':'text-slate-600'}`}>PRODUCTS</Link>
+                                    <Link to='/listings' className={`py-2 block ${pathname === '/listings' ? 'text-primary':'text-slate-600'}`}>{t("products")}</Link>
                                 </li>
                                 <li>
-                                    <Link to='/clusters' className={`py-2 block ${pathname === '/clusters' ? 'text-primary':'text-slate-600'}`}>Sellers</Link>
+                                    <Link to='/clusters' className={`py-2 block ${pathname === '/clusters' ? 'text-primary':'text-slate-600'}`}>{t("sellers")}</Link>
                                 </li>
                                
+                                
                                 {/* <li>
-                                    <Link className={`py-2 block ${pathname === '/sellcrops' ? 'text-primary':'text-slate-600'}`}>Sell Crops</Link>
-                                </li> */}
-                                <li>
                                      <Link to='/about-us' className={`py-2 block ${pathname === '/aboutUs' ? 'text-primary':'text-slate-600'}`}>About us</Link>
-                                </li>
+                                </li> */}
                             </ul>
-                            <div className="relative bottom-0 flex gap-3 justify-start items-center">
+                            {/* <div className="relative bottom-0 flex gap-3 justify-start items-center">
                                 <a href="/"><FaFacebookSquare /></a>
                                 <a href="/"><RiTwitterXFill /></a>
                                 <a href="/"><FaSquareInstagram /></a>
                                 <a href="/"><FaLinkedin /></a>
-                            </div>
+                            </div> */}
                             <div className="w-full flex justify-end md-lg:justify-start gap-3 items-center">
                                 <div className="w-[40px] h-[40px] rounded-md flex bg-[#f5f5f5] justify-center items-center">
                                     <span><FaPhoneAlt /></span>
@@ -287,7 +278,7 @@ const Headers = ({hideSBar,hideCBar}) => {
                     <div onClick={()=>setCategoryShow(!categoryShow)} className="h-[50px] bg-primary rounded-md text-white justify-center md-lg:justify-between md-lg:px-6 flex items-center gap-3 font-bold text-md cursor-pointer">
                         <div className="flex justify-center items-center gap-3">
                              <span><FaList /></span>
-                            <span>All Categories</span>
+                            <span>{t("categories")}</span>
                         </div>
                         <span><FaCaretDown /></span>
                     </div>
@@ -315,8 +306,8 @@ const Headers = ({hideSBar,hideCBar}) => {
                         <div className="w-8/12 md-lg:w-full">
                             <div className="flex border h-[50px] items-center relative gap-5 rounded-md">
                                 <div className="relative after:absolute after:h-[25px] after:w-[1px] after:bg-[#afafaf] after:-right-[15px] md:hidden ">
-                                    <select onChange={(e)=>setCategory(e.target.value)} name="" id="" className='w-[180px] text-primaryDark font-semibold bg-transparent px-2  h-full outline-0 border-none'>
-                                        <option className='' value="">Select Category</option>
+                                    <select onChange={(e)=>setCategory(e.target.value)} name="" id="" className='w-[200px] text-primaryDark font-semibold bg-transparent px-2  h-full outline-0 border-none'>
+                                        <option className='' value="">{t("selectCategory")}</option>
                                         {
                                              categories.map((c,i)=>
                                                 <option key={i} value={c.name}>{c.name}</option>
@@ -325,7 +316,7 @@ const Headers = ({hideSBar,hideCBar}) => {
                                     </select>
                                 </div>
                                 <input className='w-full relative bg-transparent text-primaryDark outline-0 pr-[150px] px-3 h-full' onChange={(e)=>setSearchValue(e.target.value)}  type="text" name='' id='' placeholder='Search'/>
-                                <button onClick={search} className='bg-primary right-0 absolute px-8 h-full font-semibold uppercase text-white'>Search</button>
+                                <button onClick={search} className='bg-primary right-0 absolute px-8 h-full font-semibold uppercase text-white'>{t("search")}</button>
                             </div>
                         </div>
                         <div className="w-4/12 block md-lg:hidden pl-2 md-lg:w-full md-lg:pl-0">

@@ -58,15 +58,22 @@ return (
       >
           {
                categories.map((c, i)=>
-               <Link className='h-[120px] md-lg:h-[80px] border block rounded-md'
+               <Link className='h-[120px] md-lg:h-[80px] border block rounded-md 0 mx-1'
                  key={i} to='#'>
                   <div className="w-full h-full relative">
-                    <img className='h-full w-full rounded-md' src={c.image} alt="category images" />
+                  <img
+                    className="h-full w-full rounded-md object-cover"
+                    style={{ objectPosition: '60% 10%' }} // Horizontal center (50%) and slightly down vertically (10%)
+                    src={c.image || '/path/to/fallback-image.jpg'}
+                    alt={c.altText || 'Category image'}
+                    onError={(e) => { e.target.src = '/path/to/fallback-image.jpg'; }}
+                    />
+
+
+                    {/* <img className='h-full w-full rounded-md object-cover bg-top' src={c.image} alt="category images" /> */}
                     <div className="absolute bottom-6 w-full mx-auto font-bold left-0 flex flex-col justify-center items-center">
                        <span className='py-[2px] px-6 bg-[#3330305d] text-white'>{c.name}</span>
-                       {/* <button className='text-sm md-lg:text-xs font-semibold bg-accent py-1 px-2 rounded-md border-2 border-accent text-white flex items-center gap-1'>
-                        <span><FaThList /></span>Check DTI Suggested prices</button> */}
-                       {/* <span className='text-sm'>Check Suggested prices</span> */}
+                       
                     </div>
                   </div>
                </Link>)

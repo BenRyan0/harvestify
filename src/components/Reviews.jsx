@@ -191,7 +191,7 @@ useEffect(()=>{
           </div>
         </div>
       </div>
-      <div className="">
+      {/* <div className="">
           {
             userInfo ?  <div className="flex flex-col gap-3">
             <div className="flex text-2xl">
@@ -215,7 +215,7 @@ useEffect(()=>{
             <Link className='py-2 px-5 bg-primary text-white font-semibold rounded-md' to='/login'>LOGIN</Link>
           </div>
           }
-      </div>
+      </div> */}
     </div>
   )
 }

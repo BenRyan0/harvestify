@@ -83,7 +83,7 @@ const Index_ = () => {
             </div>
         </div>
         <div className="bg-white p-4 mt-5 rounded-md">
-            <h2 className='text-base font-semibold text-slate-600 uppercase'>RECENT ORDERS</h2>
+            <h2 className='text-base font-semibold text-slate-600 uppercase'>MY ORDERS</h2>
             <div className="pt-4">
                 <div className="relative overflow-x-auto">
                     <table className='w-full text-sm text-left text-gray-500'>

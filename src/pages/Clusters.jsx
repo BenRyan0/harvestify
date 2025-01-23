@@ -17,12 +17,14 @@ import Pagination from '../components/Pagination';
 import {useDispatch, useSelector} from 'react-redux'
 import {price_range_listing,yield_range_listing,query_listings,get_listings, expected_yields_units} from '../store/reducers/homeReducer'
 
+import { useTranslation } from 'react-i18next';
 
 
 const Clusters = () => {
     const dispatch = useDispatch()
     const {categories,allListings,listings,totalListing,latestListings, priceRange, allYieldUnits, yieldRange, parPage} = useSelector(state=>state.home)
     console.log(allListings)
+    const {t} = useTranslation()
 
 
     
@@ -114,7 +116,7 @@ const Clusters = () => {
     <>
          <Headers/>
          {/* <section className=' w-[85%] mx-auto h-[350px] mt-6 bg-cover bg-no-repeat relative bg-left' > */}
-         <section className=' w-[85%] mx-auto h-[250px] mt-6 bg-cover bg-no-repeat relative bg-left md-lg:hidden' style={{ backgroundImage: "url('/images/banner/1.jpg')" }}>
+         <section className=' w-[85%] mx-auto h-[150px] mt-6 bg-cover bg-no-repeat relative bg-left md-lg:hidden' style={{ backgroundImage: "url('/images/banner/1.jpg')" }}>
             <div className="absolute left-0 top-0 w-full h-full bg-[#03872D] bg-opacity-40">
                <div className="w-[85%] md:w-[80%] sm:w-[90%] lg:w-[90%] h-full mx-auto">
                     <div className="flex flex-col justify-center gap-1 items-center h-full w-full text-center text-white">
@@ -137,7 +139,7 @@ const Clusters = () => {
                 </div>
                 <div className="w-full flex flex-wrap">
                     <div className={`w-3/12 md-lg:w-3/12 md:w-full pr-8 ${filter ? 'md:h-0 md:overflow-hidden md:mb-6' : 'md:h-auto md:overflow-auto md:mb-0'}`}>
-                        <h2 className='text-xl font-bold mb-3 text-slate-600'>Categories</h2>
+                        <h2 className='text-xl font-bold mb-3 text-slate-600'>{t("categories")}</h2>
                         <div className='py-2'>
                             {
                                 categories.map((c,i)=> <div className='flex justify-start items-center gap-2 py-1' key={i}>
@@ -148,7 +150,7 @@ const Clusters = () => {
                         </div>
                          {/* Price Range Filter */}
                             <div className="p-2 flex flex-col gap-5">
-                                <h2 className="text-xl font-bold mb-3 text-slate-600">Price</h2>
+                                <h2 className="text-xl font-bold mb-3 text-slate-600">{t("price")}</h2>
                                 <Range
                                 step={1}
                                 min={priceRange.low}
@@ -180,7 +182,7 @@ const Clusters = () => {
 
                             {/* Yield Range Filter */}
                             <div className="p-2 flex flex-col gap-5">
-                                <h2 className="text-xl font-bold mb-3 text-slate-600">Expected Yield ({sortYieldUnit})</h2>
+                                <h2 className="text-xl font-bold mb-3 text-slate-600">{t("expectedYield")} ({sortYieldUnit})</h2>
                                 <Range
                                 step={1}
                                 min={yieldRange.low}
@@ -216,7 +218,7 @@ const Clusters = () => {
                             </div>
                       
                         <div className="py-3 flex flex-col gap-4">
-                             <h2 className='text-xl font-bold mb-3 text-slate-600'>Cluster Rating</h2>
+                             <h2 className='text-xl font-bold mb-3 text-slate-600'>{t("sellerRating")}</h2>
                              <div className="flex flex-col gap-3">
                                 <div onClick={()=>setRating(5)} className="text-orange-500 flex justify-start items-start gap-2 text-xl cursor-pointer">
                                     <span><BiSolidCheckShield /></span>

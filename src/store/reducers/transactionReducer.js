@@ -44,6 +44,20 @@ export const get_transaction_by_deal = createAsyncThunk(
       }
     }
   );
+
+  export const deleteTraderDeal = createAsyncThunk(
+    "traderDeal/deleteTraderDeal",
+    async (traderDealId, { rejectWithValue, fulfillWithValue }) => {
+      console.log("Deleting Trader Deal ID:", traderDealId);
+      try {
+        const response = await api.delete(`/trader/traderDeal-delete/${traderDealId}`);
+        return fulfillWithValue(response.data); // Return the server response on success
+      } catch (error) {
+        return rejectWithValue(error.response?.data || "An error occurred");
+      }
+    }
+  );
+  
   
   export const paymentAdd2 = createAsyncThunk(
     "transaction/paymentAdd2",
@@ -264,16 +278,21 @@ export const get_listing = createAsyncThunk(
 export const trader_review = createAsyncThunk(
     'review/trader_review',
     async (info, { fulfillWithValue, rejectWithValue }) => {
+        console.log("01 __________________________________ REVIEW");
         try {
             const { data } = await api.post('/home/trader/submit-review', info);
-            console.log(data)
-            return fulfillWithValue(data);
+            console.log("02 __________________________________ REVIEW");
+            console.log(data);
+            return fulfillWithValue(data); // Successful action dispatch with data
         } catch (error) {
-            // console.error("Error in get_listing:", error.response);
-            return rejectWithValue(error.response?.data || "An error occurred");
+            console.log(error)
+            // Adding more detailed error handling
+            const errorMsg = error.response?.data || error.message || "An error occurred";
+            return rejectWithValue(errorMsg); // Dispatch failed action with error message
         }
     }
-)
+);
+
 
 export const get_reviews = createAsyncThunk(
     'review/get_reviews',
@@ -351,7 +370,8 @@ export const transactionReducer = createSlice({
         transaction: {},
         proof: {},
         currentTransactions: {},
-        DeliveryHandoffProof : {}
+        DeliveryHandoffProof : {},
+        currentProduct : {}
         
     },
     reducers:{
@@ -364,14 +384,28 @@ export const transactionReducer = createSlice({
 
     extraReducers: (builder) => {
        
+        builder.addCase(get_transaction_by_deal.pending, (state, payload) => {
+            state.loader = true;
+        });
+       
+        builder.addCase(get_transaction_by_deal.rejected, (state, payload) => {
+            state.loader = false;
+            state.currentProduct = "none";
+        });
+       
         builder.addCase(get_transaction_by_deal.fulfilled, (state, payload) => {
             state.loader = false;
             state.currentTransactions = payload.payload.transactions;
             state.DeliveryHandoffProof = payload.payload.DeliveryHandoffProofs[0];
+            state.currentProduct = payload.payload.deal;
            
             
         });
 
+
+        builder.addCase(paymentAdd.pending, (state, payload) => {
+            state.loader = true       
+        });
 
         builder.addCase(paymentAdd.rejected, (state, payload) => {
             state.loader = false;
@@ -383,7 +417,34 @@ export const transactionReducer = createSlice({
             state.proof = payload.payload.proof;      
             state.currentTransactions = payload.payload.updatedTransaction;  
         });
+
+
+
+        builder.addCase(trader_review.rejected, (state, payload) => {
+            state.loader = false;
+            state.errorMessage = payload.payload.error;        
+        });
+        builder.addCase(trader_review.fulfilled, (state, payload) => {
+            state.loader = false;
+            state.successMessage = payload.payload.message;        
+            // state.proof = payload.payload.proof;      
+            // state.currentTransactions = payload.payload.updatedTransaction;  
+        });
         
+
+
+        builder.addCase(deleteTraderDeal.pending, (state, payload) => {
+            state.loader = true;     
+        });
+
+        builder.addCase(deleteTraderDeal.rejected, (state, payload) => {
+            state.loader = false;
+            state.errorMessage = payload.payload.error;        
+        });
+        builder.addCase(deleteTraderDeal.fulfilled, (state, payload) => {
+            state.loader = false;
+            state.successMessage = payload.payload.message;        
+        });
         
        
     },

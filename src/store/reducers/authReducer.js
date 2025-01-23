@@ -30,6 +30,22 @@ export const trader_login = createAsyncThunk(
   }
 );
 
+// Async thunk for trader change password
+export const trader_changePassword = createAsyncThunk(
+  "auth/trader_changePassword",
+  async (info, { fulfillWithValue, rejectWithValue }) => {
+    try {
+      const { data } = await api.post("/trader/change-password", info);
+      // Clearing the token after password change to force a re-login
+      localStorage.removeItem("traderToken");
+      return fulfillWithValue(data);
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+
 const decodedToken = (token) =>{
   if (!token) {
     return ""; // No token, return an empty role
@@ -121,6 +137,21 @@ export const authReducer = createSlice({
         state.token = payload.payload.token;
       });
 
+
+      builder.addCase(trader_changePassword.pending, (state,_) => {
+        state.loader= true;
+        });
+
+      builder.addCase(trader_changePassword.rejected, (state,payload) => {
+        state.loader= false;
+        state.errorMessage = payload.payload.error;
+        });
+
+      builder.addCase(trader_changePassword.fulfilled, (state,payload) => {
+        state.loader= false
+        state.successMessage = payload.payload.message;
+   
+        });
    
 },
   //   extraReducers: {},

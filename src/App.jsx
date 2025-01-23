@@ -31,6 +31,8 @@ import Wishlist from './components/dashboard/Wishlist';
 import Deal from './components/dashboard/Deal';
 import DealProgress from './components/dashboard/DealProgress';
 import Chat from './components/dashboard/Chat';
+import CancellationPAge from './components/dashboard/Cancellation';
+import CancellationDeal from './components/dashboard/cancelDeal';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api'
 import React from 'react';
 
@@ -101,6 +103,8 @@ function App() {
 
                <Route path='chat' element={<Chat/>}/> 
                <Route path='chat/:sellerId' element={<Chat/>}/> 
+               <Route path='cancellation/:transactionId' element={<CancellationPAge/>}/> 
+               <Route path='cancellation-deal/:dealId' element={<CancellationDeal/>}/> 
              
             </Route>
           </Route>

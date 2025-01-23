@@ -25,6 +25,7 @@ import 'react-tooltip/dist/react-tooltip.css'
 import { Tooltip } from 'react-tooltip'
 import { RiMessage3Fill } from "react-icons/ri";
 
+import { useTranslation } from 'react-i18next';
 
 
 const FeaturedListings = ({listings}) => {
@@ -47,7 +48,7 @@ const FeaturedListings = ({listings}) => {
       navigate('/login');
     }
   };
-
+  const {t} = useTranslation()
   const redirect_ = (listing_) => {
     console.log(listing_);
     console.log("____________________________________ >");
@@ -162,7 +163,7 @@ const now = new Date();
     <div className='w-[85%] flex flex-wrap mx-auto '>
       <div className="w-full">
         <div className="text-center flex justify-center items-center flex-col text-2xl text-slate-600 font-bold relative pb-[45px]">
-          <h2>Featured Products</h2>
+          <h2>{t("featuredProducts")}</h2>
           <div className="w-[100px] h-[4px] bg-[#1EE35D] mt-3"></div>
 
         </div>

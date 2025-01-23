@@ -6,6 +6,8 @@ import toast,{Toaster} from 'react-hot-toast'
 import FadeLoader from 'react-spinners/FadeLoader'
 import {useSelector, useDispatch} from 'react-redux'
 import {trader_login,messageClear,redirectClear} from '../store/reducers/authReducer'
+import { useTranslation } from 'react-i18next';
+
 
 
 const Login = () => {
@@ -20,7 +22,7 @@ const Login = () => {
     //     }
     // },[redirect])
     
-    
+    const {t} = useTranslation()
     const [state, setState] = useState({
         email: '',
         password: ''
@@ -69,7 +71,7 @@ const Login = () => {
                 <div className="w-full justify-center items-center py-10">
                     <div className="grid lg:grid-cols-1 grid-cols-2 md:w-[90%] w-[60%] mx-auto bg-white rounded-md justify-center items-center">
                         <div className="px-8 py-8">
-                            <h2 className='text-center w-full text-xl text-slate-600 font-black'>LOGIN</h2>
+                            <h2 className='text-center w-full text-xl text-slate-600 font-black'>{t("login")}</h2>
                             <div className="">
                             <form onSubmit={login} className=''>
                                 <div className="flex flex-col gap-1 mb-2">
@@ -80,20 +82,21 @@ const Login = () => {
                                     <label className='text-[#208515]' htmlFor="password">Password</label>
                                     <input onChange={inputHandle} value={state.password}  type="password" className='w-full px-3 py-2 border border-slate-200 outline-none focus:border-accent rounded-md' id='password' name='password' placeholder='Password' />
                                 </div>
-                                <button className='px-8 w-full mt-4 py-2 bg-accent hover:shadow-lg hover:shadow-accent/10 rounded-md font-bold text-white'>LOGIN</button>
+                                <button className='px-8 w-full mt-4 py-2 bg-accent hover:shadow-lg hover:shadow-accent/10 rounded-md font-bold text-white'>{t("login")}</button>
                             </form>
                             <div className="mt-6 w-full text-center flex flex-col">
-                                <p className='text-sm text-slate-600 -mb-2 pb-1'>Don't Have An Account Yet? 
+                                <p className='text-sm text-slate-600 -mb-2 pb-1'>{t("dontHaveAccount")} 
                                 </p>
-                                <span className='text-sm font-semibold text-primaryDark'><a href="https://harvestify-dashboard.vercel.app/trader/register">Apply for Trader Account</a></span>
+                                <span className='text-sm font-semibold text-primaryDark'><a href="https://harvestify-dashboard.vercel.app/trader/register">
+                                {t("applyForTraderAccount")}</a></span>
                                 {/* <span className='text-sm font-semibold text-primaryDark'><a href="http://localhost:3000/trader/register">Apply for Trader Account</a></span> */}
                                 
                             </div>
                             <div className="mt-6 pt-2 w-full text-center flex flex-row justify-between border-t-2">
                                 {/* <p className='text-sm text-slate-600 -mb-2 pb-1'></p> */}
                                 {/* <span className='text-sm font-semibold text-primaryDark'><Link to="/register">Farmer Login</Link></span> */}
-                                <span className='text-sm font-semibold text-primaryDark'><a href="https://harvestify-dashboard.vercel.app/login">Farmer Login</a></span>
-                                <span className='text-sm font-semibold text-primaryDark'><a href="https://harvestify-dashboard.vercel.app/register">Become a Seller/Farmer</a></span>
+                                <span className='text-sm font-semibold text-primaryDark'><a href="https://harvestify-dashboard.vercel.app/login">{t("farmerLogin")}</a></span>
+                                <span className='text-sm font-semibold text-primaryDark'><a href="https://harvestify-dashboard.vercel.app/register">{t("becomeSellerFarmer")}</a></span>
                             </div>
                             {/* <div className="mt-6 w-full text-center">
                                 <p className='text-sm text-slate-600 -mb-2 pb-1'>Don't Have An Account Yet?</p>

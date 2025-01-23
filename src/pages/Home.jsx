@@ -8,9 +8,14 @@ import Listings from '../components/listings/Listings'
 import Footer from '../components/Footer'
 import { get_categories, get_listings } from '../store/reducers/homeReducer'
 
+import { useTranslation } from 'react-i18next';
+
+
 const Home = () => {
   // console.log("home")
   const dispatch = useDispatch()
+  const {t} = useTranslation()
+
   const {categories,allListings,featuredListings, latestListings,topRatedListings,discounted_listings} = useSelector(state=>state.home)
  
   useEffect(()=>{
@@ -22,7 +27,7 @@ const Home = () => {
     <div className='w-full bg-main'>
         <Headers categories={categories}/>
         <Banner/>
-        <div className='my-1'>
+        <div className=''>
           <Categories categories={categories}/>
         </div>
         <div className="py-[45px]">
@@ -33,10 +38,10 @@ const Home = () => {
           <div className="w-[85%] flex flex-wrap mx-auto">
             <div className="grid w-full grid-cols-3 xl:grid-cols-2 lg:grid-cols-2 md-lg:grid-cols-1 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1 gap-2">
               <div className="overflow-hidden">
-                  <Listings listings={latestListings}  title='Latest Listings'/>
+                  <Listings listings={latestListings}  title={t("latestProducts")}/>
               </div>
               <div className="overflow-hidden">
-                  <Listings listings={topRatedListings} title='From Top Rated Associations'/>
+                  <Listings listings={topRatedListings} title={t("")}/>
               </div>
               <div className="overflow-hidden">
                   <Listings listings={discounted_listings} title='Discounted Listings'/>

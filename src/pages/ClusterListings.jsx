@@ -123,7 +123,8 @@ const ClusterListings = () => {
     );
 
     // Check if the data is still loading
-    const isLoading = loader || !cluster_listings || !cluster_listings_count || !seller.length;
+    // const isLoading = loader;
+    const isLoading = loader || !seller.length;
 
     return (
         <div className="">
