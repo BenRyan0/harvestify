@@ -87,7 +87,7 @@ const Shipping = () => {
     const {userInfo} = useSelector(state=>state.auth)
     const {loader, successMessage, errorMessage,shippingPrice, distance, valid,
         discountType,
-        value,v_id,vcode} = useSelector(state => state.deal)
+        value,v_id,vcode,voucherLoader} = useSelector(state => state.deal)
 
 
     const [code, setCode] = useState({
@@ -408,7 +408,7 @@ const Shipping = () => {
   return (
     <div>
     <Headers/>
-         <section className=' w-[85%] mx-auto h-[350px] mt-6 bg-cover bg-no-repeat relative bg-left md-lg:hidden' style={{ backgroundImage: "url('/images/banner/card.jpg')" }}>
+         <section className=' w-[85%] mx-auto h-[150px] mb-4 mt-6 bg-cover bg-no-repeat relative bg-left md-lg:hidden' style={{ backgroundImage: "url('/images/banner/card.jpg')" }}>
             <div className="absolute left-0 top-0 w-full h-full bg-[#03872D] bg-opamunCity-40">
                 <div className="w-[85%] md:w-[80%] sm:w-[90%] lg:w-[90%] h-full mx-auto">
                     <div className="flex flex-col justify-center gap-1 items-center h-full w-full text-center text-white">
@@ -774,7 +774,17 @@ const Shipping = () => {
                                                                                 </div>
                                                                             </div>                                                                         */}
                                                                             <button onClick={submitCode} className="absolute right-2 bottom-2 bg-primaryDark px-3 rounded-md text-slate-100 flex justify-center items-center gap-1">
-                                                                               <span className='font-bold'>Check </span> <BiSolidDiscount size={30} />
+                                                                               <span className='font-bold'>
+                                                                                {
+                                                                                    voucherLoader? 
+                                                                                    (
+                                                                                        <div className="">checking...</div>
+                                                                                    )
+                                                                                    :
+                                                                                    (
+                                                                                        <div className="">Check</div>
+                                                                                    )
+                                                                                }</span> <BiSolidDiscount size={30} />
                                                                             </button>
                                                                         </div>
                                                                         <div className="pt-2">

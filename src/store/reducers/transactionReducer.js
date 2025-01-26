@@ -401,6 +401,30 @@ export const transactionReducer = createSlice({
            
             
         });
+       
+        builder.addCase(trader_handoff_confirm.pending, (state, payload) => {
+            state.loader = true;
+        });
+       
+        builder.addCase(trader_handoff_confirm.rejected, (state, payload) => {
+            state.loader = false;
+        });
+       
+        builder.addCase(trader_handoff_confirm.fulfilled, (state, payload) => {
+            state.loader = false;            
+        });
+
+        builder.addCase(paymentAdd2.pending, (state, payload) => {
+            state.loader = true;
+        });
+       
+        builder.addCase(paymentAdd2.rejected, (state, payload) => {
+            state.loader = false;
+        });
+       
+        builder.addCase(paymentAdd2.fulfilled, (state, payload) => {
+            state.loader = false;            
+        });
 
 
         builder.addCase(paymentAdd.pending, (state, payload) => {

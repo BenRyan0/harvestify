@@ -130,6 +130,15 @@ const FirstPayment = () => {
   //       }
   //  }
   const add_payment = async (e) => {
+    if(!state.image){
+      toast.error("please Include a image proof")
+      // END HERE IF NO IMAGE 
+
+      return
+    }
+
+
+
     e.preventDefault();
   
     try {
@@ -243,12 +252,12 @@ const FirstPayment = () => {
             :
             <div className="w-full ">
               <div className="w-full flex justify-center items-center text-center flex-col ">
-                <h2 className='font-bold'>NO INITIAL DEPOSIT SET BY THE SELLER</h2> 
+                <h2 className='font-bold text-xl text-slate-800'>NO INITIAL DEPOSIT SET BY THE SELLER</h2> 
                
                 {
                   myDeal? 
                   <Link to={`/dashboard/chat/${myDeal.listing[0].sellerId}`} className='hover:underline pt-2'>
-                  <p className='text-sm'>please contact the seller</p>
+                  <p className='text-sm text-slate-800'>please contact the seller</p>
                 </Link>
                   :
                   <Link className='hover:underline pt-2'>

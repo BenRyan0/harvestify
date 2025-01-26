@@ -16,11 +16,11 @@ const SecondPayment = () => {
   const { currentStep, setCurrentStep } = useContext(StepperContext);
   const { currentTransaction, setCurrentTransaction } = useContext(StepperContext);
   
-  const loader = false;
+  // const loader = false;
 
 
   const {myDeal} = useSelector((state) => state.deal);
-    const { transaction, errorMessage, successMessage, currentTransactions } = useSelector(
+    const { transaction, errorMessage, successMessage, currentTransactions,loader } = useSelector(
         (state) => state.transaction
       );
 
@@ -135,6 +135,9 @@ const SecondPayment = () => {
     //   add_transaction({traderId: userInfo.id, sellerId: userInfo.id, listingId: userInfo.id, listingName: userInfo.id, listingPrice: userInfo.id, depositAmount: userInfo.id})
     // )
   }
+
+
+  
   return (
     <section className='bg-transparent w-full p-4 rounded-md'>
             <div className="w-full">

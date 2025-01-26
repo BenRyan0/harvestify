@@ -144,6 +144,7 @@ export const dealReducer = createSlice({
     discountType : '',
     v_id : '',
     vcode : '',
+    voucherLoader: false
 
     // message: 'Voucher is valid',
       //   valid : true,
@@ -180,7 +181,16 @@ export const dealReducer = createSlice({
       
     });
 
+    builder.addCase(submit_voucher_code.pending, (state,_) => {
+      state.voucherLoader = true
+      // state.errorMessage = payload.payload.error
+        });
+    builder.addCase(submit_voucher_code.rejected, (state, payload ) => {
+      state.voucherLoader = false
+        });
+
     builder.addCase(submit_voucher_code.fulfilled, (state, payload ) => {
+      state.voucherLoader = false
       state.successMessage = payload.payload.message; // Access payload directly
       state.valid = payload.payload.valid; // Access payload directly
       state.discountType = payload.payload.discountType; // Access payload directly
@@ -195,9 +205,7 @@ export const dealReducer = createSlice({
      
       
     });
-    builder.addCase(submit_voucher_code.rejected, (state, payload ) => {
-  state.errorMessage = payload.payload.error
-    });
+
   },
 });
 

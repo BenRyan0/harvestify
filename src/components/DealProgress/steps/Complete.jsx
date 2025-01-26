@@ -14,7 +14,7 @@ import toast from 'react-hot-toast';
 const Complete = () => {
   const dispatch = useDispatch()
   const {userInfo} = useSelector(state=>state.auth)
-  const [rate, setRate] = useState('')
+  const [rate, setRate] = useState(1)
   const [rev , setRev] = useState('')
   const { transactionData, setTransactionData } = useContext(StepperContext);
   const { currentStep, setCurrentStep } = useContext(StepperContext);
@@ -40,6 +40,12 @@ const Complete = () => {
        dispatch(trader_review(obj))
        window.location.reload();
       //  dispatch(trader_review)
+      if(errorMessage){
+      }else{
+        setRev("")
+        setRate(0)
+       
+      }
      }
   
    
@@ -47,20 +53,23 @@ const Complete = () => {
      console.log("currentTransaction")
      console.log( currentTransaction)
      useEffect(()=>{
-      if(errorMessage){
-      }else{
-        setRev("")
-        setRate(0)
-       
-      }
+      
       },[successMessage, errorMessage])
   
   return (
     <div>
-      <div className="">
+       <div className="flex justify-center items-center">
+        <h2 className='font-bold text-slate-700'>
+          PLEASE DO SUBMIT A RATING TO THE SELLERS PRODUCT  
+        </h2>
+       
+        </div>
+      <div className="flex justify-center items-center w-full">
           {
-            userInfo ?  <div className="flex flex-col gap-3">
-            <div className="flex text-2xl">
+            userInfo ?  <div className="flex flex-col gap-3 w-full justify-center items-center">
+            <div className="flex justify-center flex-col text-2xl">
+              
+              <div className=""></div>
                 <RatingReact 
                 onChange={(e)=>setRate(e)} 
                 initialRating={rate}
@@ -69,10 +78,10 @@ const Complete = () => {
                 />
                 
             </div>
-            <form onSubmit={review_submit}>
-              <textarea value={rev} required onChange={(e)=>setRev(e.target.value)} className='border-2 outline-0 p-3 w-full border-slate-300 rounded-md text-slate-500 focus:border-primaryDark'  cols="30" rows="5" name="" id=""></textarea>
-              <div className="mt-2">
-                <button className='py-1 px-5 bg-primary text-white font-semibold rounded-md'>Submit</button>
+            <form onSubmit={review_submit} className='w-full flex justify-center flex-col items-center'>
+              <textarea value={rev} required onChange={(e)=>setRev(e.target.value)} className='border-2 outline-0 p-3 w-7/12 border-slate-300 rounded-md text-slate-500 focus:border-primaryDark'  cols="30" rows="5" name="" id=""></textarea>
+              <div className="mt-2 w-7/12">
+                <button className='w-full py-1 px-5 bg-primary text-white font-semibold rounded-md'>Submit</button>
               </div>
             </form>
           </div>
