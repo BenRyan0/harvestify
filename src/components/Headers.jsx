@@ -151,9 +151,9 @@ const Headers = ({hideSBar,hideCBar}) => {
                                     {/* <Link to='/clusters-listing' className={`p-2 block ${pathname === '/clusters-listing' ? 'text-primary':'text-slate-600'}`}>Clusters</Link> */}
                                 </li>
                               
-                                {/* <li>
+                                <li>
                                     <Link to='/about-us' className={`p-2 block ${pathname === '/aboutUs' ? 'text-primary':'text-slate-600'}`}>About us </Link>
-                                </li> */}
+                                </li>
                             </ul>
                             <div className="flex md-lg:hidden justify-center items-center gap-5">
                                 <div className="flex justify-center gap-5 ">
@@ -227,9 +227,9 @@ const Headers = ({hideSBar,hideCBar}) => {
                                 </li>
                                
                                 
-                                {/* <li>
+                                <li>
                                      <Link to='/about-us' className={`py-2 block ${pathname === '/aboutUs' ? 'text-primary':'text-slate-600'}`}>About us</Link>
-                                </li> */}
+                                </li>
                             </ul>
                             {/* <div className="relative bottom-0 flex gap-3 justify-start items-center">
                                 <a href="/"><FaFacebookSquare /></a>
