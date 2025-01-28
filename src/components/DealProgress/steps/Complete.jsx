@@ -58,7 +58,7 @@ const Complete = () => {
   
   return (
     <div>
-       <div className="flex justify-center items-center">
+       <div className="flex justify-center items-center text-center">
         <h2 className='font-bold text-slate-700'>
           PLEASE DO SUBMIT A RATING TO THE SELLERS PRODUCT  
         </h2>
@@ -78,10 +78,10 @@ const Complete = () => {
                 />
                 
             </div>
-            <form onSubmit={review_submit} className='w-full flex justify-center flex-col items-center'>
-              <textarea value={rev} required onChange={(e)=>setRev(e.target.value)} className='border-2 outline-0 p-3 w-7/12 border-slate-300 rounded-md text-slate-500 focus:border-primaryDark'  cols="30" rows="5" name="" id=""></textarea>
-              <div className="mt-2 w-7/12">
-                <button className='w-full py-1 px-5 bg-primary text-white font-semibold rounded-md'>Submit</button>
+            <form onSubmit={review_submit} className='w-full  flex justify-center flex-col items-center'>
+              <textarea value={rev} required onChange={(e)=>setRev(e.target.value)} className='border-2 outline-0 p-3 md:w-full w-7/12 border-slate-300 rounded-md text-slate-500 focus:border-primaryDark'  cols="30" rows="5" name="" id=""></textarea>
+              <div className="mt-2 md:w-full w-7/12">
+                <button className='w-full py-3 px-5 bg-primary text-white font-semibold rounded-md'>Submit</button>
               </div>
             </form>
           </div>

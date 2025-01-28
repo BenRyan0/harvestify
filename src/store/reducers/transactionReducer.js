@@ -371,7 +371,8 @@ export const transactionReducer = createSlice({
         proof: {},
         currentTransactions: {},
         DeliveryHandoffProof : {},
-        currentProduct : {}
+        currentProduct : {},
+        loaderS1 : false
         
     },
     reducers:{
@@ -429,14 +430,17 @@ export const transactionReducer = createSlice({
 
         builder.addCase(paymentAdd.pending, (state, payload) => {
             state.loader = true       
+            state.loaderS1 = true       
         });
 
         builder.addCase(paymentAdd.rejected, (state, payload) => {
             state.loader = false;
+            state.loaderS1 = false;
             state.errorMessage = payload.payload.error;        
         });
         builder.addCase(paymentAdd.fulfilled, (state, payload) => {
             state.loader = false;
+            state.loaderS1 = false;
             state.successMessage = payload.payload.message;        
             state.proof = payload.payload.proof;      
             state.currentTransactions = payload.payload.updatedTransaction;  

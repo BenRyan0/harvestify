@@ -168,11 +168,11 @@ const DealProgress = () => {
   
     
   return (
-    <div className='w-full h-full bg-white rounded-md px-5 py-3 pb-6'>
+    <div className='w-full h-full bg-white rounded-md px-5 py-3 pb-6' >
         <div className="container horizontal mt-5">
           <Stepper steps = {steps} currentStep={currentStep}/>
 
-          <div className="my-1 py-10 md:px-10 px-3">
+          <div className="my-1 py-10  px-3 ">
           <StepperContext.Provider value={{
                     userData,
                     setUserData,

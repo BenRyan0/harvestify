@@ -68,7 +68,7 @@ const DeliveryReceipt = () => {
                     </div>
             </div>
 
-            <div className="w-5/12 text-slate-700 bg-slate-200 relative p-2 ">
+            <div className="lg:w-full w-5/12 text-slate-700 bg-slate-200 relative p-2 ">
                         <div className=" flex items-center justify-between text-end mb-6 border-b-2 border-primaryDark pb-3">
                         <h2 className='font-bold  text-primaryDark'>UPLOAD DATE: </h2>
                          <h2 className='bg-primaryDark font-semibold px-3 py-1 text-slate-100'> {dateFormat((DeliveryHandoffProof.uploadDate), "mmmm dS, yyyy")} </h2>
