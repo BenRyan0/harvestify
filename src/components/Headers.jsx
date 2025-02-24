@@ -30,6 +30,7 @@ const Headers = ({hideSBar,hideCBar}) => {
     const {userInfo} = useSelector(state => state.auth)
     const {categories} = useSelector(state=>state.home)
     const {errorMessage,successMessage, card_listings_count } = useSelector(state => state.card)
+     const [isHovered, setIsHovered] = useState(false);
 
     // state.card_listings = payload.payload.card_listings;
     //   state.price = payload.payload.price;
@@ -157,14 +158,6 @@ const Headers = ({hideSBar,hideCBar}) => {
                             </ul>
                             <div className="flex md-lg:hidden justify-center items-center gap-5">
                                 <div className="flex justify-center gap-5 ">
-                                    {/* <div className="relative flex justify-center items-center cursor-pointer w-[40px] h-[40px] rounded-full bg-[#e2e2e2]/50">
-                                        <span className='font-bold text-primary'><FaHeart size='13px'/></span>
-                                        <div className='w-[27px] h-[27px] absolute border-2 border-[#e2e2e2] bg-primary rounded-full text-white flex justify-center items-center -top-[5px] -right-[8px] text-xs'>
-                                            {
-                                                wishlist
-                                            }
-                                        </div>
-                                    </div> */}
                                     <div onClick={redirect_card_page} className="relative flex justify-center items-center cursor-pointer w-[40px] h-[40px] rounded-full bg-[#e2e2e2]/50">
                                     <span className='text-bold text-primary'><AiFillShopping size='14px'/></span>
                                       {

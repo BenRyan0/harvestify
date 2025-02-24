@@ -11,6 +11,7 @@ import { FaTruckLoading } from "react-icons/fa";
 import { FaTruck } from "react-icons/fa";
 import { IoLocationSharp } from "react-icons/io5";
 import { RiMessage3Line } from "react-icons/ri";
+import { FaUsers } from "react-icons/fa";
 
 
 const Clusters = ({styles, clusters}) => {
@@ -20,11 +21,35 @@ const Clusters = ({styles, clusters}) => {
        clusters.map((p,i)=>
         <Link to={`/clusters/cluster-details/${p._id}`} key={i} className={`bg-red-600 flex transition-all duration-1000 hover:shadow-md shadow-sm hover:-translate-y-3 ${styles === 'grid' ? 'flex-col justify-start items-start':'justify-start items-center  md-lg:flex-col md-lg:justify-start md-lg:items-start'} w-full gap-4 bg-white p-1 rounded-md`}>
             <div className={styles === 'grid' ? 'w-full relative group h-[210px] md:h-[270px] xs:h-[170px] overflow-hidden':'md-lg:w-full relative group h-[210px] md:h-[270px] overflow-hidden'}>
+             <div className="absolute top-2 right-2 ">
+              {
+                p.sellerType ? 
+                (
+                  <div className="flex flex-col items-end justify-end gap-2">
+                    <div className="flex justify-center items-center gap-2 font-bold text-base text-slate-100 bg-primaryDark/80 rounded-md px-2 py-2">Seller Type: <span>{p.sellerType}</span></div>
+                    {
+                      p.memberCount > 1 ? 
+                      (
+                        <div className="flex justify-center items-center gap-2 font-bold text-base text-slate-100 bg-primaryDark/80 rounded-md px-2 py-2">
+                          Members: {p.memberCount} <FaUsers /></div>
+                      )
+                      :
+                      (
+                        <div className=""></div>
+                      )
+                    }
+                   
+                  </div>
+                )
+                :
+                (
+                <div className=""></div>
+                )
+              }
+             </div>
                 <img className='h-[240px] rounded-md md:h-[270px] xs:h-[170px] w-full object-fill' src={p.associationImage} alt="clusters images" />
                 <ul className='flex transition-all duration-700 -bottom-10 justify-center items-center gap-2 absolute w-full group-hover:bottom-3'>
-                    {/* <li className='w-[35px] h-[35px] m-1 cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#1EE35D] hover:text-white hover:rotate-[720deg] transition-all'>
-                      <FaHeart size='13px'/>
-                    </li> */}
+              
                     <li>
                       <Link to={`/clusters/cluster-details/${p._id}`} className='w-[35px] h-[35px] m-1 cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#1EE35D] hover:text-white hover:rotate-[720deg] transition-all'>
                           <FaEye />
@@ -35,14 +60,7 @@ const Clusters = ({styles, clusters}) => {
                           <RiMessage3Line />
                       </Link>
                     </li>
-                   
-                   
-                    {/* <li className='w-[35px] h-[35px] m-1 cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#1EE35D] hover:text-white hover:rotate-[720deg] transition-all' >
-                    <RiMessage3Line />
-                    </li> */}
-                    {/* <li className='w-[35px] h-[35px] m-1 cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#1EE35D] hover:text-white hover:rotate-[720deg] transition-all' >
-                      <FaHandshake />
-                    </li> */}
+
                   </ul>
             </div>
             <div className="py-3 text-slate-600 px-2 w-full">

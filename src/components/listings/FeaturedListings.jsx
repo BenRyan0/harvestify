@@ -26,7 +26,10 @@ import { Tooltip } from 'react-tooltip'
 import { RiMessage3Fill } from "react-icons/ri";
 
 import { useTranslation } from 'react-i18next';
-
+import { FaCheck } from "react-icons/fa";
+import { FaBox } from "react-icons/fa";
+import { FaUsers } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 
 const FeaturedListings = ({listings}) => {
   const {userInfo } = useSelector(state => state.auth)
@@ -193,16 +196,18 @@ const now = new Date();
                 }
             </div>
 
-            {/* {
-                p.discount ?
-                <div className="flex justify-center items-center absolute text-white px-2 py-1 bg-primary/50 rounded-md font-semibold text-sm right-2 top-2">
-                -{p.discount}% 
-                <span className='ml-1'><IoTicketSharp size={15}/></span>
-              </div> :
-              <div className=""></div>
-              } */}
-              <div className="flex flex-col gap-2 justify-start items-start absolute w-[80px] h-[200px] font-semibold text-xs left-2 top-2 transition-all duration-700 z-50">
-              <ul className='flex transition-all duration-700 left-1 top-6 justify-center items-center absolute w-[80px] opacity-0 group-hover:left-[66px] group-hover:w-[90px] group-hover:opacity-100'>
+            <div className="flex flex-col gap-2 justify-start items-start absolute w-[80px] h-[200px] font-semibold text-xs left-2 top-2 transition-all duration-700 z-50">
+              {
+              p.actualHarvestYield ? 
+              (
+                <div className="flex gap-1 flex-col">
+                  <div className="flex justify-center items-center gap-2 font-bold text-base text-slate-100 bg-primaryDark/80 rounded-md px-2 py-2">Harvested <FaCheck /></div>
+                  <div className="flex justify-center items-center gap-2 font-bold text-base text-slate-100 bg-primaryDark/80 rounded-md px-2 py-2"><FaBox /> {p.actualHarvestYield} {p.yieldUnit}</div>
+
+                </div>
+              ):(
+                <div className="">
+                  <ul className='flex transition-all duration-700 left-1 top-6 justify-center items-center absolute w-[80px] opacity-0 group-hover:left-[66px] group-hover:w-[90px] group-hover:opacity-100'>
                 <Link className='w-full py-2 px-0 z-0 cursor-pointer flex justify-end pr-1 items-center rounded-md text-primaryDark transition-all bg-white text-end'>
                   <h1>Till Harvest</h1>
                 </Link>
@@ -214,20 +219,35 @@ const now = new Date();
                 createdAt={dateFormat((p.createdAt), "yyyy-mm-dd")}  
                 currentDate={dateFormat((now), "yyyy-mm-dd")} 
                 />
-              
-           
-
-                {/* <DaysCounter className="" endDay={dateFormat((now), "d")} daysConsumed={dateFormat((listings.harvestStartDate), "d")} /> */}
-            
-                {/* <DaysCounter className="" endDay={endDay} daysConsumed={daysConsumed} /> */}
+                </div>
+              )
+            }
               </div>
+        
 
-              {/* <div className="flex justify-center items-center absolute w-[70px] h-[70px] rounded-full font-semibold text-xs left-2 top-24 bg-white/40">
-              <DaysCounter className="" endDay={dateFormat((listings.harvestStartDate), "d")}  
-                daysConsumed={dateFormat((listings.harvestEndDate), "d")} />
-              </div>    */}
-             
-              {/* <div className="flex justify-center items-center absolute text-white w-[38px] h-[38px] rounded-full bg-red-500 font-semibold text-xs left-2 top-2">asd</div> */}
+              {/* <div className="flex flex-col gap-2 justify-start items-start absolute w-[80px] h-[200px] font-semibold text-xs left-2 top-2 transition-all duration-700 z-50">
+              {
+              p.actualHarvestYield ? 
+              (
+                <div className="">asd</div>
+              ):(
+                <div className="">
+                  <ul className='flex transition-all duration-700 left-1 top-6 justify-center items-center absolute w-[80px] opacity-0 group-hover:left-[66px] group-hover:w-[90px] group-hover:opacity-100'>
+                <Link className='w-full py-2 px-0 z-0 cursor-pointer flex justify-end pr-1 items-center rounded-md text-primaryDark transition-all bg-white text-end'>
+                  <h1>Till Harvest</h1>
+                </Link>
+              </ul>
+                <DaysCounter 
+                className="" 
+                startDate={dateFormat((p.harvestStartDate), "yyyy-mm-dd")}  
+                endDate={dateFormat((p.harvestEndDate), "yyyy-mm-dd")}  
+                createdAt={dateFormat((p.createdAt), "yyyy-mm-dd")}  
+                currentDate={dateFormat((now), "yyyy-mm-dd")} 
+                />
+                </div>
+              )
+            }
+              </div> */}
               <Link to={`/listing/details/${p.slug}`}>
                 <img className='sm:w-full w-full h-[240px] rounded-md object-cover' src={p.images[0]} alt="listing_image" />
               </Link>
@@ -308,51 +328,6 @@ const now = new Date();
                       />
                     </div>
               </div>
-
-              {/* <div className="flex justify-between flex-row items-center gap-[2pxz] text-sm bg-red-600">
-                <div className="flex justify-end items-center flex-row">
-                  <div className="">
-                    <span className='font-bold text-base'>&#8369;</span>
-                    <span className='text-base font-bold'>{formatNumber(p.price)}</span>
-                    <span className='text-base font-bold'>/{p.unit}</span>
-                  </div>
-                
-                  <div className="pl-1">
-                    <span className='font-extrabold'>&#64;</span>
-                    <span className='text-base font-bold'>{p.expectedHarvestYield}</span>
-                    <span className='text-base font-bold'>{p.yieldUnit}</span>
-                  </div>
-                 
-                  
-                </div>
-                <div className="text-base font-bold text-primaryDark ">
-                    {p.discount > 0 ? (
-                       <div className="flex justify-center items-center">
-                           <span className=''><TbCurrencyPeso size={19} /></span>
-                           <h2 className="text-lg text-primaryDark pr-1">
-                               {formatNumber(p.totalPrice - Math.floor((p.totalPrice * p.discount) / 100))}
-                           </h2>
-                           <p className="line-through text-slate-500">{formatNumber(p.totalPrice)}</p>
-                           <p className="flex items-center text-xs text-gray-500 bg-primary/50 mx-1 px-1"> -{p.discount}% 
-                           <IoTicketSharp  className='ml-[1px]'/></p>
-                       </div>
-                   ) : p.discount === 0 ? (
-                       <div className="flex items-center">
-                           <span className=''><TbCurrencyPeso size={19} /></span>
-                           <h2 className="text-primaryDark text-lg">{formatNumber(p.totalPrice)}</h2>
-                       </div>
-                      
-                   ) : (
-                       <div className="flex items-center">
-                           <span className=''><TbCurrencyPeso size={19} /></span>
-                           <h2 className="text-primaryDark text-lg">{formatNumber(p.totalPrice)}</h2>
-                       </div>
-                  )}
-                </div>
-
-               
-
-              </div> */}
               <div className="flex justify-between flex-row items-center gap-[2px] text-sm flex-wrap">
                   <div className="flex justify-end items-center flex-row flex-wrap">
                     <div>
@@ -402,7 +377,28 @@ const now = new Date();
                
                 <div className="w-full">
                   <div className="flex justify-between ">
-                    <h1 className='text-sm font-semibold'>{p.clusterName}</h1>
+                        <h1 className='text-sm font-semibold flex gap-1 justify-center items-center'>{p.clusterName}
+                                                             {
+                                                               p.sellerId.memberCount > 1 ?
+                                                               (
+                                                                 <div data-tooltip-id="seller-delivery" data-tooltip-content={p.sellerId.sellerType + ": " + p.sellerId.memberCount} className=""><FaUsers size={20} />
+                                                                  <Tooltip
+                                                               id="seller-delivery"
+                                                               className="!bg-primaryDark !text-white !rounded-lg !px-3 !py-2 !text-sm shadow-sm font-semibold"
+                                                             />
+                                                             </div>
+                                                               ):
+                                                               (
+                                                                //  <div className=""><FaUser /></div>
+                                                                <div data-tooltip-id="seller-delivery" data-tooltip-content={p.sellerId.sellerType + ": " + p.sellerId.memberCount} className=""><FaUser size={15} />
+                                                                <Tooltip
+                                                             id="seller-delivery"
+                                                             className="!bg-primaryDark !text-white !rounded-lg !px-3 !py-2 !text-sm shadow-sm font-semibold"
+                                                           />
+                                                           </div>
+                                                               )
+                                                             }
+                                                           </h1>
                     <div className="flex items-center">
                       <Ratings ratings={p.sellerId.rating} />
                     </div>

@@ -38,7 +38,7 @@ const Complete = () => {
          
        }
        dispatch(trader_review(obj))
-       window.location.reload();
+      //  window.location.reload();
       //  dispatch(trader_review)
       if(errorMessage){
       }else{
