@@ -13,7 +13,7 @@ import api from "../../api/api";
 
 export const place_deal = createAsyncThunk(
   "deals/place_deal",
-  async ({ price, listing, shipping_fee, shippingInfo, userId, navigate, items,listing_,shippingMethod,mapsLink,distance, voucher }, { fulfillWithValue, rejectWithValue }) => {
+  async ({ price, listing, shipping_fee, shippingInfo, userId, navigate, items,listing_,shippingMethod,mapsLink,distance, voucher,paymentTerm }, { fulfillWithValue, rejectWithValue }) => {
     try {
       const { data } = await api.post("/home/deal/place-deal", {
         price, 
@@ -26,7 +26,8 @@ export const place_deal = createAsyncThunk(
         items,
         mapsLink,
         distance,
-        voucher
+        voucher,
+        paymentTerm
       });
 
       // console.log(data);

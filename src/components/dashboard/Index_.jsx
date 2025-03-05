@@ -152,9 +152,23 @@ const Index_ = () => {
                                 {/* <Link to={`/dashboard/deal/detail/${o._id}`}>
                                         <span className='bg-green-100 hover:bg-green-400 text-green-800 hover:text-slate-100 text-sm font-bold mr-2 px-3 py-[5px] rounded-md flex justify-center items-center gap-1 transition-all duration-300'>Progress <span><FaRegEye size={17}/></span></span>
                                     </Link> */}
-                                    <Link to={`/dashboard/deal/details/${o._id}`}>
-                                        <span className='bg-green-100 hover:bg-green-400 text-green-800 hover:text-slate-100 text-sm font-bold mr-2 px-3 py-[5px] rounded-md flex justify-center items-center gap-1 transition-all duration-300'>view <span><FaRegEye size={17}/></span></span>
-                                    </Link>
+                                    {
+                                        o.shipPickUpStatus === "completed" ?
+                                        (
+                                            <div className="">
+                                                <h2 className='font-bold text-primaryDark'>DONE</h2>
+                                            </div>
+                                        )
+                                        :
+                                        (
+                                        <Link to={`/dashboard/deal/details/${o._id}`}>
+                                            <span className='bg-green-100 hover:bg-green-400 text-green-800 hover:text-slate-100 text-sm font-bold mr-2 px-3 py-[5px] rounded-md flex justify-center items-center gap-1 transition-all duration-300'>view <span><FaRegEye size={17}/></span></span>
+                                        </Link>
+                                        ) 
+                                        
+                                        
+                                        }
+                                  
 
                             {
                                 o.shipPickUpStatus === "confirmed" ? 
@@ -170,7 +184,7 @@ const Index_ = () => {
                                 o.shipPickUpStatus === "inTransit" ? '' :
                                 o.shipPickUpStatus === "cancelled" ? '' :
                                 o.shipPickUpStatus === "rejected" ? '' :
-                                '...'
+                                ''
                             }
 {/* 
                             {

@@ -10,7 +10,7 @@ export const get_transaction_by_deal = createAsyncThunk(
   
         try {
             const { data } = await api.get(`/trader/transaction-get/${traderDealId}`)
-            console.log("GET _______________________________ <")
+            console.log("GET TRADER DEAL TRANSACTION _______________________________ <")
             console.log(data)
             return fulfillWithValue(data)
         } catch (error) {
@@ -90,7 +90,7 @@ export const get_transaction_by_deal = createAsyncThunk(
         try {
             // Send transactionId as part of the body in an object
             const { data } = await api.post(`/trader/trader-handoff-confirm`, { transactionId });
-            console.log("Transaction successful:", data);
+            console.log("trader_handoff_confirm:", data);
             return fulfillWithValue(data);
         } catch (error) {
             console.error("Transaction failed:", error.response.data);
@@ -372,7 +372,8 @@ export const transactionReducer = createSlice({
         currentTransactions: {},
         DeliveryHandoffProof : {},
         currentProduct : {},
-        loaderS1 : false
+        loaderS1 : false,
+        myCurrentTransactionSTEP : 1
         
     },
     reducers:{
@@ -385,7 +386,7 @@ export const transactionReducer = createSlice({
 
     extraReducers: (builder) => {
        
-        builder.addCase(get_transaction_by_deal.pending, (state, payload) => {
+        builder.addCase(get_transaction_by_deal.pending, (state, _) => {
             state.loader = true;
         });
        
@@ -397,10 +398,8 @@ export const transactionReducer = createSlice({
         builder.addCase(get_transaction_by_deal.fulfilled, (state, payload) => {
             state.loader = false;
             state.currentTransactions = payload.payload.transactions;
-            state.DeliveryHandoffProof = payload.payload.DeliveryHandoffProofs[0];
             state.currentProduct = payload.payload.deal;
-           
-            
+            state.myCurrentTransactionSTEP = payload.payload.transactions[0].buyerStep
         });
        
         builder.addCase(trader_handoff_confirm.pending, (state, payload) => {
@@ -412,7 +411,11 @@ export const transactionReducer = createSlice({
         });
        
         builder.addCase(trader_handoff_confirm.fulfilled, (state, payload) => {
-            state.loader = false;            
+            state.loader = false;    
+            state.currentTransactions = payload.payload.transaction;
+            state.currentProduct = payload.payload.deal;
+            state.myCurrentTransactionSTEP = payload.payload.transaction.buyerStep 
+            window.location.reload();  
         });
 
         builder.addCase(paymentAdd2.pending, (state, payload) => {
@@ -424,7 +427,11 @@ export const transactionReducer = createSlice({
         });
        
         builder.addCase(paymentAdd2.fulfilled, (state, payload) => {
-            state.loader = false;            
+            state.loader = false;   
+            state.currentTransactions = payload.payload.updatedTransaction;
+            // state.currentProduct = payload.payload.deal;
+            state.myCurrentTransactionSTEP = payload.payload.updatedTransaction.buyerStep;
+            window.location.reload();          
         });
 
 
@@ -444,6 +451,7 @@ export const transactionReducer = createSlice({
             state.successMessage = payload.payload.message;        
             state.proof = payload.payload.proof;      
             state.currentTransactions = payload.payload.updatedTransaction;  
+            window.location.reload();
         });
 
 
@@ -454,7 +462,8 @@ export const transactionReducer = createSlice({
         });
         builder.addCase(trader_review.fulfilled, (state, payload) => {
             state.loader = false;
-            state.successMessage = payload.payload.message;        
+            state.successMessage = payload.payload.message;  
+            window.location.reload();          
             // state.proof = payload.payload.proof;      
             // state.currentTransactions = payload.payload.updatedTransaction;  
         });

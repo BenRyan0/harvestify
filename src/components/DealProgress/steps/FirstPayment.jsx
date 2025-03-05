@@ -9,6 +9,8 @@ import { BsImage } from 'react-icons/bs';
 import { FaChevronLeft } from "react-icons/fa";
 import toast from 'react-hot-toast';
 import { TiCancel } from "react-icons/ti";
+import { GrDocumentMissing } from "react-icons/gr";
+import { FaCheck } from "react-icons/fa";
 
 
 const FirstPayment = () => {
@@ -39,15 +41,32 @@ const FirstPayment = () => {
   });
   
   useEffect(() => {
-    if (currentTransaction && currentTransaction._id) {
+    if (currentTransactions &&currentTransactions[0]._id) {
       setState((prevState) => ({
         ...prevState,
-        transactionId: currentTransaction._id,
+        transactionId: currentTransactions[0]._id,
       }));
       setLoading(false);
     }
-  }, [currentTransaction]);
+  }, [currentTransactions]);
+  // useEffect(() => {
+  //   if (currentTransaction && currentTransaction[0]._id) {
+  //     setState((prevState) => ({
+  //       ...prevState,
+  //       transactionId: currentTransaction[0]._id,
+  //     }));
+  //     setLoading(false);
+  //   }
+  // }, [currentTransaction]);
   const [showModal, setShowModal] = useState(false);
+
+
+
+  useEffect(() => {
+    console.log("transaction ------------------------ >");
+    setCurrentTransaction(currentTransactions[0]);
+  }, []); // Runs only once when the component mounts
+  
 
 
   // const handleConfirm = () => {
@@ -159,7 +178,7 @@ const FirstPayment = () => {
       toast.error("An unexpected error occurred!");
     } finally {
       // Refresh or reset the form
-      window.location.reload(); // Alternatively, reset state manually if preferred
+      // window.location.reload(); // Alternatively, reset state manually if preferred
     }
   };
   
@@ -176,6 +195,8 @@ const FirstPayment = () => {
 
    console.log("state")
    console.log(state)
+   console.log("currentTransactions")
+   console.log(currentTransactions)
 
    const rollBackStep = () =>{
     setCurrentStep(1)
@@ -183,6 +204,11 @@ const FirstPayment = () => {
     //   add_transaction({traderId: userInfo.id, sellerId: userInfo.id, listingId: userInfo.id, listingName: userInfo.id, listingPrice: userInfo.id, depositAmount: userInfo.id})
     // )
   }
+
+
+
+
+
 
 
   if (loading) {
@@ -197,7 +223,8 @@ const FirstPayment = () => {
     <section className='bg-[#eeeeee] w-full p-2'>
         <div className="w-full">
           {
-            currentTransaction ? 
+            // currentTransaction? 
+            currentTransactions[0].deposit.depositPaymentAmount? 
                 <div className="w-full">
                   <div className="flex lg:flex-col-reverse gap-2 flex-row lg:justify-center ">
                     <div className="w-7/12 lg:w-full">
@@ -239,9 +266,44 @@ const FirstPayment = () => {
                         <div className="bg-white shadow p-5 text-slate-600 flex flex-col gap-3">
                           <h2 className='font-bold text-lg uppercase'>Initial Payment Summary</h2>
                           <div className="flex items-center font-semibold px-5">
-                            <span>Required Deposit Amount: <span className='font-bold text-base h-full pr-[1px]'>&#8369;</span>{formatNumber(currentTransaction.depositAmount)}</span>
+                            <span>Required Deposit Amount: <span className='font-bold text-base h-full pr-[1px]'>&#8369;</span>{formatNumber(currentTransactions[0].deposit.depositPaymentAmount)}</span>
                           </div>
                           <div className="flex justify-between items-center font-semibold px-5">
+                          </div>
+                          <div className="flex justify-start gap-2 items-center">
+                            <div className="flex justify-center items-center text-center">
+                              {
+                                state.image ? 
+                                (
+                                  <div className="flex items-center justify-center text-center gap-1"> 
+                                        IMAGE PROOF: <FaCheck className='pb-1'/>
+                                  </div>
+                                )
+                                :
+                                (
+                                  <div className="flex items-center justify-center text-center gap-1">
+                                          IMAGE PROOF: <GrDocumentMissing className='pb-1'/>
+                                  </div>
+                                )
+                              }
+                             
+                            </div>
+                            <div className="flex justify-center items-center">
+                            {
+                                state.message ? 
+                                (
+                                  <div className="flex items-center justify-center text-center gap-1"> 
+                                        PROOF MESSAGE: <FaCheck className='pb-1'/>
+                                  </div>
+                                )
+                                :
+                                (
+                                  <div className="flex items-center justify-center text-center gap-1">
+                                          PROOF MESSAGE: <GrDocumentMissing className='pb-1'/>
+                                  </div>
+                                )
+                              }
+                            </div>
                           </div>
 
                         </div>
@@ -256,7 +318,8 @@ const FirstPayment = () => {
                
                 {
                   myDeal? 
-                  <Link to={`/dashboard/chat/${myDeal.listing[0].sellerId}`} className='hover:underline pt-2'>
+                  <Link to={`/dashboard/chat/`} className='hover:underline pt-2'>
+                  {/* <Link to={`/dashboard/chat/${currentTransaction.seller}`} className='hover:underline pt-2'> */}
                   <p className='text-sm text-slate-800'>please contact the seller</p>
                 </Link>
                   :

@@ -32,9 +32,9 @@ const Complete = () => {
          name: userInfo.name,
          review : rev,
          rating: rate,
-         transactionId :currentTransaction._id,
-         sellerId:currentTransaction.sellerId,
-         listingId: currentTransaction.listingId
+         transactionId :currentTransaction[0]._id,
+         sellerId:currentTransaction[0].seller,
+         listingId: currentTransaction[0].listingId
          
        }
        dispatch(trader_review(obj))

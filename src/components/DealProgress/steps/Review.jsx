@@ -238,10 +238,10 @@ const Review = () => {
                   
                  </div>
                  <div className="w-full relative pt-10 items-end justify-end">
-                    <button onClick={initializeTransaction} className='absolute right-0 bg-primaryDark px-4 py-2 rounded-sm font-bold flex justify-center items-center gap-2 hover:cursor-pointer group text-slate-100'>
+                    {/* <button onClick={initializeTransaction} className='absolute right-0 bg-primaryDark px-4 py-2 rounded-sm font-bold flex justify-center items-center gap-2 hover:cursor-pointer group text-slate-100'>
                       <FaChevronRight className="transition-transform duration-200 ease-in-out transform translate-x-[-5px] group-hover:translate-x-[3px]" />
                       PROCEED
-                    </button>
+                    </button> */}
                        <div className="absolute left-0">
                                         <div>
                                            <button

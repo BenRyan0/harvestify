@@ -33,15 +33,18 @@ const SecondPayment = () => {
   });
   
   useEffect(() => {
-    if (currentTransaction && currentTransaction._id) {
+    if (currentTransaction && currentTransaction[0]._id) {
       setState((prevState) => ({
         ...prevState,
-        transactionId: currentTransaction._id,
+        transactionId: currentTransaction[0]._id,
       }));
     }
   }, [currentTransaction]);
   
  
+
+  console.log("currentTransaction")
+  console.log(currentTransaction)
 
   const imageHandler= (e)=>{
     let files = e.target.files
@@ -99,7 +102,7 @@ const SecondPayment = () => {
       toast.error("An unexpected error occurred!");
     } finally {
       // Refresh or reset the form
-      window.location.reload(); // Alternatively, reset state manually if preferred
+      // window.location.reload(); // Alternatively, reset state manually if preferred
     }
    }
   // const add_payment_2 = (e)=>{
@@ -184,7 +187,9 @@ const SecondPayment = () => {
                             <div className="bg-white rounded-md shadow-md p-5 text-slate-600 flex flex-col gap-3">
                               <h2 className='font-extrabold text-lg uppercase'>Final Payment</h2>
                               <div className="flex items-center font-semibold px-1">
-                                <span>Final Amount: <span className='font-bold text-base h-full pr-[1px]'>&#8369;</span>{formatNumber(currentTransaction.listingPrice - currentTransaction.depositAmount )}</span>
+                                <span>Final Amount: <span className='font-bold text-base h-full pr-[1px]'>&#8369;</span>{formatNumber(currentTransaction[0].totalAmount
+- currentTransaction[0].deposit.depositPaymentAmount
+ )}</span>
                                 {/* <span>Total Amount: { currentTransaction.depositAmount}</span> */}
                               </div>
                               <div className="flex justify-between items-center font-semibold px-5">

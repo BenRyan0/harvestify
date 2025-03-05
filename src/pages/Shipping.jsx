@@ -135,6 +135,8 @@ const Shipping = () => {
         id:userInfo.id
     })
    
+
+    
     
     // const isStateComplete = Object.values(state).every((value) => value.trim() !== '');
     const [isStateComplete, setIsStateComplete] = useState(false);
@@ -312,6 +314,7 @@ const Shipping = () => {
                     mapsLink: listings[0].listingInfo.mapsLink,
                     navigate,
                     distance: 0,
+                    paymentTerm: paymentTerm.paymentTerm,
                     voucher: isSecondDiscountApplied ? voucher : null // Add voucher if second discount applied
                 }));
             } else {
@@ -326,6 +329,7 @@ const Shipping = () => {
                     mapsLink: listings[0].listingInfo.mapsLink,
                     navigate,
                     distance: distance,
+                    paymentTerm: paymentTerm.paymentTerm,
                     voucher: isSecondDiscountApplied ? voucher : null // Add voucher if second discount applied
                 }));
             }
@@ -335,7 +339,15 @@ const Shipping = () => {
     };
     
     
-  
+    const [paymentTerm, setPaymentTerm] = useState({ paymentTerm: "2" }); // Default to 2
+
+    const paymentTermHandler = (e) => {
+        setPaymentTerm((prev) => ({
+            ...prev,
+            [e.target.name]: e.target.value || "2", // If empty, default to "2"
+        }));
+    };
+
 
 
     useEffect(()=>{
@@ -370,8 +382,7 @@ const Shipping = () => {
         // let code = code.vcode;
         let sellerId = listings[0].listingInfo.sellerId
         dispatch(submit_voucher_code({code : code.vcode , sellerId}))
-        
-
+    
     }
 
 
@@ -625,7 +636,7 @@ const Shipping = () => {
                                                             <div className="w-full flex flex-wrap justify-between p-2">
                                                                 <div className="flex justify-between sm:w-full gap-2 w-full md:flex-col flex-row ">
                                                                     <div className="flex gap-2 justify-start items-start w-full md-lg:flex-col">
-                                                                        <img className='w-[250px] md:w-full h-full rounded-md' src={listings[0].listingInfo.images[0]} alt="listing" />
+                                                                        <img className='w-[280px] md:w-full h-full rounded-md' src={listings[0].listingInfo.images[0]} alt="listing" />
                                                                         <div className="pr-1 w-full">
                                                                             <h2 className='text-lg font-semibold border-b-2 w-full'>{listings[0].listingInfo.name}</h2>
                                                                             <div className="flex flex-col justify-start items-start gap-2 text-sm mt-1">
@@ -747,7 +758,27 @@ const Shipping = () => {
                                                                                 
                                                                                
                                                                             </div>
-                                                                            
+
+                                                                            <div className="pt-2 border-t-2 border-slate-700 text-slate-200 rounded-sm px-2 py-1 mt-2 flex gap-2 justify-between items-center text-center">
+                                                                                <h2 className="font-bold text-lg text-slate-800">Payment Terms {paymentTerm.paymentTerm}</h2>
+                                                                                <div>
+                                                                                    <div className="flex items-center text-center">
+                                                                                        <select
+                                                                                            id="paymentTerm"
+                                                                                            name="paymentTerm"
+                                                                                            onChange={paymentTermHandler}
+                                                                                            value={paymentTerm.paymentTerm} // Fix: Use `paymentTerm` state
+                                                                                            className="bg-[#283046] pr-4 h-[40px] px-4 outline-none rounded-md text-[#d0d2d6] border-none w-[250px]"
+                                                                                        >
+                                                                                            {/* <option value="">Payment Terms</option> */}
+                                                                                            <option value="2">2 Term Payment (DEFAULT)</option>
+                                                                                            <option value="3">3 Term Payment</option>
+                                                                                            <option value="4">4 Term Payment</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            {/* <h2>{paymentTerm.paymentTerm}</h2> */}
 
                                                                             </div>
                                                                             <div className="mt-3 w-full flex gap-1 text-base font-semibold">
@@ -917,6 +948,7 @@ const Shipping = () => {
                                                                    
                                                                     </span>
                                                                 </div>
+                                                                
 
 
         
@@ -935,9 +967,7 @@ const Shipping = () => {
                                                                         
                                                                     </button>
                                                                 )}
-                                                            </div>
-                                              
-                                      
+                                                            </div>      
                             </div>
                           
 

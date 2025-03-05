@@ -18,9 +18,13 @@ const Home = () => {
 
   const {categories,allListings,featuredListings, latestListings,topRatedListings,discounted_listings} = useSelector(state=>state.home)
  
-  useEffect(()=>{
-    dispatch(get_listings())
-  },[allListings] )
+  // useEffect(()=>{
+  //   dispatch(get_listings())
+  // },[allListings, dispatch] )
+
+  useEffect(() => {
+    dispatch(get_listings());
+  }, []); 
 
 
   return (

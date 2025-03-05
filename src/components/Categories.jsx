@@ -20,19 +20,19 @@ const Categories = () => {
   const responsive = {
     superLargeDesktop : {
         breakpoint : { max: 4000, min: 3000},
-        items: 4,
+        items: 3,
     },
     desktop : {
         breakpoint : { max: 3000, min: 1024},
-        items: 4,
+        items: 3,
     },
     tablet : {
         breakpoint : { max: 1024, min: 464},
-        items: 4,
+        items: 3,
     },
     mdtablet : {
         breakpoint : { max: 991, min: 464},
-        items: 4,
+        items: 3,
     },
     mobile : {
         breakpoint : { max: 640, min: 0},

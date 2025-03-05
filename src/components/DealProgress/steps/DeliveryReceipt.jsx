@@ -36,29 +36,29 @@ const DeliveryReceipt = () => {
           if (errorMessage) {
                 toast.error(errorMessage);
                 dispatch(messageClear());
-                window.location.reload(); // Refresh the page
+                // window.location.reload(); // Refresh the page
               } else {
                 toast.success(successMessage);
                 dispatch(messageClear());
-                window.location.reload(); // Refresh the page
+                // window.location.reload(); // Refresh the page
               }
         }
         const toggleFullscreen = () => {
           setIsFullscreen((prevState) => !prevState);
       };
       
-      console.log("-------------------------")
-      console.log(DeliveryHandoffProof)
+      console.log("------------------------- transactionData")
+      console.log(currentTransaction)
   return (
     <div>
-      {DeliveryHandoffProof?
+      {currentTransaction[0].handoffProof.handoffProofUrl?
         <div className="w-full flex md-lg:flex-col flex-row gap-2 justify-center md-lg:items-center">
            <div className="relative">
                     <img
                         className={`cursor-pointer  ${
                             isFullscreen ? 'fixed top-0 left-0 w-full h-full object-contain bg-black z-[999999999999999999]' : 'w-[300px] border-primaryDark border-4'
                         }`}
-                        src={DeliveryHandoffProof.imageUrl}
+                        src={currentTransaction[0].handoffProof.handoffProofUrl}
                         alt="Proof of Handoff"
                         onClick={toggleFullscreen}
                     />
@@ -71,7 +71,7 @@ const DeliveryReceipt = () => {
             <div className="lg:w-full w-5/12 text-slate-700 bg-slate-200 relative p-2 ">
                         <div className=" flex items-center justify-between text-end mb-6 border-b-2 border-primaryDark pb-3">
                         <h2 className='font-bold  text-primaryDark'>UPLOAD DATE: </h2>
-                         <h2 className='bg-primaryDark font-semibold px-3 py-1 text-slate-100'> {dateFormat((DeliveryHandoffProof.uploadDate), "mmmm dS, yyyy")} </h2>
+                         <h2 className='bg-primaryDark font-semibold px-3 py-1 text-slate-100'> {dateFormat((currentTransaction[0].handoffProof.date), "mmmm dS, yyyy")} </h2>
                         
                         </div>
                         <div className="w-full text-wrap h-[200px]">

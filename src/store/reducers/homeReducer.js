@@ -22,6 +22,7 @@ export const get_listings = createAsyncThunk(
     async(_,{fulfillWithValue}) =>{
         try {
             const {data} = await api.get('/home/get-listings')
+            console.log("ALL LISTINGS")
             console.log(data)
             return fulfillWithValue(data);
 
