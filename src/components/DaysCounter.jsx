@@ -91,7 +91,7 @@ const DaysCounter = ({ startDate, endDate, createdAt,textSize }) => {
         >
           <div className='flex gap-[2px] text-[12px] flex-col text-center transition-all duration-700'>
             <span className='flex flex-col ' style={{ color: pathColor_ }}>
-              <div className="">{daysLeftUntilEnd > 0 ? `${daysLeftUntilEnd} ${daysLeftUntilEnd === 1 ? 'Day' : 'Days'}` : ''}
+              <div className="">{daysLeftUntilEnd > 0 ? `${daysLeftUntilEnd -1} ${daysLeftUntilEnd === 1 ? 'Day' : 'Days'}` : ''}
               </div>
               <div className="text-[9px]">{daysLeftUntilEnd > 0 ? `${daysLeftUntilEnd === 1 ? 'Harvest time' : 'Harvest time'}` : '--Ended--'}
               </div>

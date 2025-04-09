@@ -214,15 +214,15 @@ const [show, setShow] = useState(false)
     
   
                 <div className="flex px-2 py-3 justify-between items-center w-full ">
-                  <div className="w-[40px] h-[40px] border p-2 justify-center items-center flex rounded-full">
-                    <label className='cursor-pointer' htmlFor=""><AiOutlinePlusSquare /></label>
-                    <input className='hidden' type="file" />
-                  </div>
+                  {/* <div className="w-[40px] h-[40px] border p-2 justify-center items-center flex rounded-full"> */}
+                    {/* <label className='cursor-pointer' htmlFor=""><AiOutlinePlusSquare /></label> */}
+                    {/* <input className='hidden' type="file" /> */}
+                  {/* </div> */}
     
                   <div className="border h-[40px] p-0 ml-2 w-[calc(100%-60px)] rounded-full relative text-center flex justify-center items-center">
                       <input value={text} onChange={(e)=> setText(e.target.value)} type="text" className='w-full bg-transparent h-fill outline-none p-3 text-sm text-slate-600'  placeholder='Input Message'/>
                       <div className="text-slate-600 right-2 top-2 absolute cursor-pointer">
-                        <MdEmojiEmotions size={20} />
+                        
                       </div>
                   </div>
                   <div className="w-[40px] p-2 justify-center items-center rounded-full">

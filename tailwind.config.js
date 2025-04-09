@@ -23,7 +23,6 @@ module.exports = {
         accent: "#05DA49",
         text_color: "#d0d2d6",
         primary: "#05DA49",
-        // primary: "#02A367",
         primaryDark: "#04714A",
         lightBeige: "#EBF7F2",
       },

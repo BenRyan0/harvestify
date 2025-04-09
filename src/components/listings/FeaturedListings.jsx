@@ -30,6 +30,7 @@ import { FaCheck } from "react-icons/fa";
 import { FaBox } from "react-icons/fa";
 import { FaUsers } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
+// import { FaCheck } from "react-icons/fa6";
 
 const FeaturedListings = ({listings}) => {
   const {userInfo } = useSelector(state => state.auth)
@@ -200,10 +201,19 @@ const now = new Date();
               {
               p.actualHarvestYield ? 
               (
-                <div className="flex gap-1 flex-col">
-                  <div className="flex justify-center items-center gap-2 font-bold text-base text-slate-100 bg-primaryDark/80 rounded-md px-2 py-2">Harvested <FaCheck /></div>
-                  <div className="flex justify-center items-center gap-2 font-bold text-base text-slate-100 bg-primaryDark/80 rounded-md px-2 py-2"><FaBox /> {p.actualHarvestYield} {p.yieldUnit}</div>
-
+                <div className="">
+                  <ul className='flex transition-all duration-700 left-1 top-6 justify-center items-center absolute w-[80px] opacity-0 group-hover:left-[66px] group-hover:w-[90px] group-hover:opacity-100'>
+                <Link className='w-full py-2 px-0 z-0 cursor-pointer flex justify-end pr-1 items-center rounded-md text-primaryDark transition-all bg-white text-end'>
+                  <h1>Till Harvest</h1>
+                </Link>
+              </ul>
+                <DaysCounter 
+                className="" 
+                startDate={dateFormat((p.harvestStartDate), "yyyy-mm-dd")}  
+                endDate={dateFormat((p.harvestEndDate), "yyyy-mm-dd")}  
+                createdAt={dateFormat((p.createdAt), "yyyy-mm-dd")}  
+                currentDate={dateFormat((now), "yyyy-mm-dd")} 
+                />
                 </div>
               ):(
                 <div className="">
@@ -337,9 +347,37 @@ const now = new Date();
                     </div>
 
                     <div className="pl-1">
-                      <span className='font-extrabold'>&#64;</span>
-                      <span className='text-base font-bold'>{p.expectedHarvestYield}</span>
-                      <span className='text-base font-bold'>{p.yieldUnit}</span>
+
+                      {
+                        p.actualHarvestYield ? (
+                          <div className="flex gap-2 justify-center items-center">
+                            <div className="">
+                              <span className='font-extrabold'>&#64;</span>
+                              <span className='text-base font-bold' data-tooltip-id="actualHarvestYield" data-tooltip-content={`Actual Yield: ${p.actualHarvestYield + p.yieldUnit } `}>{p.actualHarvestYield}</span>
+                              <span className='text-base font-bold'>{p.yieldUnit}</span>
+                         
+
+                              <Tooltip
+                                id="actualHarvestYield"
+                               className="!bg-primaryDark !text-white !rounded-lg !px-3 !py-2 !text-sm shadow-sm font-semibold"
+                              />
+                            </div>
+                            <div className="bg-primaryDark text-slate-200 px-3 py-1 flex justify-start gap-1 items-center rounded-md">
+                              <span className='text-base font-bold'>Harvested</span>
+                              <FaCheck />
+                            </div>
+                            
+                             
+                          </div>
+                        ):(
+                          <div className="">
+                             <span className='font-extrabold'>&#64;</span>
+                              <span className='text-base font-bold'>{p.expectedHarvestYield}</span>
+                              <span className='text-base font-bold'>{p.yieldUnit}</span>
+                          </div>
+                        )
+                      }
+                     
                     </div>
                   </div>
 
