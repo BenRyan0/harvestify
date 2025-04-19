@@ -10,7 +10,7 @@ let mode = 'pro'
 if(mode === 'pro'){
   api_url = production1
 }else{
-  api_url = local
+  api_url = local 
 }
 const api = axios.create({
   baseURL: `${api_url}/api`,
