@@ -7,7 +7,7 @@ let api_url = ''
 let mode = 'pro'
 
 
-if(mode === 'pro123'){
+if(mode === 'pro'){
   api_url = production1
 }else{
   api_url = local 
