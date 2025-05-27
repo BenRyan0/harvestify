@@ -90,7 +90,7 @@ function App() {
 
 
 
-          <Route path='/all-tae' element = {<DistanceCalculator/>}/>   
+          {/* <Route path='/all-tae' element = {<DistanceCalculator/>}/> ///   */}
 
           <Route path='/dashboard' element = {<ProtectUser/>}>
             <Route path='' element = {<Dashboard/>}>

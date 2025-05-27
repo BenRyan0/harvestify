@@ -125,6 +125,10 @@ const ClusterListings = () => {
     // Check if the data is still loading
     // const isLoading = loader;
     const isLoading = loader || !seller.length;
+    console.log(cluster_listings)
+    console.log("cluster_listings")
+    console.log(seller)
+    console.log("SELLER")
 
     return (
         <div className="">
@@ -241,6 +245,7 @@ const ClusterListings = () => {
                                            </div>
                                        </div>
                                        <div className="pb-8 ">
+                                       
                                            <ClusterListingsists listings={cluster_listings} seller={seller} />
                                         
             

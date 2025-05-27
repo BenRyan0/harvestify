@@ -21,7 +21,7 @@
     "react-dom": "^18.3.1",
     "react-hot-toast": "^2.4.1",
     "react-i18next": "^15.0.2",
-    "react-icons": "^5.2.1",
+    "react-icons": "^5.5.0",
     "react-lazy-load-image-component": "^1.6.0",
     "react-multi-carousel": "^2.8.5",
     "react-range": "^1.8.14",
@@ -40,7 +40,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "push": "git add --all && git commit -m \"changesMade(RUSH-NO-Description) -dev0\" && git push origin main"
   },
   "eslintConfig": {
     "extends": [

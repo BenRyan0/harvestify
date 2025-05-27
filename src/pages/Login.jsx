@@ -7,6 +7,8 @@ import FadeLoader from 'react-spinners/FadeLoader'
 import {useSelector, useDispatch} from 'react-redux'
 import {trader_login,messageClear,redirectClear} from '../store/reducers/authReducer'
 import { useTranslation } from 'react-i18next';
+import { LuEye } from "react-icons/lu";
+import { LuEyeClosed } from "react-icons/lu";
 
 
 
@@ -57,6 +59,8 @@ const Login = () => {
         }
     },[successMessage, errorMessage])
 
+    const [showPassword, setShowPassword] = useState(false);
+
     const hide = true;
   return (
     <div className="">
@@ -78,10 +82,19 @@ const Login = () => {
                                     <label className='text-[#208515]' htmlFor="email">Email</label>
                                     <input onChange={inputHandle} value={state.email} type="email" className='w-full px-3 py-2 border border-slate-200 outline-none focus:border-accent rounded-md' id='email' name='email' placeholder='Email' />
                                 </div>
-                                <div className="flex flex-col gap-1 mb-2">
+                                <div className="flex flex-col gap-1 mb-2 relative">
                                     <label className='text-[#208515]' htmlFor="password">Password</label>
-                                    <input onChange={inputHandle} value={state.password}  type="password" className='w-full px-3 py-2 border border-slate-200 outline-none focus:border-accent rounded-md' id='password' name='password' placeholder='Password' />
-                                </div>
+                                                                    <input onChange={inputHandle} value={state.password} className='px-3 py-2 outline-none border-2 border-slate-700 bg-transparent rounded-md focus:border-accent overflow-hidden'    type={showPassword ? "text" : "password"} name='password' placeholder='password' id='password' required/>
+                                                                {/* <input onChange={inputHandle} value={state.password} className='px-3 py-2 outline-none border border-slate-700 bg-transparent rounded-md text-[#d0d2d6] focus:border-accent overflow-hidden' type="password" name='password' placeholder='password' id='password' required/> */}
+                                                                
+                                                                <button
+                                                                    type="button"
+                                                                    onClick={() => setShowPassword(!showPassword)}
+                                                                    className="ml-2 text-gray-600 hover:text-gray-500 pr-2 absolute right-2 top-6 bottom-0"
+                                                                >
+                                                                    {showPassword ? <LuEye  size={19} /> : <LuEyeClosed size={16} />}
+                                                                    {/* {showPassword ? <LuEyeClosed  size={16} /> : <LuEye size={16} />} */}
+                                                                </button>                                </div>
                                 <button className='px-8 w-full mt-4 py-2 bg-accent hover:shadow-lg hover:shadow-accent/10 rounded-md font-bold text-white'>{t("login")}</button>
                             </form>
                             <div className="mt-6 w-full text-center flex flex-col">

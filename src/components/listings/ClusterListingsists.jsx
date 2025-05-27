@@ -24,7 +24,7 @@ import { TbCurrencyPeso } from "react-icons/tb";
 
 const ClusterListings_lists = ({listings, title,seller}) => {
 
-  console.log("___________________ :>")
+  console.log("___________________ SELLER:>")
   console.log(seller)
   const {userInfo } = useSelector(state => state.auth)
   const {errorMessage,successMessage } = useSelector(state => state.card)
@@ -54,7 +54,7 @@ const ClusterListings_lists = ({listings, title,seller}) => {
     // Transforming listing data to match the required format
     const transformedListing = {
         "_id": listing_._id, // Assuming _id is available
-        "sellerId": listing_.sellerId._id, // Seller ID from the seller object
+        "sellerId": seller[0]._id, // Seller ID from the seller object
         "name": listing_.name, // Assuming `name` is available in the listing object
         "slug": listing_.slug || listing_.name.replace(/\s+/g, '-'), // Generating slug from name if missing
         "clusterName": listing_.clusterName,
@@ -87,7 +87,7 @@ const ClusterListings_lists = ({listings, title,seller}) => {
 
     const obj = [
         {
-            sellerId: listing_.sellerId,
+            sellerId: seller._id,
             shopName: listing_.shopName || "Unknown Shop", // Fallback for shopName
             price: listing_.totalPrice,
             listingInfo: transformedListing,

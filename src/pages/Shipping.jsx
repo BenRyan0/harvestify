@@ -385,6 +385,9 @@ const Shipping = () => {
     
     }
 
+    console.log(listings)
+    console.log("listings")
+
 
     console.log("_______________________________________________ CURRENT STATE")
     console.log(listings[0].listingInfo.sellerId)

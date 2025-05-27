@@ -120,6 +120,7 @@ const FeaturedListings = ({listings}) => {
     });
 };
 
+
   const add_wishlist = (listing) =>{
     if (userInfo) {
       dispatch(add_to_wishlist({  // Ensure `add_card` here refers to the action creator, not the function name
@@ -311,7 +312,8 @@ const now = new Date();
             </div>
             <div className="py-3 text-slate-600 px-2">
               <div className="flex justify-between">
-                <h2 className='' id='listing_name'>{p.name}</h2>
+                <h2 className='' id='listing_name'><span className='font-bold bg-primaryDark rounded-sm px-2 py-[1px] text-slate-200 mr-1'>{p.commodity? `${p.commodity}`:``}</span> {p.name} </h2>
+                {/* <h2 className='' id='listing_name'>{p.name}</h2> */}
                 <div className="flex gap-3 text-xl">
                       {/* Seller Delivery Tooltip */}
                       {p.sellerDelivery && (
