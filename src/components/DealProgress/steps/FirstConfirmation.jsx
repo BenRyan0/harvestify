@@ -229,7 +229,7 @@ const [traderReason, setTraderReason] = useState("");
               <div className="p-4 text-white pt-7">
                 <div className="font-extrabold text-primaryDark text-xl">PLEASE SELECT A CHOICE OF ACTION</div>
                 <div className="w-full flex justify-center items-center">
-                  <div className=" grid grid-cols-3 gap-8 w-9/12 font-bold mt-6 sm:flex sm:flex-col sm:gap-2">
+                  <div className=" grid grid-cols-2 gap-8 w-9/12 font-bold mt-6 sm:flex sm:flex-col sm:gap-2">
                     <button
                     onClick={submitCancellation}
                     className="flex justify-center items-center gap-1 bg-primary py-2 px-4 rounded uppercase text-white font-semibold transition duration-200 ease-in-out hover:bg-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryDark"
@@ -244,10 +244,10 @@ const [traderReason, setTraderReason] = useState("");
                       <GiCycle className='mb-[2px]' size={20} />
                     </button>
 
-                    <button className="flex justify-center items-center gap-1 bg-primary py-2 px-4 rounded uppercase text-white font-semibold transition duration-200 ease-in-out hover:bg-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryDark">
+                    {/* <button className="flex justify-center items-center gap-1 bg-primary py-2 px-4 rounded uppercase text-white font-semibold transition duration-200 ease-in-out hover:bg-primaryDark focus:outline-none focus:ring-2 focus:ring-primaryDark">
                       Insist
                       <FaFistRaised className='mb-[2px]' size={20}  />
-                    </button>
+                    </button> */}
 
                   </div>
                 </div>
