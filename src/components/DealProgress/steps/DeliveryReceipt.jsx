@@ -56,7 +56,7 @@ const DeliveryReceipt = () => {
            <div className="relative">
                     <img
                         className={`cursor-pointer  ${
-                            isFullscreen ? 'fixed top-0 left-0 w-full h-full object-contain bg-black z-[999999999999999999]' : 'w-[300px] border-primaryDark border-4'
+                            isFullscreen ? 'fixed top-0 left-0 w-full h-full object-contain bg-black z-[999999999999999999]' : 'h-[300px] object-cover w-[300px] border-primaryDark border-4'
                         }`}
                         src={currentTransaction[0].handoffProof.handoffProofUrl}
                         alt="Proof of Handoff"

@@ -2,6 +2,49 @@ import {createSlice, createAsyncThunk} from '@reduxjs/toolkit'
 import api from '../../api/api'
 
 
+export const cancel_transaction_due_to_dispute_by_trader = createAsyncThunk(
+  'transaction/cancel_transaction_due_to_dispute_by_trader',
+  async ({ transactionId, traderId }, { rejectWithValue, fulfillWithValue }) => {
+    try {
+      const { data } = await api.post(`/cancel-by-trader/${transactionId}/${traderId}`);
+      console.log("Cancelled transaction due to dispute:", data);
+      return fulfillWithValue(data);
+    } catch (error) {
+      return rejectWithValue(error.response?.data || "Unexpected error");
+    }
+  }
+);
+
+
+export const resend_deposit_proof = createAsyncThunk(
+  'transaction/resend_deposit_proof',
+  async ({ transactionId, imageFile, proofMessage }, { rejectWithValue, fulfillWithValue }) => {
+    try {
+      const formData = new FormData();
+      formData.append('transactionId', transactionId);
+      formData.append('message', proofMessage);
+      formData.append('image', imageFile); // `imageFile` should be a File or Blob object
+
+      console.log(formData)
+      console.log("formData")
+
+      const { data } = await api.post(`/resend-payment-proof/${transactionId}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+
+      console.log("Resent deposit proof successfully:", data);
+      return fulfillWithValue(data);
+    } catch (error) {
+      return rejectWithValue(error.response?.data || "Unexpected error");
+    }
+  }
+);
+
+
+
+
 export const get_transaction_by_deal = createAsyncThunk(
     'transaction/get_transaction_by_deal',
     async (traderDealId, { rejectWithValue, fulfillWithValue}) => {
@@ -373,13 +416,18 @@ export const transactionReducer = createSlice({
         DeliveryHandoffProof : {},
         currentProduct : {},
         loaderS1 : false,
-        myCurrentTransactionSTEP : 1
+        myCurrentTransactionSTEP : 1,
+        resendSuccess : false
         
     },
     reducers:{
         messageClear: (state, _) => {
             state.errorMessage = "";
             state.successMessage = "";
+          },
+        resendReset: (state, _) => {
+            state.resendSuccess = false;
+            
           },
 
     },
@@ -482,10 +530,44 @@ export const transactionReducer = createSlice({
             state.loader = false;
             state.successMessage = payload.payload.message;        
         });
+
+        builder.addCase(cancel_transaction_due_to_dispute_by_trader.pending, (state, payload) => {
+            state.loader = true;     
+        });
+
+        builder.addCase(cancel_transaction_due_to_dispute_by_trader.rejected, (state, payload) => {
+            state.loader = false;
+            state.errorMessage = payload.payload.error;        
+        });
+        builder.addCase(cancel_transaction_due_to_dispute_by_trader.fulfilled, (state, payload) => {
+            state.loader = false;
+            state.successMessage = payload.payload.message;        
+            state.currentTransactions = [payload.payload.transaction];        
+            state.transaction = [payload.payload.transaction];        
+        });
+
+
+        builder.addCase(resend_deposit_proof.pending, (state, payload) => {
+            state.loader = true;    
+             
+        });
+
+        builder.addCase(resend_deposit_proof.rejected, (state, payload) => {
+            state.loader = false;
+            state.errorMessage = payload.payload.error;   
+            state.resendSuccess = false;       
+        });
+        builder.addCase(resend_deposit_proof.fulfilled, (state, payload) => {
+            state.loader = false;
+            state.successMessage = payload.payload.message;        
+            state.currentTransactions = [payload.payload.updatedTransaction];        
+            state.transaction = [payload.payload.updatedTransaction];   
+            state.resendSuccess = true;     
+        });
         
        
     },
 })
 
-export const {messageClear} = transactionReducer.actions
+export const {messageClear,resendReset} = transactionReducer.actions
 export default transactionReducer.reducer

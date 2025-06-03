@@ -223,13 +223,20 @@ const Deal = () => {
             </div>
             <div className="w-full pt-5">
                                         <div>
-                                           <button
+                                            {
+                                                              myDeal.paymentStatus === "Cancelled" ? (
+                                                                <div className=""></div>
+                                                              ):(
+                                                                 <button
                                              onClick={() => setShowModal(true)}
                                              className="bg-red-400 font-semibold px-3 py-2 text-slate-100 rounded-sm flex justify-center items-center"
                                            >
                                              Cancel Deal
                                               <TiCancel size={25} />
                                             </button>
+                                                              )
+                                                            }
+                                          
                                                     {showModal && (
                                                       <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-[99999999]">
                                                        <div className="bg-white p-6 rounded-lg shadow-lg text-slate-600">
@@ -240,6 +247,7 @@ const Deal = () => {
                                                           </div>
                                                         
                                                           <div className="mt-4 flex justify-end gap-3">
+                                                          
                                                             <button
                                                               onClick={handleCancel}
                                                               className="bg-gray-300 px-4 py-2 rounded-md hover:bg-gray-400"

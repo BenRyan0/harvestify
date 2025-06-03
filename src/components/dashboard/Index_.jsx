@@ -93,7 +93,7 @@ const Index_ = () => {
                                 <th scope='col' className='px-6 py-3'>PRICE</th>
                                 <th scope='col' className='px-6 py-3'>TOTAL</th>
                                 <th scope='col' className='px-6 py-3'>SHIPMENT</th>
-                                <th scope='col' className='px-6 py-3'>payment</th>
+                                {/* <th scope='col' className='px-6 py-3'>payment</th> */}
                                 <th scope='col' className='px-6 py-3'>STATUS</th>
                                 <th scope='col' className='px-6 py-3'>Action</th>
                             
@@ -146,7 +146,7 @@ const Index_ = () => {
                                         </div>
                                     }
                                 </td>
-                                <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>{o.paymentStatus}</td>
+                                {/* <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>{o.paymentStatus}</td> */}
                                 <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>{o.shipPickUpStatus}</td>
                                 <td scope='row' className='px-6 py-4 flex justify-start'>
                                 {/* <Link to={`/dashboard/deal/detail/${o._id}`}>

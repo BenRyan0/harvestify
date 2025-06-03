@@ -31,7 +31,7 @@ const DaysCounter = ({ startDate, endDate, createdAt,textSize }) => {
   // Determine the color based on the flipped percentage
   const getPathColor = (percentage) => {
     if (percentage >= 80) {
-      return 'red';
+      return 'gray';
     } else if (percentage >= 60) {
       return 'orange';
     } else {

@@ -41,7 +41,7 @@ const Dashboard = () => {
                 </div>
                 <div className="h-full mx-auto ">
                     <div className="py-5 flex md-lg:w-[90%] mx-auto relative">
-                        <div className={`rounded-md z-50 md-lg:absolute ${filterShow ? '-left-4':'-left-[360px]'} w-[270px] ml-4 bg-white z-[9999999] shadow-lg`}>
+                        <div className={`rounded-md z-50 md-lg:absolute ${filterShow ? '-left-4':'-left-[360px]'} w-[230px] ml-4 bg-white z-[9999999] shadow-lg`}>
                             <ul className='py-2 text-slate-600 px-4 font-semibold'>
                                 <li onClick={()=>setFilterShow(!filterShow)} className='flex justify-start items-center gap-2 py-2 px-2 hover:bg-primary/80 hover:text-white rounded-md transition-all duration-300 active:shadow-lg '>
                                     <span className='text-xl'><MdDashboard /></span>

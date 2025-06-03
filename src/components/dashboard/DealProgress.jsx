@@ -165,7 +165,7 @@ const DealProgress = () => {
             "Confirmation-2",
             "Delivery/Receipt-2",
             "Upload_Proof-2",
-            "Confirmation-2",
+            "Confirmation-2-F",
             "Review-2",
             "Complete"
           ];
@@ -231,7 +231,7 @@ const DealProgress = () => {
       "Confirmation-2" :<FirstConfirmation/>,
       "Delivery/Receipt-2" : <DeliveryReceipt/>,
       "Upload_Proof-2" : <SecondPayment/>,
-      "Confirmation-2" : <SecondConfirmation/>,
+      "Confirmation-2-F" : <SecondConfirmation/>,
       "Review-2" : <Complete/>,
       "Complete" : <Complete_/>
     
@@ -260,7 +260,7 @@ const DealProgress = () => {
         <div className="container horizontal mt-5">
           <Stepper steps = {steps} currentStep={currentStep}/>
 
-          <div className="my-1 py-10  px-3 ">
+          <div className="my-1 py-10  px-3  ">
           <StepperContext.Provider value={{
                     userData,
                     setUserData,

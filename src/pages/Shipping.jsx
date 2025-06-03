@@ -762,26 +762,8 @@ const Shipping = () => {
                                                                                
                                                                             </div>
 
-                                                                            <div className="pt-2 border-t-2 border-slate-700 text-slate-200 rounded-sm px-2 py-1 mt-2 flex gap-2 justify-between items-center text-center">
-                                                                                <h2 className="font-bold text-lg text-slate-800">Payment Terms {paymentTerm.paymentTerm}</h2>
-                                                                                <div>
-                                                                                    <div className="flex items-center text-center">
-                                                                                        <select
-                                                                                            id="paymentTerm"
-                                                                                            name="paymentTerm"
-                                                                                            onChange={paymentTermHandler}
-                                                                                            value={paymentTerm.paymentTerm} // Fix: Use `paymentTerm` state
-                                                                                            className="bg-[#283046] pr-4 h-[40px] px-4 outline-none rounded-md text-[#d0d2d6] border-none w-[250px]"
-                                                                                        >
-                                                                                            {/* <option value="">Payment Terms</option> */}
-                                                                                            <option value="2">2 Term Payment (DEFAULT)</option>
-                                                                                            <option value="3">3 Term Payment</option>
-                                                                                            <option value="4">4 Term Payment</option>
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            {/* <h2>{paymentTerm.paymentTerm}</h2> */}
+                                                                           
+                                                                           
 
                                                                             </div>
                                                                             <div className="mt-3 w-full flex gap-1 text-base font-semibold">
