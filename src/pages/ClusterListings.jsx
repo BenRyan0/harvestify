@@ -1,19 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import {Range} from 'react-range'
 import Headers from '../components/Headers';
 import { Link, useParams } from 'react-router-dom';
 import { FaAngleRight } from "react-icons/fa6";
 import Footer from '../components/Footer';
-import { FaStar } from "react-icons/fa";
-import { FaRegStar } from "react-icons/fa";
-import { PiShieldCheckFill } from "react-icons/pi";
-import { BiSolidCheckShield } from "react-icons/bi";
-import { BiCheckShield } from "react-icons/bi";
-import {PropagateLoader, ClipLoader} from 'react-spinners'
-import Listings from '../components/listings/Listings';
 import { IoGrid } from "react-icons/io5";
 import { FaThList } from "react-icons/fa";
-import ClusterListingList from '../components/listings/ClusterListingList';
 import Pagination from '../components/Pagination';
 import { useDispatch, useSelector } from 'react-redux';
 import { query_listings, get_cluster_details } from '../store/reducers/homeReducer';
@@ -21,7 +12,6 @@ import Ratings from './../components/Ratings';
 import { AiFillShop } from "react-icons/ai";
 import { FaLocationDot } from "react-icons/fa6";
 import { IoChatboxEllipses } from "react-icons/io5";
-import FeaturedListings from './../components/listings/FeaturedListings copy';
 import ClusterListingsists from '../components/listings/ClusterListingsists';
 
 const ClusterListings = () => {

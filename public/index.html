@@ -14,42 +14,70 @@
     <link rel="manifest" href="manifest.json" />
     <link rel="shortcut icon" href="favicon.ico" />
 
-
-
-
-
-
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <!-- <link rel="manifest" href="%PUBLIC_URL%/manifest.json" /> -->
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
     <title>Harvestify</title>
   </head>
+   <style>
+    .main-container {
+      background-color: #fff;
+    }
+    .loading-screen-container {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+      align-items: center;
+      flex-flow: column;
+      /* opacity: 70%; */
+    }
+    .loader-text {
+      font-weight: 900;
+      font-size: 40px;
+      color: #b5b5b588;
+    }
+
+    .loader {
+      height: 4px;
+      width: 80px;
+      --c: no-repeat linear-gradient(#05DA49 0 0);
+      background: var(--c), var(--c), #fff;
+      background-size: 60% 100%;
+      animation: l16 3s infinite;
+    }
+
+  .loader-image {
+  /* width: 100px; */
+  /* height: 20px; */
+  height: auto;   /* keeps aspect ratio */
+  opacity: 0.3;   /* better syntax than 30% */
+}
+
+    @keyframes l16 {
+      0% {
+        background-position: -150% 0, -150% 0;
+      }
+      66% {
+        background-position: 250% 0, -150% 0;
+      }
+      100% {
+        background-position: 250% 0, 250% 0;
+      }
+    }
+  </style>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="root">
+       <div class="overflow-hidden main-container">
+        <div class="loading-screen-container">
+          <h2 class="loader-text">Harvestify</h2>
+          <!-- <img className="loader-image opacity-60 ]" src="/Harvestify_logo_full-min.png" alt=""> -->
+          <div class="loader"></div>
+        </div>
+      </div>
+    </div>
     <script>
     
     </script>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
   </body>
 </html>

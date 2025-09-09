@@ -12,15 +12,10 @@ import { useTranslation } from 'react-i18next';
 
 
 const Home = () => {
-  // console.log("home")
   const dispatch = useDispatch()
   const {t} = useTranslation()
 
   const {categories,allListings,featuredListings, latestListings,topRatedListings,discounted_listings} = useSelector(state=>state.home)
- 
-  // useEffect(()=>{
-  //   dispatch(get_listings())
-  // },[allListings, dispatch] )
 
   useEffect(() => {
     dispatch(get_listings());

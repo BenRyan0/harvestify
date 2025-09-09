@@ -10,6 +10,7 @@ import "./components/i18/i18";
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
+
 // Custom function to request notification permissions and display a test notification
 function initializeNotifications() {
   if ('Notification' in window && 'serviceWorker' in navigator) {
