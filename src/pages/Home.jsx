@@ -28,6 +28,7 @@ const Home = () => {
         <Banner/>
         <div className=''>
           <Categories categories={categories}/>
+          
         </div>
         <div className="py-[45px]">
           {/* <FeaturedListings listings={featuredListings}/> */}

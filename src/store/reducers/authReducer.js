@@ -2,6 +2,18 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../../api/api";
 const { jwtDecode } = require('jwt-decode');
 
+export const wakeBackend = createAsyncThunk(
+  "auth/wakeBackend",
+  async (_, {fulfillWithValue, rejectWithValue}) => {
+    try {
+      const { data } = await api.get("/wakey-wakey");
+      return fulfillWithValue(data);
+    } catch (error) {
+      return rejectWithValue(error.response.data)
+    }
+  }
+);
+
 export const trader_register = createAsyncThunk(
   "auth/trader_register",
   async (info, {fulfillWithValue, rejectWithValue}) => {
@@ -66,14 +78,7 @@ const decodedToken = (token) =>{
     return ""; // If decoding fails, return an empty role
   }
 }
-// const decodedToken = (token) =>{
-//   if(token){
-//     const userInfo = jwtDecode(token)
-//     return userInfo
-//   }else{
-//     return ''
-//   }
-// }
+
 
 export const authReducer = createSlice({
   name: "auth",
@@ -83,7 +88,8 @@ export const authReducer = createSlice({
     errorMessage: "",
     successMessage: "",
     redirect: 0,
-    token: localStorage.getItem("traderToken")
+    token: localStorage.getItem("traderToken"),
+    isBackendUp : false
   },
   reducers: {
     messageClear: (state, _) => {
@@ -150,6 +156,21 @@ export const authReducer = createSlice({
       builder.addCase(trader_changePassword.fulfilled, (state,payload) => {
         state.loader= false
         state.successMessage = payload.payload.message;
+   
+        });
+
+
+      builder.addCase(wakeBackend.pending, (state,_) => {
+        state.loader= true;
+        });
+
+      builder.addCase(wakeBackend.rejected, (state,payload) => {
+        state.loader= false;
+        });
+
+      builder.addCase(wakeBackend.fulfilled, (state,payload) => {
+        state.loader= false
+        state.isBackendUp = payload.payload.isBackendUp;
    
         });
    
