@@ -1,22 +1,18 @@
 import './App.css';
-import {BrowserRouter, Routes, Route, useSearchParams} from 'react-router-dom'
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Home from './pages/Home';
 import Clusters from './pages/Clusters';
 import ClusterListings from './pages/ClusterListings'
-// import ustersListiClng from './pages/ClustersListing'
 import Login from './pages/Login';
 import Register from './pages/Register';
-import AllUsers from './pages/AllUsers';
-import AllListings from './pages/AllListings';
 import Card from './pages/Card';
 import Details from './pages/Details';
 import Shipping from './pages/Shipping';
 import AboutUs from './pages/AboutUs';
 import PendingOrder from './pages/PendingOrder';
-import DistanceCalculator from './pages/DistanceCalculator';
 import DistancePriceCalculator from './pages/distancePriceCalculator';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect} from 'react';
 import { get_categories } from './store/reducers/homeReducer';
 import CategoryClusters from './pages/CategoryClusters';
 import PendingAccount from './pages/NotActiveAccount';
@@ -33,8 +29,7 @@ import DealProgress from './components/dashboard/DealProgress';
 import Chat from './components/dashboard/Chat';
 import CancellationPAge from './components/dashboard/Cancellation';
 import CancellationDeal from './components/dashboard/cancelDeal';
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api'
-import React from 'react';
+import { useJsApiLoader } from '@react-google-maps/api'
 import { wakeBackend } from './store/reducers/authReducer';
 
 
@@ -75,6 +70,11 @@ function App() {
       if(retryInterval) clearInterval(retryInterval)
     }
   },[isBackendUp, dispatch])
+
+
+
+  console.log("process.env.REACT_APP_API_KEY")
+  console.log(process.env.REACT_APP_API_KEY)
 
 if(!isBackendUp){
   return(

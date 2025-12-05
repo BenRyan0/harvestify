@@ -1,13 +1,14 @@
 import axios from "axios";
-// const local = "http://192.168.254.105:5000";
+// import 'dotenv/config'
 const local = "http://localhost:5000";
 const production1 = "https://harvestify-api.onrender.com";
 
 let api_url = ''
-let mode = 'dev'
+let mode = process.env.REACT_APP_API_MODE 
+console.log(`Mode: ${mode}`)
 
 
-if(mode === 'pro'){
+if(mode === 'prod'){
   api_url = production1
 }else{
   api_url = local 
