@@ -7,7 +7,7 @@ import dateFormat, { masks } from "dateformat";
 import Ratings from "../Ratings";
 import { IoTicketSharp } from "react-icons/io5";
 
-const Listings = ({ title, listings }) => {
+const ListingsSideBar = ({ title, listings }) => {
   console.log("listings");
   console.log(listings);
   const responsive = {
@@ -190,4 +190,4 @@ const Listings = ({ title, listings }) => {
   );
 };
 
-export default Listings;
+export default ListingsSideBar;

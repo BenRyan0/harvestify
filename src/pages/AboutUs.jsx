@@ -4,7 +4,7 @@ import Footer from './../components/Footer';
 
 const AboutUs = () => {
   return (
-    <div>
+    <div className='sm:px-0 md:px-16'>
         <Headers/>
             
       <div class="w-[85%] mx-auto">

@@ -38,9 +38,7 @@ const DaysCounter = ({ startDate, endDate, createdAt,textSize }) => {
       return 'green';
     }
   };
-  // console.log(startDate)
-  // console.log(endDate)
-  // console.log(createdAt)
+
 
   const pathColor = getPathColor(flippedPercentage);
 
@@ -54,9 +52,8 @@ const DaysCounter = ({ startDate, endDate, createdAt,textSize }) => {
 
   const pathColor_ = getPathColor(flippedProgressDaysLeft);
 
-  // console.log(progressDaysLeft)
   return (
-    <div className="flex flex-col gap-1 ">
+    <div className="flex flex-col gap-1 text-[9px] ">
       <div className="flex justify-center items-center ">
       <CircularProgressbarWithChildren
         className='bg-white border-2 rounded-full p-[1px] border-slate-600'
@@ -67,21 +64,17 @@ const DaysCounter = ({ startDate, endDate, createdAt,textSize }) => {
           background: pathColor,
         })}
       >
-        <div className='flex gap-[2px] text-[12px] flex-col text-center transition-all duration-700'>
+        <div className='flex gap-[2px]  flex-col text-center transition-all duration-700'>
           <span className={`${textSize}`} style={{ color: pathColor }}>
-            {daysUntilStart > 0 ? `${daysUntilStart } ${daysUntilStart === 1 ? 'Day' : 'Days'}` : '--Ended--'}
+            {daysUntilStart > 0 ? `${daysUntilStart } ${daysUntilStart === 1 ? 'Day' : 'Days'}` : 'Ended'}
           </span>
         </div>
       </CircularProgressbarWithChildren>
-      {/* <div className='flex transition-all duration-700 z-0  justify-center items-center gap-2 absolute w-full hover:left-[70px]'>
-       <h1>Till Harvest</h1>        
-      </div> */}
-
       </div>
 
       {showSecond && 
         <CircularProgressbarWithChildren
-          className='bg-white border-2 rounded-full p-[1px] border-slate-600'
+          className='bg-white border-2 rounded-full p-[1px] border-slate-600 '
           value={flippedProgressDaysLeft}
           styles={buildStyles({
             pathColor: pathColor_,
@@ -89,11 +82,11 @@ const DaysCounter = ({ startDate, endDate, createdAt,textSize }) => {
             background: pathColor_,
           })}
         >
-          <div className='flex gap-[2px] text-[12px] flex-col text-center transition-all duration-700'>
+          <div className='flex gap-[2px] flex-col text-center transition-all duration-700'>
             <span className='flex flex-col ' style={{ color: pathColor_ }}>
               <div className="">{daysLeftUntilEnd > 0 ? `${daysLeftUntilEnd -1} ${daysLeftUntilEnd === 1 ? 'Day' : 'Days'}` : ''}
               </div>
-              <div className="text-[9px]">{daysLeftUntilEnd > 0 ? `${daysLeftUntilEnd === 1 ? 'Harvest time' : 'Harvest time'}` : '--Ended--'}
+              <div className="">{daysLeftUntilEnd > 0 ? `${daysLeftUntilEnd === 1 ? 'Harvest time' : 'Harvest time'}` : 'Ended'}
               </div>
              
             

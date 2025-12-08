@@ -27,7 +27,7 @@ i18n.use(LanguageDetector).use(initReactI18next).init({
                 featuredProducts: "Featured Products",
                 categories: "Categories",
                 price: "Price",
-                expectedYield: "Expected Yield ()",
+                expectedYield: "Expected Yield",
                 sellerRating: "Seller Rating",
                 latestProducts: "Latest Products",
                 dontHaveAccount: "Don't Have An Account Yet?",

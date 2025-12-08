@@ -28,7 +28,7 @@ const Banner = () => {
                 <div className="w-full flex flex-wrap md-lg:gap-8">
                     <div className="w-full">
                         <div className="my-7 ">
-                            <Carousel className='rounded-lg h-[260px] md-lg:h-[150px]'
+                            <Carousel className='rounded-lg h-[200px] md-lg:h-[150px]'
                                 autoPlay={true}
                                 infinite={true}
                                 arrows={true}

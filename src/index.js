@@ -27,7 +27,7 @@ function initializeNotifications() {
         });
       } else {
         console.warn('Notification permission denied.');
-      }
+      } 
     });
   } else {
     console.warn('Notifications are not supported in this browser.');
