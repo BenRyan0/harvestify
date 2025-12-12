@@ -217,7 +217,7 @@ const Details = () => {
       {listing?.sellerId?.firstName ? (
         <div>
           <Headers />
-          <section
+          {/* <section
             className=" w-[85%] mx-auto h-[190px] mt-6 bg-cover bg-no-repeat relative bg-left"
             style={{ backgroundImage: "url('/images/banner/card.jpg')" }}
           >
@@ -232,9 +232,9 @@ const Details = () => {
                 </div>
               </div>
             </div>
-          </section>
+          </section> */}
 
-          <div className="py-5 mb-5">
+          <div className="py-3">
             <div className="w-[85%] bg-slate-100 md:w-[80%] sm:w-[90%] lg:w-[90%] h-full mx-auto py-3 px-3">
               <div className="flex justify-start items-center text-xs text-slate-500 gap-1">
                 <Link to="/">Home</Link>
@@ -446,9 +446,9 @@ const Details = () => {
                       <span>
                         <FaMapMarkedAlt size={20} />
                       </span>
-                      <h2>Listing Location: </h2>
+                      <h2 className="font-bold text-sm">Listing Location: </h2>
                     </div>
-                    <p>
+                    <p className="text-sm">
                       {listing.additionalLocationInfo}, {listing.locationInfo}
                     </p>
                   </div>
@@ -474,11 +474,11 @@ const Details = () => {
                       <div className="">
                         <button
                           onClick={() => handleAddCard(listing._id)}
-                          className="h-[50px] group flex justify-center items-center gap-2 font-bold bg-primaryDark px-4 py-2 rounded-md text-slate-100 hover:shadow-md"
+                          className="h-[40px] group flex justify-center items-center gap-2 font-bold bg-primaryDark px-4 py-2 rounded-sm text-slate-100 hover:shadow-md"
                         >
                           Save listing
                           <MdSave
-                            size={25}
+                            size={21}
                             className="transition-transform duration-300 ease-in-out group-hover:animate-wiggle"
                           />
                         </button>
@@ -489,10 +489,10 @@ const Details = () => {
                     <div className="">
                       <button
                         onClick={() => add_wishlist(listing)}
-                        className="h-[50px] w-[50px] flex justify-center items-center cursor-pointer hover:shadow-md rounded-md bg-primaryDark group"
+                        className="h-[40px] w-[40px] flex justify-center items-center cursor-pointer hover:shadow-md rounded-sm bg-primaryDark group"
                       >
                         <FaHeart
-                          size={23}
+                          size={20}
                           fill="#F1F5F9"
                           className="group-hover:animate-wiggle"
                         />

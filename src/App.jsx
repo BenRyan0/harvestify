@@ -10,7 +10,7 @@ import Details from "./pages/Details";
 import Shipping from "./pages/Shipping";
 import AboutUs from "./pages/AboutUs";
 import PendingOrder from "./pages/PendingOrder";
-import DistancePriceCalculator from "./pages/distancePriceCalculator";
+// import DistancePriceCalculator from "./pages/distancePriceCalculator";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { get_categories } from "./store/reducers/homeReducer";
@@ -105,7 +105,7 @@ function App() {
         <Route path="/listing/details/:slug" element={<Details />} />
         <Route path="/pending-order" element={<PendingOrder />} />
         <Route path="/about-us" element={<AboutUs />} />
-        <Route path="/calc" element={<DistancePriceCalculator />} />
+        {/* <Route path="/calc" element={<DistancePriceCalculator />} /> */}
         <Route path="/dashboard" element={<ProtectUser />}>
           <Route path="" element={<Dashboard />}>
             <Route path="" element={<Index />} />
